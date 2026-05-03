@@ -746,6 +746,28 @@
         display: block !important;
       }
     }
+
+    @media (max-width: 768px) {
+      .nav-services-menu {
+        position: absolute !important;
+        top: calc(100% + 8px) !important;
+        left: 0 !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        display: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: none !important;
+        z-index: 99999 !important;
+        margin: 0 !important;
+      }
+      .nav-services.open > .nav-services-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        pointer-events: auto !important;
+      }
+    }
   </style>
 </head>
 <body>

@@ -893,7 +893,7 @@
         max-width: 100%;
         height: auto;
       }
-      section, div, nav, header, footer {
+      section, nav, header, footer {
         max-width: 100% !important;
         overflow-x: hidden;
       }
@@ -1213,14 +1213,11 @@
       }
 
       /* Track: lays all cards in a horizontal row, no clipping */
-      .reviews-track,
-      [class*="carousel-track"],
-      [class*="reviews-track"] {
-        max-width: none !important;
-        overflow: visible !important;
+      .reviews-track {
         display: flex !important;
         flex-direction: row !important;
         width: max-content !important;
+        overflow: visible !important;
       }
 
       /* Viewport: only element that should clip the track */
@@ -1253,8 +1250,8 @@
         max-width: calc(100vw - 160px) !important;
         padding: 1.75rem !important;
         box-sizing: border-box !important;
-        overflow: hidden !important;
         flex-shrink: 0 !important;
+        overflow: visible !important;
       }
 
       /* Text: wrap normally, no horizontal overflow */

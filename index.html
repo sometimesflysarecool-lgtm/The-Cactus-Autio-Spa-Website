@@ -773,7 +773,14 @@
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     @media (max-width: 900px) { .review-card { flex: 0 0 calc(50% - 10px); } }
-    @media (max-width: 560px) { .review-card { flex: 0 0 100%; } }
+    @media (max-width: 560px) {
+      .review-card {
+        flex: 0 0 calc(100vw - 164px);
+        width: calc(100vw - 164px);
+        max-width: none;
+        box-sizing: border-box;
+      }
+    }
     .review-card:hover {
       border-color: rgba(34,197,94,0.45);
       box-shadow: 0 0 28px rgba(34,197,94,0.14);
@@ -1070,6 +1077,81 @@
         white-space: nowrap !important;
         font-size: 0.9rem !important;
         display: block !important;
+      }
+    }
+
+    /* ── Fix review card mobile layout ────────────────────────────────────
+       The [class*="footer"] selector above incorrectly matches .review-footer
+       and applies width:100%/flex-column to all its children, turning the
+       circular avatar into a giant oval and hiding the name and Google logo.
+       These rules undo that damage specifically for the review section.
+    ─────────────────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .review-footer {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding-top: 12px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+        overflow: visible !important;
+      }
+
+      .review-avatar {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        max-width: 36px !important;
+        border-radius: 50% !important;
+        aspect-ratio: 1 / 1 !important;
+        flex: 0 0 36px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+      }
+
+      .review-footer > div:not(.review-avatar) {
+        display: block !important;
+        width: auto !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+
+      .review-name {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: auto !important;
+        padding: 0 !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: #fff !important;
+      }
+
+      .review-location {
+        display: block !important;
+        width: auto !important;
+        padding: 0 !important;
+      }
+
+      .review-google-logo {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 0.6 !important;
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        max-width: 18px !important;
+        padding: 0 !important;
+        flex: 0 0 18px !important;
+        margin-left: auto !important;
       }
     }
   </style>

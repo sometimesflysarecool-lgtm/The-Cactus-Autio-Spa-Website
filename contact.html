@@ -413,6 +413,55 @@
         display: inline-block !important;
       }
     }
+
+    /* Mobile nav — show all links, no hamburger */
+    @media (max-width: 768px) {
+      nav, header nav, .nav, .navbar, .header-nav,
+      [class*="nav"], [class*="header"] {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      nav > ul {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+
+      nav a, nav li, nav ul,
+      [class*="nav"] a, [class*="nav"] li, [class*="nav"] ul {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        font-size: 0.85rem !important;
+      }
+
+      [class*="dropdown"], [class*="submenu"] {
+        z-index: 9999 !important;
+        overflow: visible !important;
+        height: auto !important;
+        position: absolute !important;
+      }
+
+      [class*="quote"], a[href*="quote"], .cta-btn {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+        clip-path: none !important;
+      }
+    }
   </style>
   <script src="script.js" defer></script>
   <style>

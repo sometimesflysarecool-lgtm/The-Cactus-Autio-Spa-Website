@@ -1749,51 +1749,31 @@
       var btnNext = document.getElementById('revNext');
       if (!track || !btnPrev || !btnNext) return;
 
-      var current = 0;
+      var currentIndex = 0;
+      var cards = track.querySelectorAll('.review-card');
+      var total = cards.length;
 
-      function getVisible() {
-        if (window.innerWidth <= 560) return 1;
-        if (window.innerWidth <= 900) return 2;
-        return 3;
+      function goToSlide(index) {
+        var slideWidth = cards[0].getBoundingClientRect().width;
+        track.style.transform = 'translateX(-' + (index * slideWidth) + 'px)';
+        currentIndex = index;
       }
-
-      function getCards() {
-        return track.querySelectorAll('.review-card');
-      }
-
-      function getStepPx() {
-        var card = getCards()[0];
-        if (!card) return 0;
-        return card.getBoundingClientRect().width + 20;
-      }
-
-      function clamp(val) {
-        var max = getCards().length - getVisible();
-        return Math.max(0, Math.min(val, max));
-      }
-
-      function update() {
-        track.style.transform = 'translateX(-' + (current * getStepPx()) + 'px)';
-        btnPrev.disabled = current === 0;
-        btnNext.disabled = current >= getCards().length - getVisible();
-      }
-
-      btnPrev.addEventListener('click', function () {
-        current = clamp(current - 1);
-        update();
-      });
 
       btnNext.addEventListener('click', function () {
-        current = clamp(current + 1);
-        update();
+        var next = (currentIndex + 1) % total;
+        goToSlide(next);
+      });
+
+      btnPrev.addEventListener('click', function () {
+        var prev = (currentIndex - 1 + total) % total;
+        goToSlide(prev);
       });
 
       window.addEventListener('resize', function () {
-        current = clamp(current);
-        update();
+        goToSlide(currentIndex);
       });
 
-      update();
+      goToSlide(0);
     })();
   </script>
 </body>

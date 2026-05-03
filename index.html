@@ -1835,41 +1835,29 @@
   <script>
     (function () {
       var track = document.getElementById('reviewsTrack');
-      var btnPrev = document.getElementById('revPrev');
-      var btnNext = document.getElementById('revNext');
-      if (!track || !btnPrev || !btnNext) return;
-
-      var currentIndex = 0;
       var cards = track.querySelectorAll('.review-card');
+      var nextBtn = document.getElementById('revNext');
+      var prevBtn = document.getElementById('revPrev');
+
+      if (!track || !cards.length || !nextBtn || !prevBtn) return;
+
+      var current = 0;
       var total = cards.length;
 
-      function goToSlide(index) {
-        currentIndex = index;
-        var card = cards[currentIndex];
-        var trackRect = track.getBoundingClientRect();
-        var cardRect = card.getBoundingClientRect();
-        var offset = cardRect.left - trackRect.left;
-        var currentTransform = new DOMMatrix(
-          getComputedStyle(track).transform
-        ).m41;
-        track.style.transform = 'translateX(' + (currentTransform - offset) + 'px)';
+      function goTo(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        var cardWidth = cards[0].offsetWidth;
+        track.style.transition = 'transform 0.4s ease';
+        track.style.transform = 'translateX(-' + (current * cardWidth) + 'px)';
       }
 
-      btnNext.addEventListener('click', function () {
-        var next = (currentIndex + 1) % total;
-        goToSlide(next);
-      });
+      nextBtn.addEventListener('click', function () { goTo(current + 1); });
+      prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      window.addEventListener('resize', function () { goTo(0); });
 
-      btnPrev.addEventListener('click', function () {
-        var prev = (currentIndex - 1 + total) % total;
-        goToSlide(prev);
-      });
-
-      window.addEventListener('resize', function () {
-        goToSlide(currentIndex);
-      });
-
-      goToSlide(0);
+      goTo(0);
     })();
   </script>
 </body>

@@ -36,6 +36,18 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
+    .btn,
+    button,
+    a.btn,
+    .btn-primary,
+    .btn-secondary,
+    .nav-cta,
+    input[type="submit"] {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.01em;
+    }
+
     /* ── NAV DROPDOWN ── */
     .nav-services-menu { opacity:0; visibility:hidden; pointer-events:none; position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:6px 0; min-width:190px; list-style:none; margin:0; z-index:1000; box-shadow:0 8px 24px rgba(0,0,0,0.5); transition:opacity 0.2s ease, visibility 0.2s ease; transition-delay:0.3s; }
     .nav-services-menu::before { content:''; position:absolute; top:-8px; left:0; right:0; height:8px; }
@@ -68,8 +80,22 @@
       padding: 6rem 1.5rem 5rem;
       text-align: center;
     }
-    .hero h1 { font-size:clamp(2.6rem,5.5vw,4.2rem); font-weight:900; letter-spacing:-0.03em; line-height:1.04; margin-bottom:18px; }
-    .hero h1 em { color:var(--green); font-style:normal; }
+    .hero h1 {
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 900px;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+    .hero h1 em {
+      display: block;
+      color: var(--green);
+      font-style: normal;
+      text-transform: uppercase;
+    }
     .hero-sub { font-size:1.05rem; color:var(--muted-lg); max-width:520px; margin:0 auto 36px; }
     .pills { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
     .pill { background:var(--green-dim); border:1px solid var(--green-border); color:var(--green); font-size:12px; font-weight:600; padding:6px 16px; border-radius:999px; }
@@ -363,6 +389,7 @@
       50%       { opacity: 0.12; }
     }
     .hero { position: relative; overflow: hidden; padding-bottom: 5rem; }
+    .hero > *:not(.hero-glow) { position: relative; z-index: 1; }
     .hero-glow {
       position: absolute; inset: 0; pointer-events: none;
       background: radial-gradient(ellipse 60% 55% at 50% 40%, #22c55e, transparent);

@@ -1185,6 +1185,21 @@
         pointer-events: auto !important;
       }
     }
+
+    @media (max-width: 768px) {
+      /* FIX 1 — center Ready? badge */
+      .section-cta .badge {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* FIX 2 — brand ticker track clipped by div overflow-x:hidden rule */
+      .brand-ticker-track {
+        overflow: visible !important;
+        max-width: none !important;
+        width: max-content !important;
+      }
+    }
   </style>
 </head>
 <body>

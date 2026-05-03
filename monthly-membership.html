@@ -614,16 +614,41 @@
       }
     }
 
-    /* Mobile nav — horizontal, click dropdown */
+    /* Mobile nav — horizontal row, floating dropdown */
     @media (max-width: 768px) {
+      /* Problem 1: Remove left gap */
+      header,
+      nav,
+      .header,
+      .navbar,
+      [class*="header"],
+      [class*="nav-wrapper"],
+      [class*="nav-container"] {
+        margin-left: 0 !important;
+        padding-left: 0.75rem !important;
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+
+      /* Nav stays one fixed horizontal row */
+      nav,
+      nav ul,
+      [class*="nav-list"] {
+        position: relative !important;
+        overflow: visible !important;
+        height: auto !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+      }
+
       nav,
       header nav,
       .nav,
       .navbar,
       [class*="nav-list"],
       [class*="nav-links"],
-      [class*="nav-items"],
-      nav ul {
+      [class*="nav-items"] {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
@@ -634,6 +659,16 @@
         overflow: visible !important;
         height: auto !important;
         padding: 0 0.75rem !important;
+      }
+
+      nav > ul {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        overflow: visible !important;
+        padding: 0 !important;
       }
 
       nav li,
@@ -652,32 +687,39 @@
         font-size: 0.78rem !important;
         padding: 0.25rem 0.3rem !important;
       }
-    }
 
-    @media (max-width: 768px) {
+      /* Problem 2: Dropdown floats below nav bar as overlay */
       [class*="dropdown"],
       [class*="submenu"],
-      nav ul ul {
-        display: none !important;
+      nav li ul {
         position: absolute !important;
         top: 100% !important;
-        left: 0 !important;
-        z-index: 9999 !important;
-        min-width: 200px !important;
-        background: #1a1a1a !important;
-        border-radius: 8px !important;
-        padding: 0.5rem 0 !important;
-        overflow: visible !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 99999 !important;
+        display: none !important;
+        flex-direction: column !important;
+        background: #1e1e1e !important;
+        border-radius: 12px !important;
+        padding: 1rem !important;
+        min-width: 220px !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4) !important;
       }
 
-      [class*="nav-item"].open > [class*="dropdown"],
-      [class*="nav-item"].open > [class*="submenu"],
-      li.open > ul {
+      li.open > [class*="dropdown"],
+      li.open > [class*="submenu"],
+      li.open > ul,
+      [class*="nav-item"].open > ul {
         display: flex !important;
-        flex-direction: column !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
+      }
+
+      [class*="dropdown"] a,
+      [class*="submenu"] a,
+      nav li ul a {
+        padding: 0.6rem 1rem !important;
+        white-space: nowrap !important;
+        font-size: 0.9rem !important;
+        display: block !important;
       }
     }
   </style>

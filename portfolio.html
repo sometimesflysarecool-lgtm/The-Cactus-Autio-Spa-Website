@@ -535,52 +535,70 @@
       }
     }
 
-    /* Mobile nav — show all links, no hamburger */
+    /* Mobile nav — horizontal, click dropdown */
     @media (max-width: 768px) {
-      nav, header nav, .nav, .navbar, .header-nav,
-      [class*="nav"], [class*="header"] {
+      nav,
+      header nav,
+      .nav,
+      .navbar,
+      [class*="nav-list"],
+      [class*="nav-links"],
+      [class*="nav-items"],
+      nav ul {
         display: flex !important;
         flex-direction: row !important;
-        flex-wrap: wrap !important;
+        flex-wrap: nowrap !important;
         align-items: center !important;
         justify-content: space-between !important;
         width: 100% !important;
+        gap: 0.5rem !important;
         overflow: visible !important;
         height: auto !important;
-        max-height: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
+        padding: 0 0.75rem !important;
       }
 
-      nav > ul {
-        flex-wrap: wrap !important;
-        gap: 8px !important;
-      }
-
-      nav a, nav li, nav ul,
-      [class*="nav"] a, [class*="nav"] li, [class*="nav"] ul {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
-        font-size: 0.85rem !important;
-      }
-
-      [class*="dropdown"], [class*="submenu"] {
-        z-index: 9999 !important;
-        overflow: visible !important;
-        height: auto !important;
-        position: absolute !important;
-      }
-
-      [class*="quote"], a[href*="quote"], .cta-btn {
+      nav li,
+      nav ul li,
+      [class*="nav-item"] {
         display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        align-items: center !important;
+        white-space: nowrap !important;
+        flex-shrink: 1 !important;
+        font-size: 0.78rem !important;
+      }
+
+      nav a,
+      [class*="nav-link"] {
+        white-space: nowrap !important;
+        font-size: 0.78rem !important;
+        padding: 0.25rem 0.3rem !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      [class*="dropdown"],
+      [class*="submenu"],
+      nav ul ul {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        z-index: 9999 !important;
+        min-width: 200px !important;
+        background: #1a1a1a !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 0 !important;
         overflow: visible !important;
-        clip-path: none !important;
+      }
+
+      [class*="nav-item"].open > [class*="dropdown"],
+      [class*="nav-item"].open > [class*="submenu"],
+      li.open > ul {
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
       }
     }
   </style>

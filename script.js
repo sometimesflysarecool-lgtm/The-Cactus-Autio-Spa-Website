@@ -1,17 +1,43 @@
-// ======= NAV SERVICES DROPDOWN HOVER DELAY =======
+// ======= NAV SERVICES DROPDOWN =======
+// Desktop: hover with 300ms close delay
 document.querySelectorAll('.nav-services').forEach(function(item) {
   var menu = item.querySelector('.nav-services-menu');
   var hideTimeout;
   if (!menu) return;
   item.addEventListener('mouseenter', function() {
-    clearTimeout(hideTimeout);
-    item.classList.add('js-open');
+    if (window.innerWidth > 768) {
+      clearTimeout(hideTimeout);
+      item.classList.add('js-open');
+    }
   });
   item.addEventListener('mouseleave', function() {
-    hideTimeout = setTimeout(function() {
-      item.classList.remove('js-open');
-    }, 300);
+    if (window.innerWidth > 768) {
+      hideTimeout = setTimeout(function() {
+        item.classList.remove('js-open');
+      }, 300);
+    }
   });
+});
+
+// Mobile: click to toggle dropdown open/close
+document.querySelectorAll('nav li').forEach(function(item) {
+  var dropdown = item.querySelector('ul');
+  if (!dropdown) return;
+  var trigger = item.querySelector('a');
+  if (!trigger) return;
+  trigger.addEventListener('click', function(e) {
+    if (window.innerWidth > 768) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('nav li').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Click outside closes mobile dropdown
+document.addEventListener('click', function() {
+  document.querySelectorAll('nav li').forEach(function(i) { i.classList.remove('open'); });
 });
 
 // ======= MOBILE NAV HAMBURGER TOGGLE =======

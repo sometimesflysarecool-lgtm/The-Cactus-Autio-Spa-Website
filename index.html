@@ -1200,7 +1200,19 @@
         width: max-content !important;
       }
 
-      /* FIX 3 — reviews track + card sizing */
+      /* FIX 3 — reviews carousel full-width card on mobile */
+
+      /* Outer section: remove side padding so slider spans full viewport */
+      [class*="reviews-section"],
+      [class*="testimonial-section"],
+      section:has(.review-card) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        overflow: visible !important;
+        width: 100% !important;
+      }
+
+      /* Track: lays all cards in a horizontal row, no clipping */
       .reviews-track,
       [class*="carousel-track"],
       [class*="reviews-track"] {
@@ -1211,15 +1223,39 @@
         width: max-content !important;
       }
 
+      /* Viewport: only element that should clip the track */
+      .reviews-viewport,
+      [class*="carousel-viewport"],
+      [class*="reviews-window"],
+      [class*="carousel-window"],
+      [class*="slider-viewport"] {
+        overflow: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      /* Card: full width minus arrow space (2×44px buttons + 2×14px gaps = 116px, round to 120) */
       .review-card {
-        width: calc(100vw - 48px) !important;
-        min-width: calc(100vw - 48px) !important;
-        max-width: calc(100vw - 48px) !important;
-        box-sizing: border-box !important;
+        width: calc(100vw - 120px) !important;
+        min-width: calc(100vw - 120px) !important;
+        max-width: calc(100vw - 120px) !important;
         padding: 1.75rem !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
         flex-shrink: 0 !important;
       }
 
+      /* Text: wrap normally, no horizontal overflow */
+      .review-card p,
+      .review-card [class*="text"],
+      .review-card [class*="quote"] {
+        overflow: hidden !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+        width: 100% !important;
+      }
+
+      /* Bottom row: avatar + name/location + Google logo on one line */
       .review-card [class*="author"],
       .review-card [class*="reviewer"],
       .review-card [class*="footer"],
@@ -1227,17 +1263,19 @@
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        gap: 0.75rem !important;
-        flex-wrap: nowrap !important;
+        gap: 0.5rem !important;
         width: 100% !important;
+        flex-wrap: nowrap !important;
+        overflow: hidden !important;
       }
 
-      .review-card img[alt*="Google"],
-      .review-card [class*="google"] {
+      /* Google logo: pinned to far right, fixed size */
+      .review-card [class*="google"],
+      .review-card img[alt*="Google"] {
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
         width: 24px !important;
         height: 24px !important;
-        flex-shrink: 0 !important;
-        margin-left: auto !important;
       }
     }
   </style>

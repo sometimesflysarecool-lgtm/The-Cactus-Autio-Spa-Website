@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════════════════════════════
+   QUICK REFERENCE: MINIMUM VIABLE CSS FIX
+   (Use if mobile-overflow-fix.css is too comprehensive)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* STEP 1: Prevent horizontal overflow globally */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; }
+
+/* STEP 2: Ensure proper box-sizing */
+* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
+
+/* STEP 3: Mobile fixes (max-width: 768px) */
+@media (max-width: 768px) {
+  
+  /* Fix navbar padding overflow */
+  .navbar { padding: 0 20px !important; }
+  nav, header { width: 100%; overflow-x: hidden; }
+  
+  /* Fix section overflow */
+  section, .section, .hero, footer {
+    width: 100%;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+  }
+  
+  /* Constrain containers */
+  .wrap, .screen, .container {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Media responsiveness */
+  img, video, iframe {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Form elements full width */
+  input, textarea, select {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  /* Zero negative margins */
+  .sqs-row, [class*="row"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* STEP 4: Extra tight constraints for phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .navbar, section, .section, .hero, main {
+    padding: 0 16px !important;
+  }
+}

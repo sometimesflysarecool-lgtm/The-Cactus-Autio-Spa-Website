@@ -1,0 +1,251 @@
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE OVERFLOW & HORIZONTAL SCROLLING FIX
+   Ready for Squarespace Custom CSS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1. GLOBAL BOX-SIZING & OVERFLOW PREVENTION
+   Prevents elements from exceeding viewport width on all devices */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Ensure all elements respect viewport bounds */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* 2. MOBILE BREAKPOINT: max-width: 768px
+   All fixes scoped to mobile viewports to preserve desktop layout */
+
+@media (max-width: 768px) {
+  
+  /* ─ NAV: Fix sticky navbar horizontal overflow ─ */
+  .navbar {
+    padding: 0 20px !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .navbar,
+  nav,
+  header {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  
+  /* ─ SECTIONS: Constrain full-width sections ─ */
+  section,
+  .section,
+  .hero,
+  .ba-section,
+  .gallery-section,
+  .social-section,
+  .port-cta,
+  .mem-hero,
+  .membership-cards,
+  .footer {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  
+  /* ─ CONTAINERS: Ensure content containers don't overflow ─ */
+  .wrap,
+  .screen,
+  .container,
+  .content,
+  [class*="wrapper"],
+  [class*="container"],
+  [style*="max-width"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden;
+  }
+  
+  
+  /* ─ GRIDS: Stack columns and prevent overflow ─ */
+  .ba-grid,
+  .carousel-track,
+  .social-cols,
+  .why-grid,
+  .grid,
+  [class*="grid"],
+  [class*="columns"],
+  [style*="grid-template-columns"] {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  
+  /* ─ MEDIA: Ensure images/videos/iframes respect viewport ─ */
+  img,
+  video,
+  iframe,
+  .video-embed,
+  [class*="image"],
+  [class*="video"],
+  [class*="media"] {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+  
+  
+  /* ─ PADDING & MARGINS: Prevent content from hitting edges ─ */
+  main,
+  [role="main"],
+  article,
+  .main-content {
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  
+  /* ─ FOOTER: Fix footer horizontal overflow ─ */
+  footer,
+  .footer,
+  [class*="footer"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px !important;
+  }
+  
+  
+  /* ─ BUTTONS: Ensure buttons don't overflow on small screens ─ */
+  .btn,
+  button,
+  [class*="button"],
+  input[type="submit"],
+  input[type="button"] {
+    max-width: 100%;
+    padding: 0.8rem 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  
+  /* ─ TEXT CONTENT: Wrap long text and prevent overflow ─ */
+  h1, h2, h3, h4, h5, h6,
+  p,
+  span,
+  [class*="heading"],
+  [class*="title"] {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  
+  /* ─ FORMS: Fix form field overflow ─ */
+  form,
+  .form-group,
+  [class*="form"] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input,
+  textarea,
+  select,
+  .input,
+  .field {
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  
+  /* ─ SPECIAL ELEMENTS: Fix common Squarespace classes ─ */
+  .sqs-row,
+  .page-section,
+  .site-wrapper,
+  .sqs-block-image,
+  .sqs-gallery,
+  .sqs-carousel {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  
+  /* ─ NEGATIVE MARGINS: Zero out on mobile ─ */
+  [style*="margin-left: -"],
+  [style*="margin-right: -"],
+  [class*="negative-margin"],
+  .sqs-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SMALL MOBILE: max-width: 480px
+   Ultra-tight mobile constraints
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  
+  .navbar {
+    padding: 0 16px !important;
+  }
+  
+  section,
+  .section,
+  .hero,
+  main {
+    padding: 0 16px !important;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.2rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .wrap,
+  .screen {
+    padding: 0 16px !important;
+  }
+  
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   TABLET: max-width: 1024px
+   Intermediate mobile fixes
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  
+  [style*="gap:48px"],
+  [style*="gap: 48px"] {
+    gap: 24px !important;
+  }
+  
+}

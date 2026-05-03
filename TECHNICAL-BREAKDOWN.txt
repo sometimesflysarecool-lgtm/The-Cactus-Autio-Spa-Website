@@ -1,0 +1,332 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║       TECHNICAL BREAKDOWN: Mobile Overflow Root Causes & Fixes             ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #1: Missing overflow-x: hidden on Root Elements
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+Without overflow-x: hidden on <html> and <body>, any child element that
+exceeds 100vw (viewport width) will create a horizontal scrollbar and shift
+the entire page left.
+
+BEFORE (Missing):
+  html { scroll-behavior: smooth; background-color: #1a1a1a; }
+  body { min-height: 100vh; font-family: var(--font); ... }
+
+AFTER (Fixed):
+  html { overflow-x: hidden; scroll-behavior: smooth; background-color: #1a1a1a; }
+  body { overflow-x: hidden; min-height: 100vh; font-family: var(--font); ... }
+
+WHY IT WORKS:
+  • overflow-x: hidden prevents horizontal scrolling
+  • Child elements can still scroll if needed (overflow-y: auto still works)
+  • Keeps everything within viewport bounds
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #2: Padding on Navbar Without Proper box-sizing on Mobile
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+.navbar { padding: 0 40px; height: 64px; }
+
+On desktop (1200px): 40px + 1120px content + 40px = 1200px ✓
+On mobile (375px):  40px + 295px content + 40px = 375px ✓ (with box-sizing)
+                    But without box-sizing: 375px + 80px = 455px ✗ OVERFLOW!
+
+BEFORE (Can overflow on mobile):
+  .navbar {
+    padding: 0 40px;
+    display: flex;
+    z-index: 999;
+    /* no explicit width or box-sizing */
+  }
+
+AFTER (Fixed for mobile):
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 0 20px !important;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+WHY IT WORKS:
+  • Reduces padding from 40px → 20px on mobile (saves 40px total)
+  • Forces width: 100% to respect viewport bounds
+  • Ensures box-sizing: border-box counts padding in width calculation
+  • !important overrides any conflicting inline styles
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #3: Footer Divs with Large max-width and Padding
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+Inline styles like: <div style="max-width:1200px; margin:0 auto; padding:64px 40px;">
+
+On desktop (1400px): 1200px max-width ✓ centers content
+On mobile (375px):   padding: 64px 40px = 80px left+right ✓ PLUS
+                     The div itself still wants to be 1200px ✗ OVERFLOW!
+
+BEFORE (Inline style):
+  <div style="max-width:1200px; margin:0 auto; padding:64px 40px 40px; ...">
+
+AFTER (Fixed via CSS media query):
+  @media (max-width: 768px) {
+    div[style*="max-width:1200px"],
+    [style*="padding:64px 40px"] {
+      max-width: 100% !important;
+      padding: 20px !important;
+      box-sizing: border-box !important;
+    }
+  }
+
+WHY IT WORKS:
+  • max-width: 100% forces respect for viewport
+  • Reduces padding from 64px 40px → 20px on all sides
+  • !important overrides inline styles (inline has high specificity)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #4: Images Without Mobile max-width Constraints
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+Large images loaded at full resolution can exceed viewport on mobile.
+
+BEFORE (No mobile constraint):
+  img { display: block; }
+  /* image naturally wants to be 1600px wide */
+
+AFTER (Fixed):
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+
+WHY IT WORKS:
+  • max-width: 100% forces images to never exceed viewport
+  • height: auto maintains aspect ratio (no distortion)
+  • Works on mobile and desktop
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #5: Section Padding Not Respecting box-sizing
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+.hero { padding: 6rem 1.5rem; }
+
+On mobile (375px): 1.5rem (24px) × 2 sides = 48px padding
+                   375px viewport - 48px padding = 327px for content ✓
+                   BUT: If box-sizing is wrong, 375px + 48px = 423px ✗
+
+BEFORE (If box-sizing: content-box):
+  .hero {
+    padding: 6rem 1.5rem;
+    /* width defaults to 100% = viewport width */
+    /* Total: 375px + 48px = 423px OVERFLOW! */
+  }
+
+AFTER (Fixed):
+  .hero {
+    padding: 6rem 1.5rem;
+    box-sizing: border-box; /* padding is part of width */
+    width: 100%; /* 375px total including padding */
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2rem 1.25rem !important; /* Tighter on mobile */
+    }
+  }
+
+WHY IT WORKS:
+  • box-sizing: border-box makes padding part of element width
+  • 375px width includes all padding/border
+  • Reduces visual padding on mobile for better use of space
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #6: Carousels/Grids Without Mobile Width Constraints
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  /* no width constraint */
+}
+
+If carousel contains 3 items @ 300px each:
+  3 × 300px + 2 × 16px gap = 932px
+  On mobile (375px): 932px > 375px = HORIZONTAL SCROLL!
+
+BEFORE (No overflow handling):
+  .carousel-track { display: flex; gap: 16px; }
+
+AFTER (Fixed):
+  @media (max-width: 768px) {
+    .carousel-track {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    }
+    
+    .carousel-item {
+      flex: 0 0 calc(100% - 8px); /* single column on mobile */
+    }
+  }
+
+WHY IT WORKS:
+  • width: 100% with overflow-x: auto allows controlled horizontal scroll
+  • Items adjust to fit within mobile viewport
+  • User can scroll carousel items if needed
+  • Desktop version unaffected
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISSUE #7: Negative Margins Pushing Content Beyond Viewport
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM:
+.section { margin-left: -40px; margin-right: -40px; }
+
+On desktop (1200px): Full-width bleed effect ✓
+On mobile (375px):   375px + 40px + 40px = 455px OVERFLOW! ✗
+
+BEFORE (Bleeds on mobile):
+  .section { margin-left: -40px; margin-right: -40px; }
+
+AFTER (Fixed):
+  @media (max-width: 768px) {
+    .section { 
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+WHY IT WORKS:
+  • Zeroes negative margins on mobile viewport
+  • Allows full-bleed on desktop, normal margins on mobile
+  • !important overrides any conflicting rules
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VIEWPORT MATH REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMMON MOBILE SCREEN SIZES:
+  iPhone SE (1st gen)     320px
+  iPhone 6/7/8            375px  ← Most common
+  iPhone 12/13            390px
+  Samsung Galaxy S21      360px
+  Standard Android        360-375px
+
+STANDARD BREAKPOINTS:
+  Mobile:   max-width: 768px
+  Tablet:   768px - 1024px
+  Desktop:  1025px+
+
+
+BOX-SIZING EXPLANATION:
+  box-sizing: content-box (DEFAULT)
+    Total Width = content + padding + border + margin
+    Example: width: 100% + padding: 20px = 100% + 20px = OVERFLOW!
+
+  box-sizing: border-box (MODERN)
+    Total Width = content (padding + border included)
+    Example: width: 100% + padding: 20px = 100% (no overflow!)
+
+
+OVERFLOW DETECTION FORMULA:
+  If any element's total width > viewport width
+    → Horizontal scrollbar appears
+    → Page shifts left
+    → Dark gap appears on right side
+    → MOBILE OVERFLOW DETECTED
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CSS SPECIFICITY NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Why we use !important in the mobile fixes:
+
+1. Inline Styles (HIGHEST PRIORITY - 1000+ specificity)
+   <div style="padding: 40px;">  ← This always wins without !important
+
+2. Class Selectors (Medium specificity - 10 each)
+   .navbar { padding: 20px; }  ← Can be overridden by inline
+
+3. Media Query Classes (Same specificity)
+   @media (max-width: 768px) {
+     .navbar { padding: 20px; }  ← LOSES to inline style!
+   }
+
+SOLUTION: Use !important in media queries for mobile fixes
+   @media (max-width: 768px) {
+     .navbar { padding: 20px !important; }  ← NOW WINS!
+   }
+
+This is appropriate because:
+✓ Mobile layout is critical for functionality
+✓ We're fixing responsive design bugs
+✓ Desktop remains unaffected (inside mobile-only media query)
+✓ Standard practice for responsive overrides
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TESTING PROCEDURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. VISUAL TEST (Real Device Preferred):
+   □ Open cactusautospa.com on an iPhone or Android phone
+   □ Scroll horizontally - should NOT move (overflow-x: hidden works)
+   □ Look at right edge - should NOT have dark gap (no overflow)
+   □ Check all pages: home, services, about, portfolio, contact
+
+2. BROWSER DEVTOOLS TEST:
+   □ Open Chrome/Firefox Developer Tools (F12)
+   □ Go to "Device Toolbar" and select mobile size
+   □ Rotate between portrait/landscape
+   □ Check "overflow" with Inspect Element on body/html
+
+3. CONSOLE CHECK:
+   Run this in DevTools Console to find overflowing elements:
+   
+   document.querySelectorAll('*').forEach(el => {
+     if (el.scrollWidth > window.innerWidth) {
+       console.warn('OVERFLOW:', el.className, el.scrollWidth, 'px');
+     }
+   });
+
+4. PERFORMANCE CHECK:
+   □ Page should scroll smoothly (no jank)
+   □ No layout shift when rotating device
+   □ Touch interactions still responsive
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RELATED RESOURCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CSS Box-Sizing:
+  https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
+
+Viewport Meta Tag:
+  https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag
+
+Media Queries:
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries
+
+Overflow Property:
+  https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+
+Squarespace Custom CSS:
+  https://support.squarespace.com/hc/en-us/articles/206539607

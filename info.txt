@@ -1,0 +1,61 @@
+BUSINESS INFO
+=============
+Business Name: The Cactus Auto Spa
+
+What We Do: We are a local mobile auto detailing business serving the Mesa and Gilbert areas
+
+Location/City: Mesa and Gilbert, AZ
+
+Phone: (602) 780-3365
+Email: contact@cactusautospa.com
+
+Logo: Yes
+
+Photos: Yes
+
+COLORS
+======
+Primary Color: 
+Secondary Color: 
+Accent Color: 
+
+PAGES NEEDED
+============
+- Home/Landing Page
+- About Us
+- Services
+- Portfolio
+- Contact Us
+
+
+VEHICLE TYPES & STARTING PRICES:
+- Sedans: Starting at $190 (Interior Only)
+- Small SUV & Trucks: Starting at $200 (Interior Only)
+- Large Midsize (7 Seats): Starting at $215 (Interior Only)
+- Large (7+ Seats): Starting at $230 (Interior Only)
+
+ADD-ONS AVAILABLE (Pricing upon request):
+- Exterior Wash
+- Shampoo
+- Pet Hair Removal
+- Headlight Restoration
+- Wax
+- 1 Step Polish
+
+⚠️ IMPORTANT NOTE FOR WEBSITE: 
+All starting prices are for INTERIOR DETAIL ONLY
+
+PRICING STRATEGY: Show "Starting At" prices only
+Add-On prices: DO NOT display, show "Ask us about add-ons" instead
+Call to Action: "Get a Quote" button leads to contact form
+
+CONTACT FORM FIELDS:
+- Full Name
+- Phone Number
+- Email
+- City
+- Zip Code
+- Vehicle Type (dropdown: Sedan, Small SUV/Truck, Large Midsize, Large)
+- Service Interest (dropdown: Monthly, Bi-Monthly, Quarterly, One Time)
+- Add-Ons Interest (checkboxes: Exterior Wash, Shampoo, Pet Hair Removal, Headlight Restoration, Wax, 1 Step Polish)
+- Message/Notes

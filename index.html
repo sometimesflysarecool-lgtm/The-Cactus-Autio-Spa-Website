@@ -1,0 +1,1446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Cactus Auto Spa — Premium Mobile Detailing</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --panel: rgba(255,255,255,0.05);
+      --panel-strong: rgba(255,255,255,0.08);
+      --text: #f5f7ef;
+      --muted: #9cab8d;
+      --green: #22c55e;
+      --green-light: #7ee5a0;
+      --border: rgba(255,255,255,0.07);
+      --radius: 16px;
+      --shadow: 0 28px 60px rgba(0,0,0,0.28);
+      --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #1f1f1f;
+      --bg-card: #222222;
+      --bg-card-hover: #272727;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+      --text-primary: #ffffff;
+      --text-secondary: #a3a3a3;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #1a1a1a;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font);
+      color: var(--text);
+      background-color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .screen {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 40px;
+      background: var(--bg-primary);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      padding: 9px 20px;
+      background: #22c55e;
+      color: #000;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: background 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: #16a34a;
+    }
+
+    .dropdown-arrow {
+      margin-left: 6px;
+      font-size: 0.8rem;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 16px 0;
+      border-radius: 18px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown.active .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+      padding: 0;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 24px;
+      color: var(--text);
+      transition: background 0.2s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(34,197,94,0.08);
+      color: var(--green);
+    }
+
+    .hamburger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: #f5f7ef;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @keyframes heroGlow {
+      0%, 100% { opacity: 0.04; }
+      50% { opacity: 0.10; }
+    }
+
+    .hero {
+      position: relative;
+      overflow: visible;
+      padding: 3.5rem 1.5rem 5rem;
+      display: grid;
+      gap: 40px;
+      text-align: center;
+      background: radial-gradient(ellipse at center top, #222222 0%, #1a1a1a 60%, #1a1a1a 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 70%;
+      background: radial-gradient(ellipse at center, #22c55e 0%, transparent 65%);
+      opacity: 0.04;
+      animation: heroGlow 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .eyebrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 5vw, 5.2rem);
+      line-height: 0.95;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 em {
+      display: block;
+      color: var(--green);
+      font-style: normal;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: inline-flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 38px;
+      justify-content: center;
+      position: relative;
+      z-index: 9999;
+      overflow: visible;
+    }
+
+    .section {
+      padding: 6rem 1.5rem;
+      text-align: center;
+      background: #1a1a1a;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 3vw, 3.6rem);
+      margin: 0 auto 18px;
+      max-width: 780px;
+    }
+
+    .section-copy {
+      max-width: 780px;
+      color: var(--muted);
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .grid-3,
+    .grid-4,
+    .grid-2 {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: none;
+      background: var(--bg-card-hover);
+      border-color: rgba(34,197,94,0.25);
+    }
+
+    .card-glow {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.3);
+      box-shadow: 0 0 20px rgba(34,197,94,0.08);
+      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-glow:hover {
+      background: rgba(34,197,94,0.06);
+      border-color: rgba(34,197,94,0.5);
+      box-shadow: 0 0 28px rgba(34,197,94,0.14);
+    }
+
+    .card-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 18px;
+    }
+
+    .eyeball {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(34,197,94,0.1);
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.25);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .card h3,
+    .card h4 {
+      margin-bottom: 16px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+    }
+
+    .card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .card li::before {
+      content: '•';
+      color: var(--green);
+      line-height: 1.2;
+      margin-top: 4px;
+    }
+
+    .price-tag {
+      color: var(--green);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+      display: block;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .price-large {
+      font-size: 3rem;
+      color: var(--green);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .price-note {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+
+    .section-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.18);
+      border-radius: var(--radius);
+      padding: 48px 52px;
+      max-width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section-cta h2 {
+      margin-bottom: 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .footer {
+      padding: 48px 0 60px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 24px 0 12px;
+      color: var(--muted);
+    }
+
+    .footer-nav a:hover {
+      color: var(--green);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 38px;
+      color: var(--text-secondary);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      min-height: 260px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.18));
+    }
+
+    .portfolio-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('Brand Assets/AAAAA.png') no-repeat center/80% rgba(0,0,0,0.18);
+      opacity: 0.08;
+    }
+
+    .portfolio-info {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .portfolio-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.15);
+      color: var(--green);
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .portfolio-info p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-info span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 9999px;
+      padding: 0.75rem 1.75rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #22c55e;
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #16a34a;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .section .btn {
+      margin: 0 auto;
+    }
+
+    .text-muted {
+      color: var(--muted);
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        padding-top: 80px;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 88px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(26,26,26,0.98);
+        margin: 0 auto;
+        padding: 18px 20px 24px;
+        max-height: 0;
+        overflow: hidden;
+        border-radius: 0 0 24px 24px;
+      }
+
+      .nav-links.active {
+        max-height: 420px;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+      }
+
+      .nav-cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        background: transparent;
+        border: none;
+        padding: 0;
+        min-width: 0;
+      }
+
+      .dropdown-menu a {
+        padding-left: 20px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .section-cta {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .nav-services-menu { opacity:0; visibility:hidden; pointer-events:none; position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:6px 0; min-width:190px; list-style:none; margin:0; z-index:1000; box-shadow:0 8px 24px rgba(0,0,0,0.5); transition:opacity 0.2s ease, visibility 0.2s ease; transition-delay:0.3s; }
+    .nav-services-menu::before { content:''; position:absolute; top:-8px; left:0; right:0; height:8px; }
+    .nav-services:hover .nav-services-menu, .nav-services.js-open .nav-services-menu { opacity:1; visibility:visible; pointer-events:auto; transition-delay:0s; }
+    .nav-services-menu a { display:block; padding:9px 16px; color:#aaa; text-decoration:none; font-size:13px; white-space:nowrap; }
+    .nav-services-menu a:hover { color:#fff; background:rgba(255,255,255,0.05); }
+
+    .brand-ticker-wrapper {
+      overflow: hidden;
+      width: 100%;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .brand-ticker-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: ticker-scroll 30s linear infinite;
+    }
+    .brand-ticker-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .brand-pill:hover {
+      border-color: rgba(34,197,94,0.5);
+      box-shadow: 0 0 14px rgba(34,197,94,0.15);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 0 auto 32px;
+      max-width: 960px;
+    }
+    .gallery-slot {
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .reviews-slider-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .reviews-viewport {
+      overflow: hidden;
+      flex: 1;
+      min-width: 0;
+    }
+    .reviews-track {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .review-card {
+      flex: 0 0 calc(33.333% - 14px);
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.25);
+      box-shadow: 0 0 20px rgba(34,197,94,0.08);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    @media (max-width: 900px) { .review-card { flex: 0 0 calc(50% - 10px); } }
+    @media (max-width: 560px) { .review-card { flex: 0 0 100%; } }
+    .review-card:hover {
+      border-color: rgba(34,197,94,0.45);
+      box-shadow: 0 0 28px rgba(34,197,94,0.14);
+    }
+    .rev-arrow {
+      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.25);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .rev-arrow:hover { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.5); }
+    .rev-arrow svg { width: 20px; height: 20px; stroke: #22c55e; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+    .rev-arrow:disabled { opacity: 0.3; cursor: default; }
+    .rev-arrow:disabled:hover { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.25); }
+    .review-stars { color: #f59e0b; font-size: 17px; letter-spacing: 2px; }
+    .review-text { color: #d1d5db; font-size: 14px; line-height: 1.75; flex: 1; }
+    .review-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .review-avatar {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #22c55e; font-size: 14px;
+    }
+    .review-name { font-weight: 600; font-size: 14px; color: #fff; }
+    .review-location { font-size: 12px; color: #6b7280; }
+    .review-google-logo { width: 18px; height: 18px; margin-left: auto; opacity: 0.6; }
+
+    .hero-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #1e1e1e;
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 14px;
+      padding: 10px 8px 8px;
+      margin-top: -10px;
+      min-width: 210px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+    .hero-dropdown .hero-dropdown-menu {
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition-delay: 0s;
+    }
+    .hero-dropdown:not(:hover) .hero-dropdown-menu {
+      transition-delay: 0.3s;
+    }
+    .hero-dropdown:hover .hero-dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .hero-dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      color: #d1d5db;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .hero-dropdown-menu a:hover {
+      background: rgba(34,197,94,0.12);
+      color: #22c55e;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 760px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <nav style="background:#1a1a1a; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+  <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+    <img src="Brand Assets/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+  </a>
+  <ul style="display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;">
+    <li><a href="index.html" style="color:#aaa; text-decoration:none; font-size:14px;">Home</a></li>
+    <li class="nav-services" style="position:relative;"><a href="services.html" style="color:#aaa; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:4px;">Services <span style="font-size:10px; opacity:0.6;">▾</span></a>
+      <ul class="nav-services-menu">
+        <li><a href="services.html">Car Detailing</a></li>
+        <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+        <li><a href="monthly-membership.html">Monthly Membership</a></li>
+        <li><a href="paint-correction.html">Paint Enhancement</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html" style="color:#aaa; text-decoration:none; font-size:14px;">About</a></li>
+    <li><a href="portfolio.html" style="color:#aaa; text-decoration:none; font-size:14px;">Portfolio</a></li>
+    <li><a href="contact.html" style="background:#22c55e; color:#000; font-weight:700; padding:9px 20px; border-radius:50px; text-decoration:none; font-size:14px;">Get a Quote</a></li>
+  </ul>
+</nav>
+
+    <main>
+      <section class="hero">
+        <h1>Premium Mobile Detailing<br /><em>Brought to Your Door</em></h1>
+        <p>Interior detail, ceramic coating, paint correction, and membership plans crafted for local drivers who want a cleaner car without leaving home.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary" style="display:inline-flex; align-items:center; justify-content:center; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">Get a Free Quote</a>
+          <div class="hero-dropdown" style="position:relative; display:inline-block; z-index:9999;">
+            <button class="btn btn-secondary hero-dropdown-trigger" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">
+              View Services
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="hero-dropdown-menu">
+              <a href="services.html">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                Interior Detail
+              </a>
+              <a href="ceramic-coating.html">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Ceramic Coating
+              </a>
+              <a href="paint-correction.html">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Paint Enhancement
+              </a>
+              <a href="monthly-membership.html">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Membership Plans
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat card-glow" style="border-radius:12px;padding:20px;"><strong>100%</strong> Owner-operated</div>
+          <div class="stat card-glow" style="border-radius:12px;padding:20px;"><strong>Mobile</strong> We come to you</div>
+          <div class="stat card-glow" style="border-radius:12px;padding:20px;"><strong>Ceramic</strong> Coating ready</div>
+          <div class="stat card-glow" style="border-radius:12px;padding:20px;"><strong>Priority</strong> Member perks</div>
+        </div>
+      </section>
+
+      <div style="text-align:center; padding: 32px 0 12px;">
+        <span class="badge">Products We Use</span>
+      </div>
+      <div class="brand-ticker-wrapper">
+        <div class="brand-ticker-track">
+          <span class="brand-pill">Koch-Chemie</span>
+          <span class="brand-pill">Lake Country</span>
+          <span class="brand-pill">Griot's Garage</span>
+          <span class="brand-pill">P&amp;S</span>
+          <span class="brand-pill">DIY Detail</span>
+          <span class="brand-pill">Meguiar's</span>
+          <span class="brand-pill">3D Products</span>
+          <span class="brand-pill">The Rag Company</span>
+          <span class="brand-pill">Opt-Tech</span>
+          <span class="brand-pill">Koch-Chemie</span>
+          <span class="brand-pill">Lake Country</span>
+          <span class="brand-pill">Griot's Garage</span>
+          <span class="brand-pill">P&amp;S</span>
+          <span class="brand-pill">DIY Detail</span>
+          <span class="brand-pill">Meguiar's</span>
+          <span class="brand-pill">3D Products</span>
+          <span class="brand-pill">The Rag Company</span>
+          <span class="brand-pill">Opt-Tech</span>
+        </div>
+      </div>
+
+      <section class="section">
+        <span class="badge">Our Services</span>
+        <h2 class="section-title">Everything Your Car Needs</h2>
+        <p class="section-copy">From a quick interior refresh to full paint correction and ceramic protection — The Cactus Auto Spa brings premium detailing directly to your home or business.</p>
+        <div class="grid-3">
+          <article class="card card-hero">
+            <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span class="badge">Most Popular</span>
+            <h3>Ceramic Coating</h3>
+            <p>Hydrophobic protection that keeps your paint cleaner, shinier, and safer from UV damage.</p>
+            <a href="ceramic-coating.html" class="btn btn-primary" style="margin-top: auto;">Learn More</a>
+          </article>
+          <article class="card card-hero">
+            <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <span class="badge">Premium</span>
+            <h3>Paint Enhancement</h3>
+            <p>Restore gloss and rejuvenate your paint with a professional one-step polish — perfect for dull or faded finishes.</p>
+            <a href="paint-correction.html" class="btn btn-primary" style="margin-top: auto;">Learn More</a>
+          </article>
+          <article class="card card-hero">
+            <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+            <span class="badge">Best Value</span>
+            <h3>Membership Plans</h3>
+            <p>Save on regular detailing with recurring service, priority scheduling, and exclusive add-on pricing.</p>
+            <a href="monthly-membership.html" class="btn btn-primary" style="margin-top: auto;">View Plans</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="badge">Starting Prices</span>
+        <h2 class="section-title">Interior Detail Pricing</h2>
+        <p class="section-copy">All starting prices are for interior detail only. Add-ons like exterior wash, shampoo, and pet hair removal are available on request.</p>
+        <div class="grid-4">
+          <article class="card" style="min-height:520px;">
+            <span class="price-tag">Sedan</span>
+            <div class="price-large">$190</div>
+            <div class="price-note">Starting price</div>
+            <ul>
+              <li>Multi-step soil removal &amp; carpet treatment</li>
+              <li>Full interior wipe-down and sanitizing</li>
+              <li>Fabric &amp; leather care</li>
+              <li>Glass &amp; screen cleaning</li>
+              <li>Plastic/vinyl UV protection</li>
+              <li>Instrument/navigation screen cleaning</li>
+              <li>Floor mat rejuvenation</li>
+              <li>Interior fragrance options</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="margin-top:auto;">Get a Quote</a>
+          </article>
+          <article class="card" style="min-height:520px;">
+            <span class="price-tag">Small SUV &amp; Truck</span>
+            <div class="price-large">$200</div>
+            <div class="price-note">Starting price</div>
+            <ul>
+              <li>Multi-step soil removal &amp; carpet treatment</li>
+              <li>Full interior wipe-down and sanitizing</li>
+              <li>Fabric &amp; leather care</li>
+              <li>Glass &amp; screen cleaning</li>
+              <li>Plastic/vinyl UV protection</li>
+              <li>Instrument/navigation screen cleaning</li>
+              <li>Floor mat rejuvenation</li>
+              <li>Interior fragrance options</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="margin-top:auto;">Get a Quote</a>
+          </article>
+          <article class="card" style="min-height:520px;">
+            <span class="price-tag">Large Midsize (7 Seats)</span>
+            <div class="price-large">$215</div>
+            <div class="price-note">Starting price</div>
+            <ul>
+              <li>Multi-step soil removal &amp; carpet treatment</li>
+              <li>Full interior wipe-down and sanitizing</li>
+              <li>Fabric &amp; leather care</li>
+              <li>Glass &amp; screen cleaning</li>
+              <li>Plastic/vinyl UV protection</li>
+              <li>Instrument/navigation screen cleaning</li>
+              <li>Floor mat rejuvenation</li>
+              <li>Interior fragrance options</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="margin-top:auto;">Get a Quote</a>
+          </article>
+          <article class="card" style="min-height:520px;">
+            <span class="price-tag">Large (7+ Seats)</span>
+            <div class="price-large">$230</div>
+            <div class="price-note">Starting price</div>
+            <ul>
+              <li>Multi-step soil removal &amp; carpet treatment</li>
+              <li>Full interior wipe-down and sanitizing</li>
+              <li>Fabric &amp; leather care</li>
+              <li>Glass &amp; screen cleaning</li>
+              <li>Plastic/vinyl UV protection</li>
+              <li>Instrument/navigation screen cleaning</li>
+              <li>Floor mat rejuvenation</li>
+              <li>Interior fragrance options</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="margin-top:auto;">Get a Quote</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="badge">Membership</span>
+        <h2 class="section-title">Keep Your Car Consistently Clean</h2>
+        <p class="section-copy">Choose a regular detailing plan for better value, priority booking, and simplified maintenance.</p>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Monthly</h3>
+            <div class="price-large">$135<span style="font-size:1rem;color:var(--muted);font-weight:600;margin-left:8px;">/mo</span></div>
+            <div class="price-note">Sedan Starting Price</div>
+            <div style="font-size:12px; color:#9ca3af; margin-top:6px; margin-bottom:4px; font-weight:600; letter-spacing:0.02em; display:flex; justify-content:center; text-align:center;">Larger vehicles from $145–$170/mo</div>
+            <ul>
+              <li>1 detail every 30 days</li>
+              <li>Priority booking</li>
+              <li>Exclusive add-on savings</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">Start Monthly</a>
+          </article>
+          <article class="card">
+            <h3>Bi-Monthly</h3>
+            <div class="price-large">$155<span style="font-size:1rem;color:var(--muted);font-weight:600;margin-left:8px;">/visit</span></div>
+            <div class="price-note">Sedan Starting Price</div>
+            <div style="font-size:12px; color:#9ca3af; margin-top:6px; margin-bottom:4px; font-weight:600; letter-spacing:0.02em; display:flex; justify-content:center; text-align:center;">Larger vehicles from $165–$190/visit</div>
+            <ul>
+              <li>1 detail every 60 days</li>
+              <li>Priority booking</li>
+              <li>Exclusive add-on savings</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">Start Bi-Monthly</a>
+          </article>
+          <article class="card">
+            <h3>Quarterly</h3>
+            <div class="price-large">$175<span style="font-size:1rem;color:var(--muted);font-weight:600;margin-left:8px;">/visit</span></div>
+            <div class="price-note">Sedan Starting Price</div>
+            <div style="font-size:12px; color:#9ca3af; margin-top:6px; margin-bottom:4px; font-weight:600; letter-spacing:0.02em; display:flex; justify-content:center; text-align:center;">Larger vehicles from $185–$215/visit</div>
+            <ul>
+              <li>1 detail every 90 days</li>
+              <li>Priority booking</li>
+              <li>Exclusive add-on savings</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">Start Quarterly</a>
+          </article>
+        </div>
+        <p style="text-align:center; color:#6b7280; font-size:13px; margin-top:8px;">* All packages start with an interior detail only. <a href="monthly-membership.html" style="color:#22c55e; text-decoration:none;">View full pricing by vehicle size →</a></p>
+      </section>
+
+      <section class="section">
+        <span class="badge">Why Us</span>
+        <h2 class="section-title">The Cactus Difference</h2>
+        <div class="grid-4">
+          <article class="card card-glow">
+            <h4>Owner-Operated</h4>
+            <p>Every job is managed by the owner for consistent, reliable service.</p>
+          </article>
+          <article class="card card-glow">
+            <h4>Mobile Service</h4>
+            <p>We detail your vehicle at home, work, or wherever you park.</p>
+          </article>
+          <article class="card card-glow">
+            <h4>Flexible Booking</h4>
+            <p>Schedule when it suits you, with appointment reminders and easy planning.</p>
+          </article>
+          <article class="card card-glow">
+            <h4>No Shortcuts</h4>
+            <p>We use premium products and follow a detailed process on every vehicle.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="badge">Gallery</span>
+        <h2 class="section-title">Our Work Speaks for Itself</h2>
+        <p class="section-copy">Every vehicle gets the same meticulous attention to detail — here's a look at the results we deliver across Mesa and Gilbert.</p>
+        <div class="gallery-grid">
+          <div class="gallery-slot">Photo Coming Soon</div>
+          <div class="gallery-slot">Photo Coming Soon</div>
+          <div class="gallery-slot">Photo Coming Soon</div>
+          <div class="gallery-slot">Photo Coming Soon</div>
+          <div class="gallery-slot">Photo Coming Soon</div>
+          <div class="gallery-slot">Photo Coming Soon</div>
+        </div>
+        <a href="portfolio.html" class="btn btn-primary">View Full Portfolio</a>
+      </section>
+
+      <section class="section">
+        <span class="badge">Google Reviews</span>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-copy">Real feedback from Mesa and Gilbert drivers — verified Google reviews.</p>
+
+        <div class="reviews-slider-wrap">
+          <button class="rev-arrow" id="revPrev" aria-label="Previous reviews">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+
+          <div class="reviews-viewport">
+            <div class="reviews-track" id="reviewsTrack">
+
+              <!-- Review 1 — Jude -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Very thorough job, my Jeep is so clean I almost don't want to use it and dirty it up again. I know who to use next time though."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">J</div>
+                  <div>
+                    <div class="review-name">Jude</div>
+                    <div class="review-location">Mesa, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 2 — Skylar -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I spilled soup on the seat of my car. Andrew fit me in that exact day. When the spill was still noticeable, he re-booked me the next day and got the correct tools to finally get it out — no extra fee. I appreciated the service but the work ethic and honesty even more. So reliable!"</p>
+                <div class="review-footer">
+                  <div class="review-avatar">S</div>
+                  <div>
+                    <div class="review-name">Skylar</div>
+                    <div class="review-location">Gilbert, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 3 — Tim -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Showed up on time and did an amazing job! My car shined like it was new again."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">T</div>
+                  <div>
+                    <div class="review-name">Tim</div>
+                    <div class="review-location">Mesa, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 4 — Hannah -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Excellent service 😊 Highly recommend!"</p>
+                <div class="review-footer">
+                  <div class="review-avatar">H</div>
+                  <div>
+                    <div class="review-name">Hannah</div>
+                    <div class="review-location">Gilbert, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 5 — Jade -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I don't usually leave reviews, but I had to for this. My car was honestly pretty dirty and now it looks flawless. It actually caught me off guard when I first saw it. Andrew got all the little details too, not just the obvious stuff."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">J</div>
+                  <div>
+                    <div class="review-name">Jade</div>
+                    <div class="review-location">Mesa, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 6 — Olivia -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"My car is like brand new! Andrew was extremely professional and super friendly. He listened to all my concerns and his attention to detail and genuine work shows in his results."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">O</div>
+                  <div>
+                    <div class="review-name">Olivia</div>
+                    <div class="review-location">Gilbert, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 7 — Majerle -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I can't say enough good things! The exterior of my car was in need of a good cleaning and they went above and beyond. I have to give a shout out to the tire cleaning — I honestly didn't realize my tires could look so good. Five stars is not enough."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">M</div>
+                  <div>
+                    <div class="review-name">Majerle</div>
+                    <div class="review-location">Mesa, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 8 — Gina -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Absolutely outstanding experience from start to finish! They showed up right on time — no waiting, no guessing — which immediately set the tone for a professional experience."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">G</div>
+                  <div>
+                    <div class="review-name">Gina</div>
+                    <div class="review-location">Gilbert, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 9 — John -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"My dog got sick all over the back seat. Andrew got every bit of it out — couldn't even tell it happened. Car smelled fresh and looked brand new. Super professional, great communication. If you need your car detailed, Andrew is your guy."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">J</div>
+                  <div>
+                    <div class="review-name">John</div>
+                    <div class="review-location">Mesa, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+              <!-- Review 10 — Stephanie -->
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I booked the Saguaro package and I'm seriously impressed. My car had a ton of pet hair and some pretty old stains, but he handled it all with ease. Everything looked spotless and he walked me through the work he'd done. Andrew is definitely the one to go to."</p>
+                <div class="review-footer">
+                  <div class="review-avatar">S</div>
+                  <div>
+                    <div class="review-name">Stephanie</div>
+                    <div class="review-location">Gilbert, AZ · Google Review</div>
+                  </div>
+                  <img class="review-google-logo" src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google">
+                </div>
+              </div>
+
+            </div><!-- /reviews-track -->
+          </div><!-- /reviews-viewport -->
+
+          <button class="rev-arrow" id="revNext" aria-label="Next reviews">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div><!-- /reviews-slider-wrap -->
+
+        <!-- Google buttons -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+          <a href="https://share.google/4QMGpvLXbGtX10AFv" target="_blank" rel="noopener"
+            style="display:inline-flex; align-items:center; gap:10px; background:#fff; color:#1a1a1a; font-weight:700; font-size:14px; padding:13px 26px; border-radius:999px; text-decoration:none; box-shadow:0 2px 12px rgba(0,0,0,0.3); transition:transform 0.2s ease, box-shadow 0.2s ease;"
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.3)'">
+            <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" style="width:20px; height:20px;" alt="Google">
+            See All Reviews on Google
+          </a>
+          <a href="https://g.page/r/CaRwokawJ56bEAI/review" target="_blank" rel="noopener"
+            style="display:inline-flex; align-items:center; gap:10px; background:#22c55e; color:#06120a; font-weight:700; font-size:14px; padding:13px 26px; border-radius:999px; text-decoration:none; transition:transform 0.2s ease;"
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='translateY(0)'">
+            ★ Leave Us a Review
+          </a>
+        </div>
+      </section>
+
+      <section style="padding: 3rem 1.5rem;">
+        <div class="section-cta">
+          <div>
+            <span class="badge" style="font-size:13px; padding:8px 20px; margin-bottom:20px; display:block; text-align:center; width:fit-content;">Ready?</span>
+            <h2>Book Your Next Detail</h2>
+            <p class="section-copy" style="margin-bottom:0;">Mesa &amp; Gilbert, AZ — interior detailing, ceramic coating, paint correction, and membership packages available.</p>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="white-space:nowrap; flex-shrink:0; padding:1rem 2.2rem; font-size:1.05rem;">Get a Quote Today</a>
+        </div>
+      </section>
+    </main>
+
+<footer style="background:#0d0d0d; border-top:1px solid rgba(255,255,255,0.07); font-family:'Inter',system-ui,-apple-system,sans-serif; width:100%;">
+
+  <!-- Main footer grid -->
+  <div style="max-width:1200px; margin:0 auto; padding:64px 40px 40px; display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:48px;">
+
+    <!-- Column 1: Brand -->
+    <div>
+      <a href="index.html" style="display:inline-block; margin-bottom:16px;">
+        <img src="Brand Assets/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+      </a>
+      <p style="color:#555; font-size:13px; line-height:1.8; max-width:220px; margin:0 0 24px;">Premium mobile auto detailing serving Mesa &amp; Gilbert, AZ. We come to you — no shop visit needed.</p>
+      <div style="display:flex; gap:10px;">
+        <a href="https://instagram.com/thecactusautospa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; transition:border-color 0.2s ease;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://tiktok.com/@cactus.auto.spa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Column 2: Services -->
+    <div>
+      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Services</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;">
+        <li><a href="services.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Interior Detailing</a></li>
+        <li><a href="ceramic-coating.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Ceramic Coating</a></li>
+        <li><a href="paint-correction.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Paint Enhancement</a></li>
+        <li><a href="monthly-membership.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Membership Plans</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Company -->
+    <div>
+      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Company</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;">
+        <li><a href="index.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Home</a></li>
+        <li><a href="about.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">About Us</a></li>
+        <li><a href="portfolio.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Portfolio</a></li>
+        <li><a href="contact.html" style="color:#9ca3af; font-size:14px; text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact -->
+    <div>
+      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Get In Touch</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
+        <li>
+          <a href="tel:6027803365" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.46 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.38 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            (602) 780-3365
+          </a>
+        </li>
+        <li>
+          <a href="mailto:contact@cactusautospa.com" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contact@cactusautospa.com
+          </a>
+        </li>
+        <li style="padding-top:4px;">
+          <a href="contact.html" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div style="border-top:1px solid rgba(255,255,255,0.06); width:100%;"></div>
+
+  <!-- Bottom bar -->
+  <div style="background:#0d0d0d; width:100%; padding:20px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; box-sizing:border-box;">
+    <p style="color:#333; font-size:12px; margin:0;">© 2026 The Cactus Auto Spa. All rights reserved.</p>
+    <p style="color:#333; font-size:12px; margin:0;">Mesa &amp; Gilbert, AZ</p>
+  </div>
+
+</footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var track = document.getElementById('reviewsTrack');
+      var btnPrev = document.getElementById('revPrev');
+      var btnNext = document.getElementById('revNext');
+      if (!track || !btnPrev || !btnNext) return;
+
+      var current = 0;
+
+      function getVisible() {
+        if (window.innerWidth <= 560) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+      }
+
+      function getCards() {
+        return track.querySelectorAll('.review-card');
+      }
+
+      function getStepPx() {
+        var card = getCards()[0];
+        if (!card) return 0;
+        return card.getBoundingClientRect().width + 20;
+      }
+
+      function clamp(val) {
+        var max = getCards().length - getVisible();
+        return Math.max(0, Math.min(val, max));
+      }
+
+      function update() {
+        track.style.transform = 'translateX(-' + (current * getStepPx()) + 'px)';
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current >= getCards().length - getVisible();
+      }
+
+      btnPrev.addEventListener('click', function () {
+        current = clamp(current - 1);
+        update();
+      });
+
+      btnNext.addEventListener('click', function () {
+        current = clamp(current + 1);
+        update();
+      });
+
+      window.addEventListener('resize', function () {
+        current = clamp(current);
+        update();
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>

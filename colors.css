@@ -1,0 +1,22 @@
+:root {
+  /* Design system */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #1f1f1f;
+  --bg-card: #222222;
+  --bg-card-hover: #272727;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --text-muted: #6b7280;
+  --border: rgba(255,255,255,0.07);
+  /* Legacy aliases */
+  --color-primary: #1a1a1a;
+  --color-secondary: #22c55e;
+  --color-accent: #22c55e;
+  --color-white: #ffffff;
+  --color-light-bg: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: #6b7280;
+  --green: #22c55e;
+}

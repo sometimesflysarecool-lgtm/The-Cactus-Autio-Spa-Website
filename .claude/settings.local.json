@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -Path \"c:\\\\Users\\\\andre\\\\Desktop\\\\The Cactus Autio Spa Website\\\\images\" -ItemType Directory)"
+    ]
+  }
+}

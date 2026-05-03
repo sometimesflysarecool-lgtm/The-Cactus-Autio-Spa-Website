@@ -1234,11 +1234,23 @@
         max-width: 100% !important;
       }
 
-      /* Card: full width minus arrow space (2×44px buttons + 2×14px gaps = 116px, round to 120) */
+      /* Wrapper: centered */
+      [class*="carousel-wrapper"],
+      [class*="reviews-wrapper"],
+      [class*="carousel-container"],
+      .reviews-carousel {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow: hidden !important;
+        width: 100% !important;
+      }
+
+      /* Card: full width minus arrow space + breathing room for border-radius visibility */
       .review-card {
-        width: calc(100vw - 120px) !important;
-        min-width: calc(100vw - 120px) !important;
-        max-width: calc(100vw - 120px) !important;
+        width: calc(100vw - 160px) !important;
+        min-width: calc(100vw - 160px) !important;
+        max-width: calc(100vw - 160px) !important;
         padding: 1.75rem !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
@@ -1832,9 +1844,15 @@
       var total = cards.length;
 
       function goToSlide(index) {
-        var slideWidth = cards[0].getBoundingClientRect().width;
-        track.style.transform = 'translateX(-' + (index * slideWidth) + 'px)';
         currentIndex = index;
+        var card = cards[currentIndex];
+        var trackRect = track.getBoundingClientRect();
+        var cardRect = card.getBoundingClientRect();
+        var offset = cardRect.left - trackRect.left;
+        var currentTransform = new DOMMatrix(
+          getComputedStyle(track).transform
+        ).m41;
+        track.style.transform = 'translateX(' + (currentTransform - offset) + 'px)';
       }
 
       btnNext.addEventListener('click', function () {

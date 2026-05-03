@@ -1083,50 +1083,7 @@
       }
     }
 
-    /* ── Fix review card mobile layout ────────────────────────────────────
-       The [class*="footer"] selector above incorrectly matches .review-footer
-       and applies width:100%/flex-column to all its children, turning the
-       circular avatar into a giant oval and hiding the name and Google logo.
-       These rules undo that damage specifically for the review section.
-    ─────────────────────────────────────────────────────────────────────── */
     @media (max-width: 768px) {
-      .review-footer {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        gap: 12px !important;
-        padding-top: 12px !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        padding-bottom: 0 !important;
-        overflow: visible !important;
-      }
-
-      .review-avatar {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        min-height: 36px !important;
-        max-width: 36px !important;
-        border-radius: 50% !important;
-        aspect-ratio: 1 / 1 !important;
-        flex: 0 0 36px !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 14px !important;
-      }
-
-      .review-footer > div:not(.review-avatar) {
-        display: block !important;
-        width: auto !important;
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-        padding: 0 !important;
-        gap: 0 !important;
-      }
-
       .review-name {
         display: block !important;
         visibility: visible !important;
@@ -1142,19 +1099,6 @@
         display: block !important;
         width: auto !important;
         padding: 0 !important;
-      }
-
-      .review-google-logo {
-        display: inline-block !important;
-        visibility: visible !important;
-        opacity: 0.6 !important;
-        width: 18px !important;
-        height: 18px !important;
-        min-width: 18px !important;
-        max-width: 18px !important;
-        padding: 0 !important;
-        flex: 0 0 18px !important;
-        margin-left: auto !important;
       }
     }
 
@@ -1200,92 +1144,6 @@
         width: max-content !important;
       }
 
-      /* FIX 3 — reviews carousel full-width card on mobile */
-
-      /* Outer section: remove side padding so slider spans full viewport */
-      [class*="reviews-section"],
-      [class*="testimonial-section"],
-      section:has(.review-card) {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        overflow: visible !important;
-        width: 100% !important;
-      }
-
-      /* Track: lays all cards in a horizontal row, no clipping */
-      .reviews-track {
-        display: flex !important;
-        flex-direction: row !important;
-        width: max-content !important;
-        overflow: visible !important;
-      }
-
-      /* Viewport: only element that should clip the track */
-      .reviews-viewport,
-      [class*="carousel-viewport"],
-      [class*="reviews-window"],
-      [class*="carousel-window"],
-      [class*="slider-viewport"] {
-        overflow: hidden !important;
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-
-      /* Wrapper: centered */
-      [class*="carousel-wrapper"],
-      [class*="reviews-wrapper"],
-      [class*="carousel-container"],
-      .reviews-carousel {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        overflow: hidden !important;
-        width: 100% !important;
-      }
-
-      /* Card: full width minus arrow space + breathing room for border-radius visibility */
-      .review-card {
-        width: calc(100vw - 160px) !important;
-        min-width: calc(100vw - 160px) !important;
-        max-width: calc(100vw - 160px) !important;
-        padding: 1.75rem !important;
-        box-sizing: border-box !important;
-        flex-shrink: 0 !important;
-        overflow: visible !important;
-      }
-
-      /* Text: wrap normally, no horizontal overflow */
-      .review-card p,
-      .review-card [class*="text"],
-      .review-card [class*="quote"] {
-        overflow: hidden !important;
-        word-break: break-word !important;
-        white-space: normal !important;
-        width: 100% !important;
-      }
-
-      /* Bottom row: avatar + name/location + Google logo on one line */
-      .review-card [class*="author"],
-      .review-card [class*="reviewer"],
-      .review-card [class*="footer"],
-      .review-card > div:last-child {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        gap: 0.5rem !important;
-        width: 100% !important;
-        flex-wrap: nowrap !important;
-        overflow: hidden !important;
-      }
-
-      /* Google logo: pinned to far right, fixed size */
-      .review-card [class*="google"],
-      .review-card img[alt*="Google"] {
-        margin-left: auto !important;
-        flex-shrink: 0 !important;
-        width: 24px !important;
-        height: 24px !important;
-      }
     }
   </style>
 </head>

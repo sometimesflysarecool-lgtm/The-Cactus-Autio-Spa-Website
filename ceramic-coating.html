@@ -729,6 +729,78 @@
         overflow-x: hidden;
       }
     }
+
+    /* Problem 1 — header/nav */
+    @media (max-width: 768px) {
+      header, nav, .header, .navbar, .nav-wrapper, [class*="header"] {
+        width: 100%;
+        overflow: visible;
+        flex-wrap: wrap;
+        padding-right: 0;
+      }
+
+      [class*="quote"], [class*="btn"], .nav-cta, a[href*="quote"] {
+        flex-shrink: 0;
+        overflow: visible;
+        clip-path: none;
+        position: relative;
+        right: auto;
+      }
+    }
+
+    /* Problem 2 — dropdowns */
+    @media (max-width: 768px) {
+      [class*="dropdown"], [class*="submenu"],
+      [class*="menu"], nav ul ul {
+        overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
+        clip-path: none !important;
+        z-index: 9999 !important;
+        position: relative !important;
+      }
+    }
+
+    /* Problem 3 — footer */
+    @media (max-width: 768px) {
+      footer, [class*="footer"] {
+        overflow: visible !important;
+        width: 100% !important;
+      }
+
+      footer > *,
+      [class*="footer"] > *,
+      [class*="footer-grid"],
+      [class*="footer-columns"],
+      [class*="footer-row"] {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 2rem !important;
+        padding: 1.5rem !important;
+        overflow: visible !important;
+      }
+
+      footer > * > *,
+      [class*="footer"] > * > * {
+        width: 100% !important;
+        min-width: unset !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        white-space: normal !important;
+        text-overflow: unset !important;
+      }
+
+      footer [class*="quote"],
+      footer [class*="btn"],
+      footer a[href*="quote"] {
+        position: relative !important;
+        right: auto !important;
+        clip-path: none !important;
+        overflow: visible !important;
+        display: inline-block !important;
+      }
+    }
   </style>
   <script src="script.js" defer></script>
   <style>

@@ -1199,6 +1199,16 @@
         max-width: none !important;
         width: max-content !important;
       }
+
+      /* FIX 3 — reviews track clipped by same div max-width:100% rule;
+         needs to be wider than viewport to hold all 10 cards in a row */
+      .reviews-track {
+        max-width: none !important;
+        overflow: visible !important;
+        display: flex !important;
+        flex-direction: row !important;
+        width: max-content !important;
+      }
     }
   </style>
 </head>

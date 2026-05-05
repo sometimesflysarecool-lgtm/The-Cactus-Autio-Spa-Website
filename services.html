@@ -118,7 +118,7 @@
       margin-bottom: 12px;
     }
     .sec-sub {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--text-secondary);
       line-height: 1.7;
       max-width: 480px;
@@ -152,7 +152,7 @@
 
     /* ── CARD CONTENT ── */
     .card-tag {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       color: #22c55e;
@@ -160,7 +160,7 @@
       margin-bottom: 8px;
     }
     .card-name {
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 700;
       color: #fff;
       margin-bottom: 22px;
@@ -170,20 +170,20 @@
     /* ── PRICING ── */
     .price-block { margin-bottom: 22px; }
     .price-from {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
       display: block;
       margin-bottom: 2px;
     }
     .price-amount {
-      font-size: 44px;
+      font-size: 46px;
       font-weight: 800;
       color: #22c55e;
       line-height: 1;
       letter-spacing: -0.02em;
     }
     .price-unit {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
       margin-top: 5px;
     }
@@ -208,7 +208,7 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
@@ -232,17 +232,17 @@
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text-secondary);
-      background: rgba(255,255,255,0.05);
+      border: 1px solid #22c55e;
+      color: #0a1a0a;
+      background: #22c55e;
       transition: all 0.2s ease;
       text-decoration: none;
       letter-spacing: 0.01em;
     }
     .card-btn:hover {
-      border-color: rgba(34,197,94,0.4);
-      color: var(--accent);
-      background: rgba(34,197,94,0.06);
+      background: #16a34a;
+      border-color: #16a34a;
+      color: #0a1a0a;
     }
 
     /* ── ADD-ON BAR ── */
@@ -259,7 +259,7 @@
     }
     .addon-left { flex-shrink: 0; }
     .addon-label {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       color: #22c55e;
@@ -267,7 +267,7 @@
       margin-bottom: 4px;
     }
     .addon-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       color: #fff;
     }
@@ -282,7 +282,7 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
       padding: 6px 14px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       white-space: nowrap;
     }
@@ -846,7 +846,7 @@
         <span style="width:6px; height:6px; border-radius:50%; background:#e74c3c; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
         <span style="font-size:12px; font-weight:600; color:#e74c3c;">Only <span id="nc-spots-count">10</span> spots left</span>
       </div>
-      <a href="contact.html?promo=NEWCAR20" onclick="closePopup()" style="display:block; width:100%; background:#22c55e; color:#0a1a0a; font-size:15px; font-weight:700; padding:15px 24px; border-radius:50px; text-decoration:none; margin-bottom:12px;">Claim My 20% Off &rarr;</a>
+      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#0a1a0a; font-size:15px; font-weight:700; padding:15px 24px; border-radius:50px; text-decoration:none; margin-bottom:12px;">Claim My 20% Off &rarr;</a>
       <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#666; text-decoration:underline; text-underline-offset:2px;">No thanks, I&apos;ll pay full price</a>
     </div>
     <div style="border-top:1px solid rgba(34,197,94,0.15); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:10px;">

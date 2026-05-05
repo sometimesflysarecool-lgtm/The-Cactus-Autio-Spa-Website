@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>localStorage.setItem('siteVisited','1');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Cactus Auto Spa — Premium Mobile Detailing</title>
@@ -218,9 +219,11 @@
     .hero {
       position: relative;
       overflow: visible;
-      padding: 3.5rem 1.5rem 5rem;
-      display: grid;
-      gap: 40px;
+      padding: 3rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
       text-align: center;
       background: radial-gradient(ellipse at center top, #222222 0%, #1a1a1a 60%, #1a1a1a 100%);
     }
@@ -257,27 +260,61 @@
       margin-bottom: 24px;
     }
 
+    .hero-eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34,197,94,0.1);
+      border: 0.5px solid rgba(34,197,94,0.25);
+      border-radius: 999px;
+      padding: 6px 16px;
+      color: #22c55e;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+      animation: dot-pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.7); }
+    }
+
     .hero h1 {
       font-size: clamp(3.2rem, 6vw, 5.5rem);
       font-weight: 900;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-transform: none;
       max-width: 900px;
-      margin: 0 auto 24px;
+      margin: 0;
       text-align: center;
+    }
+
+    .hero h1 .line-white {
+      display: block;
+      color: #ffffff;
     }
 
     .hero h1 em {
       display: block;
       color: var(--green);
       font-style: normal;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .hero p {
-      max-width: 720px;
-      margin: 24px auto 0;
+      max-width: 600px;
+      margin: 0;
       color: var(--muted);
       font-size: 1rem;
     }
@@ -286,7 +323,7 @@
       display: inline-flex;
       gap: 16px;
       flex-wrap: wrap;
-      margin-top: 38px;
+      margin-top: 6px;
       justify-content: center;
       position: relative;
       z-index: 9999;
@@ -1178,7 +1215,14 @@
 
     <main>
       <section class="hero">
-        <h1><em>Premium Mobile Detailing</em></h1>
+        <div class="hero-eyebrow-pill">
+          <span class="dot"></span>
+          Mesa &amp; Gilbert, AZ &nbsp;·&nbsp; Mobile Service
+        </div>
+        <h1>
+          <span class="line-white">Premium</span>
+          <em>Mobile Detailing</em>
+        </h1>
         <p>Interior detail, ceramic coating, paint correction, and membership plans crafted for local drivers who want a cleaner car without leaving home.</p>
         <div class="hero-actions">
           <a href="contact.html" class="btn btn-primary" style="display:inline-flex; align-items:center; justify-content:center; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">Get a Free Quote</a>
@@ -1635,6 +1679,12 @@
         <a href="https://tiktok.com/@cactus.auto.spa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
         </a>
+        <a href="https://www.facebook.com/profile.php?id=61577441060566" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://nextdoor.com/page/cactus-auto-spa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M12 3L2 12h3v9h5v-5h4v5h5v-9h3L12 3z"/></svg>
+        </a>
       </div>
     </div>
 
@@ -1723,5 +1773,42 @@
       goTo(0);
     })();
   </script>
+
+<!-- ── NEW CUSTOMER POPUP ── -->
+<div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div id="nc-card" style="background:#0e0e0e; border-radius:20px; max-width:420px; width:100%; overflow:hidden; border:1.5px solid #22c55e; box-shadow:0 0 32px rgba(34,197,94,0.35), 0 24px 64px rgba(0,0,0,0.8);">
+    <div style="padding:32px 28px 24px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div style="width:110px; height:110px; border-radius:50%; background:#0e0e0e; border:2px solid #22c55e; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:20px; box-shadow:0 0 24px rgba(34,197,94,0.2);">
+        <span style="font-size:30px; font-weight:900; color:#22c55e; line-height:1;">20%</span>
+        <span style="font-size:14px; font-weight:800; color:#22c55e; letter-spacing:0.05em;">OFF</span>
+      </div>
+      <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0 0 12px; line-height:1.25;">Your entire first detail &mdash;<br>free upgrade</h2>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.25); border-radius:999px; padding:6px 14px; margin-bottom:22px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#e74c3c; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
+        <span style="font-size:12px; font-weight:600; color:#e74c3c;">Only <span id="nc-spots-count">10</span> spots left</span>
+      </div>
+      <a href="contact.html?promo=NEWCAR20" onclick="closePopup()" style="display:block; width:100%; background:#22c55e; color:#0a1a0a; font-size:15px; font-weight:700; padding:15px 24px; border-radius:50px; text-decoration:none; margin-bottom:12px;">Claim My 20% Off &rarr;</a>
+      <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#666; text-decoration:underline; text-underline-offset:2px;">No thanks, I&apos;ll pay full price</a>
+    </div>
+    <div style="border-top:1px solid rgba(34,197,94,0.15); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:10px;">
+      <span style="font-size:12px; color:#666;">Use code</span>
+      <span style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:999px; padding:4px 12px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.08em;">NEWCAR20</span>
+      <span style="font-size:12px; color:#666;">at checkout</span>
+    </div>
+  </div>
+</div>
+<style>@keyframes nc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}</style>
+<script>
+(function(){
+  var spots=parseInt(localStorage.getItem('spotsLeft')||'10',10);
+  if(spots<0)spots=0;
+  var el=document.getElementById('nc-spots-count');
+  if(el)el.textContent=spots;
+  if(!localStorage.getItem('popupSeen')&&spots>0){
+    setTimeout(function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';},3000);
+  }
+})();
+function closePopup(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';localStorage.setItem('popupSeen','1');}
+</script>
 </body>
 </html>

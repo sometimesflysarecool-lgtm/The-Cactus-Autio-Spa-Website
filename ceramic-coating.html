@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>if(!localStorage.getItem('siteVisited'))window.location.replace('index.html');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ceramic Coating — The Cactus Auto Spa</title>
@@ -96,7 +97,7 @@
     }
 
     .section-title {
-      font-size: 26px;
+      font-size: 42px;
       font-weight: 700;
       color: var(--text-primary);
       text-align: center;
@@ -104,10 +105,10 @@
     }
 
     .section-sub {
-      font-size: 13px;
+      font-size: 17px;
       color: var(--text-dim);
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
     }
 
     /* =============================================
@@ -171,7 +172,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 6rem 1.5rem 5rem;
+      padding: 3.5rem 1.5rem 3rem;
       text-align: center;
       background: linear-gradient(to bottom, #1f1f1f, #1a1a1a);
     }
@@ -253,33 +254,91 @@
     /* =============================================
        HERO STATS BAR
     ============================================= */
-    .hero-stats {
+    .hero-stats-wrap {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
-      justify-content: center;
-      border-top: var(--border-dark);
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-stats-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-light);
+    }
+
+    .hero-stats {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(34,197,94,0.03);
     }
 
     .hero-stat {
-      flex: 1;
-      padding: 22px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px;
       text-align: center;
-      border-right: var(--border-dark);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      gap: 10px;
     }
 
     .hero-stat:last-child {
       border-right: none;
     }
 
+    .hero-stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-stat-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--green-light);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .hero-stat-val {
-      font-size: 20px;
+      font-size: 36px;
       font-weight: 800;
       color: var(--green-primary);
+      line-height: 1;
+    }
+
+    .hero-stat-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: -4px;
     }
 
     .hero-stat-lbl {
       font-size: 10px;
       color: var(--text-dim);
       margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -288,7 +347,7 @@
        WHY CERAMIC — TWO COLUMN
     ============================================= */
     .what-section {
-      padding: 6rem var(--section-x);
+      padding: 3rem var(--section-x);
       background: linear-gradient(to bottom, #1a1a1a, #1f1f1f, #1a1a1a);
     }
 
@@ -306,7 +365,7 @@
     }
 
     .col-text h2 {
-      font-size: 28px;
+      font-size: 42px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 14px;
@@ -314,7 +373,7 @@
     }
 
     .col-text p {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--text-muted);
       line-height: 1.8;
       margin-bottom: 12px;
@@ -362,14 +421,14 @@
     }
 
     .vis-text h4 {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 3px;
     }
 
     .vis-text p {
-      font-size: 11px;
+      font-size: 15px;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -378,7 +437,7 @@
        WHAT'S INCLUDED
     ============================================= */
     .included-section {
-      padding: 6rem var(--section-x);
+      padding: 3rem var(--section-x);
       background: linear-gradient(to bottom, #1a1a1a, #1f1f1f, #1a1a1a);
     }
 
@@ -421,14 +480,14 @@
     }
 
     .inc-card h4 {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 7px;
     }
 
     .inc-card p {
-      font-size: 11px;
+      font-size: 15px;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -437,7 +496,7 @@
        PROCESS
     ============================================= */
     .process-section {
-      padding: 6rem var(--section-x);
+      padding: 3rem var(--section-x);
       background: linear-gradient(to bottom, #1a1a1a, #1f1f1f, #1a1a1a);
     }
 
@@ -484,14 +543,14 @@
     }
 
     .step h4 {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 6px;
     }
 
     .step p {
-      font-size: 11px;
+      font-size: 15px;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -500,7 +559,7 @@
        VEHICLES
     ============================================= */
     .vehicles-section {
-      padding: 6rem var(--section-x);
+      padding: 3rem var(--section-x);
       background: linear-gradient(to bottom, #1a1a1a, #1f1f1f, #1a1a1a);
     }
 
@@ -553,7 +612,7 @@
     }
 
     .vehicle-info p {
-      font-size: 11px;
+      font-size: 16px;
       color: var(--text-muted);
     }
 
@@ -561,7 +620,7 @@
        FAQ
     ============================================= */
     .faq-section {
-      padding: 6rem var(--section-x);
+      padding: 3rem var(--section-x);
       background: linear-gradient(to bottom, #1a1a1a, #1f1f1f, #1a1a1a);
     }
 
@@ -583,7 +642,7 @@
     .faq-item:hover { border-color: #3a3a3a; }
 
     .faq-q {
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 8px;
@@ -602,7 +661,7 @@
     }
 
     .faq-a {
-      font-size: 12px;
+      font-size: 16px;
       color: var(--text-muted);
       line-height: 1.7;
       padding-left: 13px;
@@ -614,19 +673,19 @@
     .cta-band {
       background: var(--green-bg);
       border-top: 1px solid rgba(34,197,94,0.15);
-      padding: 6rem var(--section-x);
+      padding: 3rem var(--section-x);
       text-align: center;
     }
 
     .cta-band h2 {
-      font-size: 30px;
+      font-size: 42px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 10px;
     }
 
     .cta-band p {
-      font-size: 14px;
+      font-size: 16px;
       color: var(--text-muted);
       margin-bottom: 28px;
       max-width: 440px;
@@ -680,10 +739,10 @@
       .hero h1 { font-size: clamp(3rem, 16vw, 5rem); letter-spacing: -0.01em; }
       .hero-sub { font-size: 14px; }
 
-      .hero-stats { flex-wrap: wrap; }
-      .hero-stat { flex: 1 1 50%; border-bottom: var(--border-dark); }
-      .hero-stat:nth-child(even) { border-right: none; }
-      .hero-stat:nth-last-child(-n+2) { border-bottom: none; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-stat:nth-child(2) { border-right: none; }
+      .hero-stat:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.06); }
+      .hero-stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.06); border-right: none; }
 
       .two-col { grid-template-columns: 1fr; gap: 32px; }
       .col-text .section-label { text-align: center; }
@@ -977,22 +1036,46 @@
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Reach Out to Learn More</a>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-val">1–5 yr</div>
-        <div class="hero-stat-lbl">Lasting protection</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">9H</div>
-        <div class="hero-stat-lbl">Hardness rating</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">Hydro</div>
-        <div class="hero-stat-lbl">Phobic shield</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">All</div>
-        <div class="hero-stat-lbl">Vehicle types</div>
+    <div class="hero-stats-wrap">
+      <div class="hero-stats-label">Ceramic Coating by the Numbers</div>
+      <div class="hero-stats">
+
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="hero-stat-val">1–5yr</div>
+          <div class="hero-stat-title">Lasting protection</div>
+          <div class="hero-stat-lbl">With basic<br>maintenance</div>
+        </div>
+
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="hero-stat-val">9H</div>
+          <div class="hero-stat-title">Hardness rating</div>
+          <div class="hero-stat-lbl">Scratch<br>resistance</div>
+        </div>
+
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>
+          </div>
+          <div class="hero-stat-val">Hydro</div>
+          <div class="hero-stat-title">Phobic shield</div>
+          <div class="hero-stat-lbl">Water beads<br>off instantly</div>
+        </div>
+
+        <div class="hero-stat">
+          <div class="hero-stat-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <div class="hero-stat-val">All</div>
+          <div class="hero-stat-title">Vehicle types</div>
+          <div class="hero-stat-lbl">Sedans, SUVs<br>&amp; Trucks</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1296,6 +1379,12 @@
         <a href="https://tiktok.com/@cactus.auto.spa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
         </a>
+        <a href="https://www.facebook.com/profile.php?id=61577441060566" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://nextdoor.com/page/cactus-auto-spa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M12 3L2 12h3v9h5v-5h4v5h5v-9h3L12 3z"/></svg>
+        </a>
       </div>
     </div>
 
@@ -1357,5 +1446,42 @@
 
 </footer>
 
+
+<!-- ── NEW CUSTOMER POPUP ── -->
+<div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div id="nc-card" style="background:#0e0e0e; border-radius:20px; max-width:420px; width:100%; overflow:hidden; border:1.5px solid #22c55e; box-shadow:0 0 32px rgba(34,197,94,0.35), 0 24px 64px rgba(0,0,0,0.8);">
+    <div style="padding:32px 28px 24px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div style="width:110px; height:110px; border-radius:50%; background:#0e0e0e; border:2px solid #22c55e; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:20px; box-shadow:0 0 24px rgba(34,197,94,0.2);">
+        <span style="font-size:30px; font-weight:900; color:#22c55e; line-height:1;">20%</span>
+        <span style="font-size:14px; font-weight:800; color:#22c55e; letter-spacing:0.05em;">OFF</span>
+      </div>
+      <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0 0 12px; line-height:1.25;">Your entire first detail &mdash;<br>free upgrade</h2>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.25); border-radius:999px; padding:6px 14px; margin-bottom:22px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#e74c3c; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
+        <span style="font-size:12px; font-weight:600; color:#e74c3c;">Only <span id="nc-spots-count">10</span> spots left</span>
+      </div>
+      <a href="contact.html?promo=NEWCAR20" onclick="closePopup()" style="display:block; width:100%; background:#22c55e; color:#0a1a0a; font-size:15px; font-weight:700; padding:15px 24px; border-radius:50px; text-decoration:none; margin-bottom:12px;">Claim My 20% Off &rarr;</a>
+      <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#666; text-decoration:underline; text-underline-offset:2px;">No thanks, I&apos;ll pay full price</a>
+    </div>
+    <div style="border-top:1px solid rgba(34,197,94,0.15); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:10px;">
+      <span style="font-size:12px; color:#666;">Use code</span>
+      <span style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:999px; padding:4px 12px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.08em;">NEWCAR20</span>
+      <span style="font-size:12px; color:#666;">at checkout</span>
+    </div>
+  </div>
+</div>
+<style>@keyframes nc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}</style>
+<script>
+(function(){
+  var spots=parseInt(localStorage.getItem('spotsLeft')||'10',10);
+  if(spots<0)spots=0;
+  var el=document.getElementById('nc-spots-count');
+  if(el)el.textContent=spots;
+  if(!localStorage.getItem('popupSeen')&&spots>0){
+    setTimeout(function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';},3000);
+  }
+})();
+function closePopup(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';localStorage.setItem('popupSeen','1');}
+</script>
 </body>
 </html>

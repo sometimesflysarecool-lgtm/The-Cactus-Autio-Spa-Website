@@ -585,18 +585,22 @@
     <h1 class="page-title">Get a Quote</h1>
     <p class="page-sub">Fill out the form below and we'll get back to you within 24 hours.</p>
 
+    <form action="https://formspree.io/f/xkoyrdwj" method="POST" id="quote-form">
+    <input type="hidden" name="_next" value="index.html">
+    <input type="hidden" name="add_ons" id="addons-field">
+
     <!-- SECTION 1: Your Info -->
     <div class="form-section">
       <p class="section-label">Your Info</p>
       <div class="fields-stack">
-        <input type="text" placeholder="Full Name" />
+        <input type="text" name="name" placeholder="Full Name" required />
         <div class="row-2">
-          <input type="tel" placeholder="Phone Number" />
-          <input type="email" placeholder="Email" />
+          <input type="tel" name="phone" placeholder="Phone Number" />
+          <input type="email" name="email" placeholder="Email" required />
         </div>
         <div class="row-2">
-          <input type="text" placeholder="City" />
-          <input type="text" placeholder="Zip Code" />
+          <input type="text" name="city" placeholder="City" />
+          <input type="text" name="zip" placeholder="Zip Code" />
         </div>
       </div>
     </div>
@@ -608,7 +612,7 @@
       <p class="section-label">Your Vehicle</p>
       <div class="fields-stack">
         <div class="select-wrap">
-          <select id="vehicle-type" onchange="this.classList.add('has-value')">
+          <select id="vehicle-type" name="vehicle_type" onchange="this.classList.add('has-value')">
             <option value="" disabled selected>Select Vehicle Type</option>
             <option value="sedan">Sedan</option>
             <option value="small-suv">Small SUV &amp; Truck</option>
@@ -620,7 +624,7 @@
           </svg>
         </div>
         <div class="select-wrap">
-          <select id="service-interest" onchange="this.classList.add('has-value')">
+          <select id="service-interest" name="service_interest" onchange="this.classList.add('has-value')">
             <option value="" disabled selected>Service Interest</option>
             <option value="interior">Interior Detail</option>
             <option value="exterior">Exterior Wash</option>
@@ -702,7 +706,7 @@
     <!-- SECTION 4: Notes -->
     <div class="form-section">
       <p class="section-label">Additional Notes</p>
-      <textarea placeholder="Anything else we should know? (vehicle condition, special requests, etc.)"></textarea>
+      <textarea name="notes" placeholder="Anything else we should know? (vehicle condition, special requests, etc.)"></textarea>
     </div>
 
     <!-- Membership Interest Section -->
@@ -783,11 +787,11 @@
     </div>
     <div class="form-section" style="margin-bottom:24px;">
       <p class="section-label">Promo Code</p>
-      <input type="text" id="promo-input" placeholder="Have a promo code? Enter it here" />
+      <input type="text" id="promo-input" name="promo_code" placeholder="Have a promo code? Enter it here" />
     </div>
 
     <!-- SUBMIT -->
-    <button class="submit-btn" type="button" style="margin-top:8px;">Request My Quote</button>
+    <button class="submit-btn" type="submit" style="margin-top:8px;">Request My Quote</button>
 
     <div class="trust-row">
       <div class="trust-item"><div class="trust-dot"></div>Fast response</div>
@@ -795,6 +799,7 @@
       <div class="trust-item"><div class="trust-dot"></div>Free estimate</div>
     </div>
 
+    </form>
     </div>
     </main>
   </div>
@@ -908,6 +913,14 @@
         promoInput.addEventListener('blur', function() { applyPromoDecrement(this.value.trim()); });
       }
     })();
+
+    document.getElementById('quote-form').addEventListener('submit', function() {
+      var checked = [];
+      document.querySelectorAll('.addon-item.checked .addon-text').forEach(function(el) {
+        checked.push(el.textContent.trim());
+      });
+      document.getElementById('addons-field').value = checked.length ? checked.join(', ') : 'None';
+    });
 
     document.querySelectorAll('input[name="membership_interest"]').forEach(radio => {
       radio.addEventListener('change', function() {

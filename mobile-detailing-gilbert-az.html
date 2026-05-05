@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>localStorage.setItem('siteVisited','1');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Professional mobile auto detailing in Gilbert, AZ. Cactus Auto Spa comes to you — book today for 100% satisfaction guaranteed." />
+  <title>Mobile Auto Detailing in Gilbert, AZ | Cactus Auto Spa</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoWash",
+    "name": "Cactus Auto Spa",
+    "url": "https://cactusautospa.com",
+    "telephone": "(602) 780-3365",
+    "priceRange": "$$",
+    "description": "Professional mobile auto detailing serving Gilbert, AZ. We come to you.",
+    "areaServed": [
+      {"@type": "City", "name": "Gilbert", "sameAs": "https://en.wikipedia.org/wiki/Gilbert,_Arizona"}
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "06:00",
+        "closes": "03:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61577441060566"
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1a1a; --panel: rgba(255,255,255,0.05); --panel-strong: rgba(255,255,255,0.08);
+      --text: #f5f7ef; --muted: #9cab8d; --green: #22c55e; --green-light: #7ee5a0;
+      --border: rgba(255,255,255,0.07); --radius: 16px; --shadow: 0 28px 60px rgba(0,0,0,0.28);
+      --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --bg-primary: #1a1a1a; --bg-secondary: #1f1f1f; --bg-card: #222222; --bg-card-hover: #272727;
+      --accent: #22c55e; --accent-hover: #16a34a;
+      --text-primary: #ffffff; --text-secondary: #a3a3a3; --text-muted: #6b7280;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; background-color: #1a1a1a; overflow-x: hidden; }
+    body { min-height: 100vh; font-family: var(--font); color: var(--text); background-color: #1a1a1a; line-height: 1.6; overflow-x: hidden; }
+    .btn, button, a.btn, .btn-primary, .btn-secondary, .nav-cta, input[type="submit"] {
+      font-family: var(--font) !important; font-weight: 700 !important; letter-spacing: 0.01em;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .screen { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    /* NAV */
+    .nav-services-menu { opacity:0; visibility:hidden; pointer-events:none; position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); background:#1a1a1a; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:6px 0; min-width:190px; list-style:none; margin:0; z-index:1000; box-shadow:0 8px 24px rgba(0,0,0,0.5); transition:opacity 0.2s ease, visibility 0.2s ease; transition-delay:0.3s; }
+    .nav-services-menu::before { content:''; position:absolute; top:-8px; left:0; right:0; height:8px; }
+    .nav-services:hover .nav-services-menu, .nav-services.js-open .nav-services-menu { opacity:1; visibility:visible; pointer-events:auto; transition-delay:0s; }
+    .nav-services-menu a { display:block; padding:9px 16px; color:#aaa; text-decoration:none; font-size:13px; white-space:nowrap; }
+    .nav-services-menu a:hover { color:#fff; background:rgba(255,255,255,0.05); }
+
+    /* HERO */
+    @keyframes heroGlow { 0%,100%{opacity:0.04} 50%{opacity:0.10} }
+    @keyframes dot-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.7)} }
+    .hero { position:relative; overflow:visible; padding:4rem 1.5rem 5rem; display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center; background:radial-gradient(ellipse at center top,#222222 0%,#1a1a1a 60%,#1a1a1a 100%); }
+    .hero::before { content:''; position:absolute; top:-10%; left:50%; transform:translateX(-50%); width:70%; height:70%; background:radial-gradient(ellipse at center,#22c55e 0%,transparent 65%); opacity:.04; animation:heroGlow 4s ease-in-out infinite; pointer-events:none; z-index:0; }
+    .hero > * { position:relative; z-index:1; }
+    .hero-eyebrow-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(34,197,94,0.1); border:.5px solid rgba(34,197,94,0.25); border-radius:999px; padding:6px 16px; color:#22c55e; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .hero-eyebrow-pill .dot { width:6px; height:6px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:dot-pulse 2.4s ease-in-out infinite; }
+    .hero h1 { font-size:clamp(3rem,6vw,5.5rem); font-weight:900; line-height:1.05; letter-spacing:-.03em; max-width:900px; margin:0; }
+    .hero h1 .line-white { display:block; color:#fff; }
+    .hero h1 em { display:block; color:var(--green); font-style:normal; }
+    .hero p { max-width:600px; margin:0; color:var(--muted); font-size:1rem; }
+    .hero-actions { display:inline-flex; gap:16px; flex-wrap:wrap; margin-top:6px; justify-content:center; position:relative; z-index:9999; }
+
+    /* BADGES + CARDS */
+    .badge { display:inline-flex; align-items:center; padding:.4rem 1rem; border-radius:999px; color:var(--green); background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.25); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; margin-bottom:1rem; }
+    .eyeball { width:44px; height:44px; border-radius:16px; display:grid; place-items:center; background:rgba(34,197,94,0.1); color:var(--green); }
+    .section { padding:5rem 1.5rem; text-align:center; background:#1a1a1a; }
+    .section-alt { padding:5rem 1.5rem; text-align:center; background:#1f1f1f; }
+    .section-title { font-size:clamp(2rem,3vw,3.2rem); margin:0 auto 18px; max-width:780px; }
+    .section-copy { max-width:780px; color:var(--muted); margin:0 auto 40px; line-height:1.8; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+    .card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:2rem; display:flex; flex-direction:column; transition:background .2s ease,border-color .2s ease; }
+    .card:hover { background:var(--bg-card-hover); border-color:rgba(34,197,94,.25); }
+    .card-glow { background:rgba(34,197,94,.06); border:1px solid rgba(34,197,94,.3); box-shadow:0 0 20px rgba(34,197,94,.08); }
+    .card-glow:hover { border-color:rgba(34,197,94,.5); box-shadow:0 0 28px rgba(34,197,94,.14); }
+    .card-hero { display:flex; flex-direction:column; align-items:center; text-align:center; gap:18px; }
+    .card h3, .card h4 { margin-bottom:10px; }
+    .card p { color:var(--muted); }
+
+    /* NEIGHBORHOOD CHIPS */
+    .hood-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
+    .hood-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.4rem 1.6rem; text-align:left; transition:border-color .2s ease,background .2s ease; }
+    .hood-card:hover { border-color:rgba(34,197,94,.3); background:var(--bg-card-hover); }
+    .hood-card strong { display:block; font-size:15px; color:#fff; margin-bottom:6px; }
+    .hood-card p { font-size:13px; color:var(--muted); line-height:1.6; margin:0; }
+
+    /* STAT STRIP */
+    .stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:38px; }
+    .stat { text-align:center; }
+    .stat strong { display:block; font-size:1.8rem; color:#fff; margin-bottom:8px; }
+
+    /* CTA BAND */
+    .cta-band { background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.18); border-radius:var(--radius); padding:56px 52px; max-width:min(1180px,calc(100% - 40px)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:32px; }
+    .cta-band h2 { font-size:clamp(1.8rem,3vw,2.4rem); margin-bottom:10px; }
+    .cta-band p { color:var(--muted); line-height:1.7; }
+    .cta-actions { display:flex; flex-direction:column; gap:12px; align-items:flex-end; flex-shrink:0; }
+
+    /* BUTTONS */
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; border-radius:9999px; padding:.75rem 1.75rem; font-weight:700; transition:all .2s ease; text-decoration:none; border:none; cursor:pointer; }
+    .btn-primary { background:#22c55e; color:#000; }
+    .btn-primary:hover { background:#16a34a; }
+    .btn-secondary { background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.07); }
+    .btn-secondary:hover { background:rgba(255,255,255,.12); }
+
+    /* INTRO COPY BLOCK */
+    .intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; text-align:left; margin-top:8px; }
+    .intro-grid p { color:var(--muted); line-height:1.85; font-size:15px; }
+
+    /* MOBILE */
+    @media (max-width:900px) {
+      .grid-3 { grid-template-columns:1fr 1fr; }
+      .grid-4 { grid-template-columns:1fr 1fr; }
+      .hood-grid { grid-template-columns:1fr 1fr; }
+      .intro-grid { grid-template-columns:1fr; gap:20px; }
+    }
+    @media (max-width:600px) {
+      .grid-3 { grid-template-columns:1fr; }
+      .grid-4 { grid-template-columns:1fr; }
+      .hood-grid { grid-template-columns:1fr; }
+      .stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .cta-band { flex-direction:column; text-align:center; padding:40px 28px; }
+      .cta-actions { align-items:center; }
+      .hero h1 { font-size:clamp(2.4rem,8vw,3.2rem); }
+    }
+    @media (max-width:768px) {
+      .nav-services-menu { position:absolute !important; top:calc(100% + 8px) !important; left:0 !important; transform:none !important; display:none !important; opacity:1 !important; visibility:visible !important; pointer-events:none !important; }
+      .nav-services.open > .nav-services-menu { display:flex !important; flex-direction:column !important; pointer-events:auto !important; }
+    }
+
+    /* FOOTER */
+    footer a:hover { color:#22c55e !important; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="background:#1a1a1a; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:999; width:100%; border-bottom:1px solid rgba(255,255,255,0.05);">
+  <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+    <img src="Brand Assets/Photo/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+  </a>
+  <ul style="display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;">
+    <li><a href="index.html" style="color:#aaa; text-decoration:none; font-size:14px;">Home</a></li>
+    <li class="nav-services" style="position:relative;">
+      <a href="services.html" style="color:#aaa; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:4px;">Services <span style="font-size:10px; opacity:0.6;">▾</span></a>
+      <ul class="nav-services-menu">
+        <li><a href="services.html">Car Detailing</a></li>
+        <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+        <li><a href="monthly-membership.html">Monthly Membership</a></li>
+        <li><a href="paint-correction.html">Paint Enhancement</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html" style="color:#aaa; text-decoration:none; font-size:14px;">About</a></li>
+    <li><a href="portfolio.html" style="color:#aaa; text-decoration:none; font-size:14px;">Portfolio</a></li>
+    <li><a href="contact.html" style="background:#22c55e; color:#000; font-weight:700; padding:9px 20px; border-radius:50px; text-decoration:none; font-size:14px;">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<div class="screen">
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow-pill">
+    <span class="dot"></span>
+    Gilbert, AZ &nbsp;·&nbsp; Mobile Service
+  </div>
+  <h1>
+    <span class="line-white">Gilbert's #1</span>
+    <em>Mobile Auto Detailing</em>
+  </h1>
+  <p>Professional car detailing delivered directly to your Gilbert home or office. We come to you anywhere in Gilbert, AZ — 100% satisfaction guaranteed.</p>
+  <div class="hero-actions" style="margin-top:10px;">
+    <a href="contact.html" class="btn btn-primary" style="padding:1rem 2.3rem; font-size:1.05rem; height:58px;">Book Your Detail</a>
+    <a href="tel:6027803365" class="btn btn-secondary" style="padding:1rem 2.3rem; font-size:1.05rem; height:58px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.46 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.38 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      (602) 780-3365
+    </a>
+  </div>
+  <div class="stat-grid">
+    <div class="stat card-glow" style="border-radius:12px; padding:20px;"><strong>Mobile</strong>We come to you</div>
+    <div class="stat card-glow" style="border-radius:12px; padding:20px;"><strong>100%</strong>Satisfaction guaranteed</div>
+    <div class="stat card-glow" style="border-radius:12px; padding:20px;"><strong>5★</strong>Google rated</div>
+    <div class="stat card-glow" style="border-radius:12px; padding:20px;"><strong>Owner</strong>Operated</div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section">
+  <span class="badge">Serving Gilbert, AZ</span>
+  <h2 class="section-title">Premium Detailing for Gilbert's Growing Community</h2>
+  <div class="intro-grid" style="max-width:960px; margin:0 auto;">
+    <p>Gilbert has transformed from a small agricultural town into one of the most desirable communities in the entire Southwest — consistently ranked among the safest towns in America and a top destination for families, professionals, and retirees. From the tree-lined streets of Morrison Ranch to the lakeside community of Val Vista Lakes, Gilbert residents take pride in their properties. At The Cactus Auto Spa, we match that standard by delivering professional-grade auto detailing directly to your driveway.</p>
+    <p>Mobile detailing in Gilbert means no drop-offs, no waiting rooms, and no disruption to your day. We arrive at your home in Cooley Station, your office near the San Tan Village area, or anywhere else in Gilbert with a fully equipped setup. Our professional-grade extractors, steam cleaners, and polishing machines deliver the same results you'd expect from a high-end detail shop — but delivered to you. Most full details are completed in two to four hours right on your property.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-alt">
+  <div class="screen">
+    <span class="badge">Our Services</span>
+    <h2 class="section-title">Everything Your Gilbert Vehicle Needs</h2>
+    <p class="section-copy">From a quick interior refresh to long-lasting ceramic paint protection — we bring the full lineup of professional detailing services directly to your Gilbert, AZ location.</p>
+    <div class="grid-3" style="max-width:960px; margin:0 auto;">
+      <article class="card card-hero">
+        <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+        <h3>Interior Detail</h3>
+        <p>Deep cleaning, steam extraction, leather care, and UV protection for every surface inside your Gilbert vehicle.</p>
+        <a href="services.html" class="btn btn-primary" style="margin-top:auto;">View Pricing</a>
+      </article>
+      <article class="card card-hero">
+        <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Ceramic Coating</h3>
+        <p>A hydrophobic paint shield that bonds to your clear coat — protecting against Arizona's intense UV rays and desert dust.</p>
+        <a href="ceramic-coating.html" class="btn btn-primary" style="margin-top:auto;">Learn More</a>
+      </article>
+      <article class="card card-hero">
+        <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Paint Enhancement</h3>
+        <p>Restore gloss and remove oxidation with a professional one-step polish — ideal for Gilbert vehicles parked outdoors.</p>
+        <a href="paint-correction.html" class="btn btn-primary" style="margin-top:auto;">Learn More</a>
+      </article>
+      <article class="card card-hero">
+        <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+        <h3>Membership Plans</h3>
+        <p>Monthly, bi-monthly, and quarterly plans for Gilbert residents who want a consistently clean vehicle all year long.</p>
+        <a href="monthly-membership.html" class="btn btn-primary" style="margin-top:auto;">View Plans</a>
+      </article>
+      <article class="card card-hero">
+        <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Exterior Wash &amp; Detail</h3>
+        <p>Hand wash, clay bar, tire dressing, and streak-free glass — the full exterior treatment at your Gilbert address.</p>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:auto;">Get a Quote</a>
+      </article>
+      <article class="card card-hero">
+        <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Full Detail Package</h3>
+        <p>Interior deep clean plus full exterior treatment — the complete vehicle transformation, mobile in Gilbert, AZ.</p>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:auto;">Book Now</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- NEIGHBORHOODS -->
+<section class="section">
+  <span class="badge">Service Areas</span>
+  <h2 class="section-title">We Come to Your Gilbert Neighborhood</h2>
+  <p class="section-copy">We come to you anywhere in Gilbert, AZ. Every community, every HOA, every home — we bring the detail to your door.</p>
+  <div class="hood-grid" style="max-width:960px; margin:0 auto;">
+    <div class="hood-card">
+      <strong>Cooley Station</strong>
+      <p>One of Gilbert's most popular master-planned communities along the Loop 202. Cooley Station residents love mobile detailing because it fits perfectly into a busy suburban lifestyle — we come while you're home or working.</p>
+    </div>
+    <div class="hood-card">
+      <strong>Morrison Ranch</strong>
+      <p>Known for its picturesque tree-lined streets and tight-knit community feel, Morrison Ranch is one of Gilbert's most desirable neighborhoods. We serve homes throughout Morrison Ranch with flexible appointment times.</p>
+    </div>
+    <div class="hood-card">
+      <strong>San Tan Village Area</strong>
+      <p>The communities surrounding the San Tan Village shopping corridor are some of Gilbert's fastest-growing. Whether you're near Higley and Williams Field or further south, we cover the entire area.</p>
+    </div>
+    <div class="hood-card">
+      <strong>Power Ranch</strong>
+      <p>Power Ranch's resort-style living deserves a resort-level clean. We service homes throughout this beautiful community — just park in your driveway and we'll handle the rest.</p>
+    </div>
+    <div class="hood-card">
+      <strong>Agritopia &amp; Val Vista Lakes</strong>
+      <p>From Agritopia's farm-inspired walkable community to the lakeside properties of Val Vista Lakes, we serve Gilbert's most distinctive neighborhoods with the same professional standard every time.</p>
+    </div>
+    <div class="hood-card">
+      <strong>Greenfield &amp; Higley Corridor</strong>
+      <p>The rapidly developing Greenfield and Higley corridors are full of new construction homes with busy families and professionals. Mobile detailing is the natural fit — we come to you, you keep your schedule.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ARIZONA CONTENT -->
+<section class="section-alt">
+  <div class="screen">
+    <span class="badge">Why Gilbert Cars Need Detailing</span>
+    <h2 class="section-title">Gilbert's Growth Demands Better Car Care</h2>
+    <div class="intro-grid" style="max-width:960px; margin:0 auto;">
+      <p>Gilbert's rapid growth has brought more vehicles, more commuters on the 202 and US-60, and more cars sitting in Arizona's unrelenting sun. The town's strict HOA communities are beautiful, but many of them restrict outdoor washing — making mobile detailing the perfect solution for residents who want their vehicles professionally maintained without leaving the neighborhood. Gilbert's hard water supply also leaves mineral deposits and water spots that standard car washes simply spread around. Our process uses professional-grade degreasers and pH-balanced products that actually eliminate contaminants at the surface level.</p>
+      <p>Arizona's UV index is among the highest in the country year-round, and Gilbert's wide-open streets and newer neighborhoods mean vehicles often sit in direct sunlight for hours every day. This relentless exposure oxidizes clear coat, fades interior plastics, and compromises rubber trim over time. Ceramic coatings and protective interior treatments aren't a luxury for Gilbert residents — they're a smart investment that extends the life of your vehicle and preserves its resale value. The Cactus Auto Spa uses only professional-grade products from trusted detailing brands, applied with the care and attention that every vehicle deserves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section">
+  <span class="badge">Why Choose Us</span>
+  <h2 class="section-title">The Cactus Auto Spa Difference</h2>
+  <div class="grid-4" style="max-width:960px; margin:0 auto;">
+    <article class="card card-glow">
+      <h4>Owner-Operated</h4>
+      <p>Every Gilbert detail is completed by the owner — no subcontractors, no shortcuts. You get the same person and the same standard every time.</p>
+    </article>
+    <article class="card card-glow">
+      <h4>We Come to You</h4>
+      <p>We service your vehicle at your Gilbert home, office, or HOA parking spot. No driving across town, no waiting rooms.</p>
+    </article>
+    <article class="card card-glow">
+      <h4>5-Star Rated</h4>
+      <p>Gilbert and Mesa customers consistently leave 5-star Google reviews. Satisfaction is our standard, not just our promise.</p>
+    </article>
+    <article class="card card-glow">
+      <h4>Premium Products</h4>
+      <p>We use professional-grade chemicals and tools — Koch-Chemie, P&amp;S, Griot's Garage — the same brands trusted by enthusiasts.</p>
+    </article>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section style="padding:3rem 1.5rem 5rem;">
+  <div class="cta-band">
+    <div>
+      <span class="badge" style="font-size:13px; padding:8px 20px; margin-bottom:20px; display:block; width:fit-content;">Book Today</span>
+      <h2>We Come to You Anywhere in Gilbert, AZ</h2>
+      <p>Interior detailing, ceramic coating, paint enhancement, and membership plans — all delivered mobile to your Gilbert home or office.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary" style="padding:1rem 2.2rem; font-size:1.05rem; white-space:nowrap;">Get a Free Quote</a>
+      <a href="tel:6027803365" style="display:inline-flex; align-items:center; gap:8px; color:#22c55e; font-weight:700; font-size:1rem; text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.46 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.38 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        (602) 780-3365
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- CROSS-LINKS -->
+<div style="background:#1a1a1a; border-top:1px solid rgba(255,255,255,0.06); padding:20px 40px; display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; font-family:'Inter',system-ui,sans-serif;">
+  <a href="mobile-detailing-mesa-az.html" style="color:#22c55e; font-size:14px; font-weight:600; text-decoration:underline; text-underline-offset:3px;">We also serve Mesa — see our Mesa mobile detailing page</a>
+  <span style="color:rgba(255,255,255,0.15);">·</span>
+  <a href="index.html" style="color:#9ca3af; font-size:14px; font-weight:500; text-decoration:underline; text-underline-offset:3px;">Back to Cactus Auto Spa home</a>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#0d0d0d; border-top:1px solid rgba(255,255,255,0.07); font-family:'Inter',system-ui,-apple-system,sans-serif; width:100%;">
+  <div style="max-width:1200px; margin:0 auto; padding:64px 40px 40px; display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:48px;">
+    <div>
+      <a href="index.html" style="display:inline-block; margin-bottom:16px;">
+        <img src="Brand Assets/Photo/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa" loading="lazy" width="120" height="40">
+      </a>
+      <p style="color:#555; font-size:13px; line-height:1.8; max-width:220px; margin:0 0 24px;">Premium mobile auto detailing serving Mesa &amp; Gilbert, AZ. We come to you — no shop visit needed.</p>
+      <div style="display:flex; gap:10px;">
+        <a href="https://instagram.com/thecactusautospa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://tiktok.com/@cactus.auto.spa" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61577441060566" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#777"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Services</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;">
+        <li><a href="services.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Interior Detailing</a></li>
+        <li><a href="ceramic-coating.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Ceramic Coating</a></li>
+        <li><a href="paint-correction.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Paint Enhancement</a></li>
+        <li><a href="monthly-membership.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Membership Plans</a></li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Company</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;">
+        <li><a href="index.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Home</a></li>
+        <li><a href="about.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">About Us</a></li>
+        <li><a href="portfolio.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Portfolio</a></li>
+        <li><a href="contact.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Contact</a></li>
+        <li><a href="mobile-detailing-mesa-az.html" style="color:#9ca3af; font-size:14px; text-decoration:none;">Detailing in Mesa, AZ</a></li>
+        <li><a href="mobile-detailing-gilbert-az.html" style="color:#22c55e; font-size:14px; text-decoration:none;">Detailing in Gilbert, AZ</a></li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Get In Touch</p>
+      <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
+        <li>
+          <a href="tel:6027803365" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.46 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.38 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            (602) 780-3365
+          </a>
+        </li>
+        <li>
+          <a href="mailto:contact@cactusautospa.com" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contact@cactusautospa.com
+          </a>
+        </li>
+        <li style="padding-top:4px;">
+          <a href="contact.html" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.06); width:100%;"></div>
+  <div style="background:#0d0d0d; width:100%; padding:20px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; box-sizing:border-box;">
+    <p style="color:#333; font-size:12px; margin:0;">© 2026 The Cactus Auto Spa. All rights reserved.</p>
+    <p style="color:#333; font-size:12px; margin:0;">Mesa &amp; Gilbert, AZ</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- NEW CUSTOMER POPUP -->
+<div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div id="nc-card" style="background:#0e0e0e; border-radius:20px; max-width:420px; width:100%; overflow:hidden; border:1.5px solid #22c55e; box-shadow:0 0 32px rgba(34,197,94,0.35),0 24px 64px rgba(0,0,0,0.8);">
+    <div style="padding:32px 28px 24px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div style="width:110px; height:110px; border-radius:50%; background:#0e0e0e; border:2px solid #22c55e; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:20px; box-shadow:0 0 24px rgba(34,197,94,0.2);">
+        <span style="font-size:30px; font-weight:900; color:#22c55e; line-height:1;">20%</span>
+        <span style="font-size:14px; font-weight:800; color:#22c55e; letter-spacing:0.05em;">OFF</span>
+      </div>
+      <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0 0 12px; line-height:1.25;">Your entire first detail &mdash;<br>free upgrade</h2>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.25); border-radius:999px; padding:6px 14px; margin-bottom:22px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#e74c3c; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
+        <span style="font-size:12px; font-weight:600; color:#e74c3c;">Only <span id="nc-spots-count">10</span> spots left</span>
+      </div>
+      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#0a1a0a; font-size:15px; font-weight:700; padding:15px 24px; border-radius:50px; text-decoration:none; margin-bottom:12px;">Claim My 20% Off &rarr;</a>
+      <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#666; text-decoration:underline; text-underline-offset:2px;">No thanks, I'll pay full price</a>
+    </div>
+    <div style="border-top:1px solid rgba(34,197,94,0.15); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:10px;">
+      <span style="font-size:12px; color:#666;">Use code</span>
+      <span style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:999px; padding:4px 12px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.08em;">NEWCAR20</span>
+      <span style="font-size:12px; color:#666;">at checkout</span>
+    </div>
+  </div>
+</div>
+<style>@keyframes nc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}</style>
+<script>
+(function(){
+  var spots=parseInt(localStorage.getItem('spotsLeft')||'10',10);
+  if(spots<0)spots=0;
+  var el=document.getElementById('nc-spots-count');
+  if(el)el.textContent=spots;
+  if(!localStorage.getItem('popupSeen')&&spots>0){
+    setTimeout(function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';},3000);
+  }
+})();
+function closePopup(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';localStorage.setItem('popupSeen','1');}
+</script>
+
+</body>
+</html>

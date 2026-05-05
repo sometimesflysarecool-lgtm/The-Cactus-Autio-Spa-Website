@@ -388,6 +388,18 @@
       .sec-head { margin-bottom: 36px; }
     }
 
+    /* ── CAROUSEL MOBILE FIX ──
+       Override the blanket mobile rule that clamps all divs to max-width:100%
+       and hides overflow — those break the carousel track transform. */
+    .carousel-track,
+    #cTrack {
+      max-width: none !important;
+      overflow: visible !important;
+    }
+    .carousel-viewport {
+      overflow: hidden !important;
+    }
+
     /* ── HERO GLOW ── */
     @keyframes hero-glow-pulse {
       0%, 100% { opacity: 0.04; }

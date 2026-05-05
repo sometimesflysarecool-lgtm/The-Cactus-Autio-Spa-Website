@@ -114,6 +114,7 @@
       line-height: 1.1;
       margin-bottom: 12px;
     }
+    .mem-title em { color: #22c55e; font-style: normal; }
     .mem-sub {
       font-size: 14px;
       color: var(--text-muted);
@@ -528,17 +529,9 @@
 
     /* Mobile overflow fixes */
     @media (max-width: 768px) {
-      body > * {
-        max-width: 100%;
-        overflow-x: hidden;
-      }
       img, video, iframe {
         max-width: 100%;
         height: auto;
-      }
-      section, div, nav, header, footer {
-        max-width: 100% !important;
-        overflow-x: hidden;
       }
     }
 
@@ -760,7 +753,7 @@
   <div class="screen">
     <nav style="background:#1a1a1a; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
   <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
-    <img src="Brand Assets/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+    <img src="Brand Assets/Photo/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
   </a>
   <ul style="display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;">
     <li><a href="index.html" style="color:#aaa; text-decoration:none; font-size:14px;">Home</a></li>
@@ -784,7 +777,7 @@
 
     <div class="mem-head">
       <div class="mem-eyebrow">Membership Plans</div>
-      <h1 class="mem-title">Save More, Detail More</h1>
+      <h1 class="mem-title">Save More, <em>Detail More</em></h1>
       <p class="mem-sub">The more often you detail, the more you save. Our membership plans reward loyal customers with significant discounts over one-time pricing.</p>
       <div class="notice">All packages start with an interior detail only</div>
     </div>
@@ -909,7 +902,7 @@
     <!-- Column 1: Brand -->
     <div>
       <a href="index.html" style="display:inline-block; margin-bottom:16px;">
-        <img src="Brand Assets/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+        <img src="Brand Assets/Photo/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
       </a>
       <p style="color:#555; font-size:13px; line-height:1.8; max-width:220px; margin:0 0 24px;">Premium mobile auto detailing serving Mesa &amp; Gilbert, AZ. We come to you — no shop visit needed.</p>
       <div style="display:flex; gap:10px;">

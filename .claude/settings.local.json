@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(New-Item -Path \"c:\\\\Users\\\\andre\\\\Desktop\\\\The Cactus Autio Spa Website\\\\images\" -ItemType Directory)"
+      "PowerShell(New-Item -Path \"c:\\\\Users\\\\andre\\\\Desktop\\\\The Cactus Autio Spa Website\\\\images\" -ItemType Directory)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh api *)"
     ]
   }
 }

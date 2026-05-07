@@ -17,6 +17,17 @@ img, video, iframe {
   height: auto;
 }
 
+/* ── Hero padding ────────────────────────────
+   Several pages set 6rem or 80px top padding on
+   .hero, creating a large gap under the nav on
+   mobile. Reduce to match ceramic coating spacing.
+──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 3rem !important;
+  }
+}
+
 /* ── Footer ──────────────────────────────────
    Collapse 4-column grid to single column.
    Works even with inline grid styles because

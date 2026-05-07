@@ -101,12 +101,31 @@
       margin-bottom: 52px;
     }
     .mem-eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(34,197,94,0.1);
+      border: 0.5px solid rgba(34,197,94,0.25);
+      border-radius: 999px;
+      padding: 9px 22px;
       color: #22c55e;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .mem-eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+      animation: dot-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.7); }
     }
     .mem-title {
       font-size: 38px;
@@ -777,7 +796,7 @@
     <div class="hero-glow"></div>
 
     <div class="mem-head">
-      <div class="mem-eyebrow">Membership Plans</div>
+      <div class="mem-eyebrow"><span class="dot"></span>Membership Plans</div>
       <h1 class="mem-title">Save More, <em>Detail More</em></h1>
       <p class="mem-sub">The more often you detail, the more you save. Our membership plans reward loyal customers with significant discounts over one-time pricing.</p>
       <div class="notice">All packages start with an interior detail only</div>

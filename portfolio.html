@@ -140,9 +140,9 @@
     /*
       ── HOW TO SWAP IN REAL IMAGES ──
       Before layer: replace <div class="ba-ph ba-ph-before"> with:
-        <img src="before-XX.jpg" class="ba-img" alt="Before">
+        <img src="before-XX.webp" class="ba-img" alt="Before" loading="lazy">
       After layer: replace <div class="ba-ph ba-ph-after"> with:
-        <img src="after-XX.jpg" class="ba-img" alt="After">
+        <img src="after-XX.webp" class="ba-img" alt="After" loading="lazy">
       Add to CSS: .ba-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     */
     .ba-before { position:absolute; inset:0; }
@@ -231,7 +231,7 @@
     /*
       ── HOW TO SWAP IN REAL MEDIA ──
       Images: replace <div class="c-ph c-ph-img"> with:
-        <img src="photo.jpg" alt="…" style="width:100%;height:100%;object-fit:cover;">
+        <img src="photo.webp" alt="…" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
       Videos: replace <div class="c-ph c-ph-vid"> with:
         <video src="clip.mp4" muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
         Keep the .c-play overlay div.
@@ -698,7 +698,7 @@
 <!-- ── NAV ── -->
 <nav style="background:#1a1a1a; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:999;">
   <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
-    <img src="Brand Assets/Photo/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+    <img src="Brand Assets/Photo/AAAAA.webp" style="height:40px; width:auto;" alt="The Cactus Auto Spa" loading="lazy" width="855" height="855">
   </a>
   <ul style="display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;">
     <li><a href="index.html" style="color:#aaa; text-decoration:none; font-size:14px;">Home</a></li>
@@ -756,8 +756,8 @@
         <!-- ── CARD 2 ── -->
         <div class="ba-card fade-in" style="transition-delay:.10s">
           <div class="ba-slider" data-ba>
-            <div class="ba-before"><img src="Brand Assets/Photo/Backseat-After1.png" class="ba-img" alt="Backseat After" loading="lazy"></div>
-            <div class="ba-after-clip" data-ba-after><img src="Brand Assets/Photo/Backseat-Before1.png" class="ba-img" alt="Backseat Before" loading="lazy"></div>
+            <div class="ba-before"><img src="Brand Assets/Photo/Backseat-After1.webp" class="ba-img" alt="Backseat After" loading="lazy" width="1200" height="1600"></div>
+            <div class="ba-after-clip" data-ba-after><img src="Brand Assets/Photo/Backseat-Before1.webp" class="ba-img" alt="Backseat Before" loading="lazy" width="1200" height="1600"></div>
             <span class="ba-tag ba-tag-b">Before</span><span class="ba-tag ba-tag-a">After</span>
             <div class="ba-handle" data-ba-handle><div class="ba-line"></div><div class="ba-grip"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div></div>
           </div>
@@ -767,8 +767,8 @@
         <!-- ── CARD 3 ── -->
         <div class="ba-card fade-in" style="transition-delay:.15s">
           <div class="ba-slider" data-ba>
-            <div class="ba-before"><img src="Brand Assets/Photo/After-Infiniti2.png" class="ba-img" alt="Infiniti After" loading="lazy"></div>
-            <div class="ba-after-clip" data-ba-after><img src="Brand Assets/Photo/Before-Infinit1.png" class="ba-img" alt="Infiniti Before" loading="lazy"></div>
+            <div class="ba-before"><img src="Brand Assets/Photo/After-Infiniti2.webp" class="ba-img" alt="Infiniti After" loading="lazy" width="1200" height="1600"></div>
+            <div class="ba-after-clip" data-ba-after><img src="Brand Assets/Photo/Before-Infinit1.webp" class="ba-img" alt="Infiniti Before" loading="lazy" width="1200" height="1600"></div>
             <span class="ba-tag ba-tag-b">Before</span><span class="ba-tag ba-tag-a">After</span>
             <div class="ba-handle" data-ba-handle><div class="ba-line"></div><div class="ba-grip"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div></div>
           </div>
@@ -803,55 +803,55 @@
 
             <!-- Tile 01 — Kia1 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/Kia1.png" alt="Kia detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/Kia1.webp" alt="Kia detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">01</span>
             </div>
 
             <!-- Tile 02 — After-Infiniti2 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/After-Infiniti2.png" alt="After Infiniti detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/After-Infiniti2.webp" alt="After Infiniti detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">02</span>
             </div>
 
             <!-- Tile 03 — After-Honda1 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/After-Honda1.png" alt="After Honda detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/After-Honda1.webp" alt="After Honda detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="900">
               <span class="c-num">03</span>
             </div>
 
             <!-- Tile 04 — Wheels-Before2 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/Wheels-Before2.png" alt="Wheels before detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/Wheels-Before2.webp" alt="Wheels before detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">04</span>
             </div>
 
             <!-- Tile 05 — After-Hatch1 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/After-Hatch1.png" alt="After Hatch detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/After-Hatch1.webp" alt="After Hatch detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">05</span>
             </div>
 
             <!-- Tile 06 — Frontseat-After1 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/Frontseat-After1.png" alt="Front seat after detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/Frontseat-After1.webp" alt="Front seat after detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">06</span>
             </div>
 
             <!-- Tile 07 — CleanJeep -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/CleanJeep.png" alt="Clean Jeep detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/CleanJeep.webp" alt="Clean Jeep detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">07</span>
             </div>
 
             <!-- Tile 08 — After-Honda2 -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/After-Honda2.png" alt="After Honda detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/After-Honda2.webp" alt="After Honda detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">08</span>
             </div>
 
             <!-- Tile 09 — Foam -->
             <div class="c-tile">
-              <img src="Brand Assets/Photo/Foam.png" alt="Foam detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="Brand Assets/Photo/Foam.webp" alt="Foam detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600">
               <span class="c-num">09</span>
             </div>
 
@@ -1007,7 +1007,7 @@
     <!-- Column 1: Brand -->
     <div>
       <a href="index.html" style="display:inline-block; margin-bottom:16px;">
-        <img src="Brand Assets/Photo/AAAAA.png" style="height:40px; width:auto;" alt="The Cactus Auto Spa">
+        <img src="Brand Assets/Photo/AAAAA.webp" style="height:40px; width:auto;" alt="The Cactus Auto Spa" loading="lazy" width="855" height="855">
       </a>
       <p style="color:#555; font-size:13px; line-height:1.8; max-width:220px; margin:0 0 24px;">Premium mobile auto detailing serving Mesa &amp; Gilbert, AZ. We come to you — no shop visit needed.</p>
       <div style="display:flex; gap:10px;">

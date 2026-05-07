@@ -17,45 +17,6 @@ img, video, iframe {
   height: auto;
 }
 
-/* ── Navigation ─────────────────────────────
-   The nav is inline-styled on every page.
-   These rules slim it down on smaller screens.
-──────────────────────────────────────────── */
-@media (max-width: 700px) {
-  nav {
-    padding: 0 16px !important;
-    height: auto !important;
-    min-height: 64px !important;
-  }
-  /* Reduce gap between nav items */
-  nav > ul {
-    gap: 12px !important;
-    flex-wrap: nowrap !important;
-  }
-  nav > ul > li > a {
-    font-size: 12px !important;
-  }
-  /* Hide "Home" — the logo already links home */
-  nav > ul > li:first-child {
-    display: none !important;
-  }
-}
-
-@media (max-width: 460px) {
-  nav > ul {
-    gap: 8px !important;
-  }
-  /* Hide "Portfolio" — keeps Services, About, Get a Quote */
-  nav > ul > li:nth-child(4) {
-    display: none !important;
-  }
-  /* Shrink Get a Quote button */
-  nav > ul > li:last-child > a {
-    padding: 7px 14px !important;
-    font-size: 12px !important;
-  }
-}
-
 /* ── Footer ──────────────────────────────────
    Collapse 4-column grid to single column.
    Works even with inline grid styles because

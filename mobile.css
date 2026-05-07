@@ -17,6 +17,26 @@ img, video, iframe {
   height: auto;
 }
 
+/* ── Eyebrow pills — mobile centering ───────
+   inline-flex pills wider than the viewport
+   can't be centered by text-align alone; they
+   clip to the left edge and overflow right.
+   Switch to flex + margin:auto so they always
+   center within the screen without overflowing.
+──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .eyebrow, .sec-eyebrow, .hero-eyebrow, .eyebrow-pill, .mem-eyebrow {
+    display: flex !important;
+    width: fit-content !important;
+    max-width: calc(100vw - 60px) !important;
+    white-space: normal !important;
+    text-align: center !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 /* ── Hero padding ────────────────────────────
    Several pages set 6rem or 80px top padding on
    .hero, creating a large gap under the nav on

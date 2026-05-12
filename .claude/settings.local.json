@@ -5,7 +5,11 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(gh api *)"
+      "Bash(gh api *)",
+      "Bash(gh run *)",
+      "PowerShell(gh run list --limit 5 2>&1)",
+      "PowerShell(gh api repos/sometimesflysarecool-lgtm/The-Cactus-Autio-Spa-Website/pages 2>&1)",
+      "Bash(git ls-remote *)"
     ]
   }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <script>if(!localStorage.getItem('siteVisited'))window.location.replace('index.html');</script>
@@ -1123,43 +1123,51 @@
   </div>
 
 </footer>
-
-
 <!-- ── NEW CUSTOMER POPUP ── -->
-<div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding:20px;">
-  <div id="nc-card" style="background:#0e0e0e; border-radius:20px; max-width:420px; width:100%; overflow:hidden; border:1.5px solid #22c55e; box-shadow:0 0 32px rgba(34,197,94,0.35), 0 24px 64px rgba(0,0,0,0.8);">
-    <div style="padding:32px 28px 24px; display:flex; flex-direction:column; align-items:center; text-align:center;">
-      <div style="width:110px; height:110px; border-radius:50%; background:#0e0e0e; border:2px solid #22c55e; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:20px; box-shadow:0 0 24px rgba(34,197,94,0.2);">
-        <span style="font-size:30px; font-weight:900; color:#22c55e; line-height:1;">20%</span>
-        <span style="font-size:14px; font-weight:800; color:#22c55e; letter-spacing:0.05em;">OFF</span>
+<div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div id="nc-card" style="background:#111; border-radius:20px; max-width:420px; width:100%; border:1px solid rgba(34,197,94,0.2); box-shadow:0 24px 64px rgba(0,0,0,0.8);">
+    <div style="padding:40px 32px 32px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px;">
+      <div style="width:100px; height:100px; border-radius:50%; background:#0d1f14; border:2px solid #22c55e; display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0;">
+        <span style="font-size:36px; font-weight:900; color:#22c55e; line-height:1;">20%</span>
+        <span style="font-size:12px; font-weight:700; color:#fff; letter-spacing:0.15em; text-transform:uppercase; margin-top:2px;">OFF</span>
       </div>
-      <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0 0 12px; line-height:1.25;">Your entire first detail &mdash;<br>free upgrade</h2>
-      <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.25); border-radius:999px; padding:6px 14px; margin-bottom:22px;">
-        <span style="width:6px; height:6px; border-radius:50%; background:#e74c3c; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
-        <span style="font-size:12px; font-weight:600; color:#e74c3c;">Only <span id="nc-spots-count">10</span> spots left</span>
+      <div>
+        <div style="font-size:28px; font-weight:800; color:#fff; line-height:1.3;">Drive away looking</div>
+        <div style="font-size:28px; font-weight:800; color:#22c55e; line-height:1.3;">brand new.</div>
       </div>
-      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#0a1a0a; font-size:15px; font-weight:700; padding:15px 24px; border-radius:50px; text-decoration:none; margin-bottom:12px;">Claim My 20% Off &rarr;</a>
-      <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#666; text-decoration:underline; text-underline-offset:2px;">No thanks, I&apos;ll pay full price</a>
-    </div>
-    <div style="border-top:1px solid rgba(34,197,94,0.15); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:10px;">
-      <span style="font-size:12px; color:#666;">Use code</span>
-      <span style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); border-radius:999px; padding:4px 12px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.08em;">NEWCAR20</span>
-      <span style="font-size:12px; color:#666;">at checkout</span>
+      <p style="font-size:15px; color:#a3a3a3; line-height:1.65; margin:0; max-width:320px;">
+        <strong style="color:#fff; text-decoration:underline; text-decoration-color:#22c55e; text-underline-offset:4px; text-decoration-thickness:2px;">20% off</strong> when you book your first mobile detail with us.
+      </p>
+      <div style="display:inline-flex; align-items:center; gap:8px; background:#0d1f14; border:1px solid rgba(34,197,94,0.33); border-radius:999px; padding:8px 20px;">
+        <span style="width:8px; height:8px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
+        <span style="font-size:13px; color:#86efac; font-weight:500;">Only <span id="nc-spots-count">10</span> spots left this month</span>
+      </div>
+      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#000; font-size:15px; font-weight:800; padding:18px 24px; border-radius:12px; text-decoration:none;">Claim My 20% Off &rarr;</a>
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;">
+        <span style="font-size:13px; color:#6b7280;">Use code</span>
+        <span style="background:#0d1f14; border:1px solid #22c55e; border-radius:999px; padding:4px 14px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.1em; font-family:monospace;">NEWCAR20</span>
+        <span style="font-size:13px; color:#6b7280;">at checkout</span>
+      </div>
+      <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#6b7280; text-decoration:underline; text-underline-offset:3px;">No thanks, I&apos;ll pay full price</a>
     </div>
   </div>
 </div>
 <style>@keyframes nc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}</style>
 <script>
 (function(){
+  function isDismissed(){var v=localStorage.getItem('nc_dismissed');return v?Date.now()<parseInt(v,10):false;}
+  function setDismissed(){localStorage.setItem('nc_dismissed',Date.now()+7*24*60*60*1000);}
   var spots=parseInt(localStorage.getItem('spotsLeft')||'10',10);
   if(spots<0)spots=0;
   var el=document.getElementById('nc-spots-count');
   if(el)el.textContent=spots;
-  if(!localStorage.getItem('popupSeen')&&spots>0){
-    setTimeout(function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';},3000);
+  function showPopup(){if(isDismissed())return;var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';}
+  if(!isDismissed()){
+    setTimeout(showPopup,8000);
+    document.addEventListener('mouseleave',function(e){if(e.clientY<=0)showPopup();});
   }
+  window.closePopup=function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';setDismissed();};
 })();
-function closePopup(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';localStorage.setItem('popupSeen','1');}
 </script>
 </body>
 </html>

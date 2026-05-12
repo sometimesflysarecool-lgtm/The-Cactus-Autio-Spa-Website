@@ -1,38 +1,25 @@
 // ======= HIDE TIDIO CHAT BUBBLE LABEL =======
 (function () {
-  var CSS = '[class^="tidio-"]:not([class*="button"]):not([class*="chat-window"]) { display: none !important; }';
-
-  function injectIntoIframe(iframe) {
-    try {
-      var doc = iframe.contentDocument || iframe.contentWindow.document;
-      if (!doc) return;
-      // Inject a style that hides anything matching the bubble pattern
-      var style = doc.createElement('style');
-      style.textContent = [
-        '[class^="tidio-"][style*="white-space: nowrap"] { display: none !important; }',
-        '[class^="tidio-"][style*="background: rgb(255, 255, 255)"] { display: none !important; }',
-        /* position:absolute + height:42px = the label pill */
-        'div[style*="height: 42px"][style*="position: absolute"] { display: none !important; }',
-        'div[style*="white-space: nowrap"] { display: none !important; }'
-      ].join('\n');
-      (doc.head || doc.documentElement).appendChild(style);
-    } catch (e) { /* cross-origin guard */ }
-  }
-
-  function run() {
-    document.querySelectorAll('iframe').forEach(function (f) {
-      injectIntoIframe(f);
-      // Also re-inject when iframe reloads
-      f.removeEventListener('load', onLoad);
-      f.addEventListener('load', onLoad);
+  function hideBubble() {
+    // Direct ID targets Tidio uses
+    ['tidio-chat-bubble', 'tidio-chat-bubble-box', 'tidio-chat-launcher-text'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
     });
+    // Target the bubble iframe by name/title
+    var container = document.getElementById('tidio-chat');
+    if (container) {
+      container.querySelectorAll('iframe').forEach(function (f) {
+        var key = ((f.getAttribute('name') || '') + (f.getAttribute('title') || '')).toLowerCase();
+        if (key.includes('bubble') || key.includes('preview') || key.includes('launcher')) {
+          f.style.display = 'none';
+        }
+      });
+    }
   }
-
-  function onLoad() { injectIntoIframe(this); }
-
-  var obs = new MutationObserver(run);
+  var obs = new MutationObserver(hideBubble);
   obs.observe(document.documentElement, { childList: true, subtree: true });
-  [300, 1000, 2500, 5000].forEach(function (t) { setTimeout(run, t); });
+  [500, 1500, 3000, 6000].forEach(function (t) { setTimeout(hideBubble, t); });
 })();
 
 // ======= NAV SERVICES DROPDOWN =======

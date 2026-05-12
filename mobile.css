@@ -162,3 +162,12 @@ img, video, iframe {
     padding: 2rem 1rem 4rem !important;
   }
 }
+
+/* ── Tidio chat launcher label (hide text bubble) ── */
+tido-chat-launcher-text,
+.tido-chat-bubble-text,
+.tido-launcher-label,
+[class*="chat-launcher-text"],
+[class*="launcher-text"] {
+  display: none !important;
+}

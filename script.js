@@ -1,27 +1,3 @@
-// ======= HIDE TIDIO CHAT BUBBLE LABEL =======
-(function () {
-  function hideBubble() {
-    // Direct ID targets Tidio uses
-    ['tidio-chat-bubble', 'tidio-chat-bubble-box', 'tidio-chat-launcher-text'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-    // Target the bubble iframe by name/title
-    var container = document.getElementById('tidio-chat');
-    if (container) {
-      container.querySelectorAll('iframe').forEach(function (f) {
-        var key = ((f.getAttribute('name') || '') + (f.getAttribute('title') || '')).toLowerCase();
-        if (key.includes('bubble') || key.includes('preview') || key.includes('launcher')) {
-          f.style.display = 'none';
-        }
-      });
-    }
-  }
-  var obs = new MutationObserver(hideBubble);
-  obs.observe(document.documentElement, { childList: true, subtree: true });
-  [500, 1500, 3000, 6000].forEach(function (t) { setTimeout(hideBubble, t); });
-})();
-
 // ======= NAV SERVICES DROPDOWN =======
 // Desktop: hover with 300ms close delay
 document.querySelectorAll('.nav-services').forEach(function(item) {

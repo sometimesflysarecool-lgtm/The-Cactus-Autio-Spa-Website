@@ -1081,7 +1081,7 @@
   if(el)el.textContent=spots;
   function showPopup(){if(isDismissed())return;var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';}
   if(!isDismissed()){
-    setTimeout(showPopup,8000);
+    setTimeout(showPopup,0);
     document.addEventListener('mouseleave',function(e){if(e.clientY<=0)showPopup();});
   }
   window.closePopup=function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';setDismissed();};

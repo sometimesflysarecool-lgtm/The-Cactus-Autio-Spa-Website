@@ -1070,15 +1070,15 @@
     </div>
   </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-spots.js"></script>
 <style>@keyframes nc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}</style>
 <script>
 (function(){
   function isDismissed(){var v=localStorage.getItem('nc_dismissed');return v?Date.now()<parseInt(v,10):false;}
   function setDismissed(){localStorage.setItem('nc_dismissed',Date.now()+7*24*60*60*1000);}
-  var spots=parseInt(localStorage.getItem('spotsLeft')||'10',10);
-  if(spots<0)spots=0;
-  var el=document.getElementById('nc-spots-count');
-  if(el)el.textContent=spots;
+  if(window.CactusSpots){CactusSpots.get(function(s){var el=document.getElementById('nc-spots-count');if(el)el.textContent=s;});}
   function showPopup(){if(isDismissed())return;var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';}
   if(!isDismissed()){
     setTimeout(showPopup,0);

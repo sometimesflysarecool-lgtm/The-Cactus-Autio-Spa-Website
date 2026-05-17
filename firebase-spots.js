@@ -32,7 +32,7 @@
   window.CactusSpots = {
     get: function (callback) {
       spotsDoc.get().then(function (doc) {
-        var count = (doc.exists && doc.data().count !== undefined) ? doc.data().count : 10;
+        var count = (doc.exists && doc.data().promo !== undefined) ? doc.data().promo : 10;
         if (count < 0) count = 0;
         callback(count);
       }).catch(function () { callback(10); });
@@ -41,9 +41,9 @@
     decrement: function () {
       return db.runTransaction(function (transaction) {
         return transaction.get(spotsDoc).then(function (doc) {
-          var current = (doc.exists && doc.data().count !== undefined) ? doc.data().count : 10;
+          var current = (doc.exists && doc.data().promo !== undefined) ? doc.data().promo : 10;
           if (current > 0) {
-            transaction.set(spotsDoc, { count: current - 1 });
+            transaction.set(spotsDoc, { promo: current - 1 });
           }
         });
       }).catch(function (e) { console.error('Spots decrement failed:', e); });

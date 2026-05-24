@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -907,7 +907,7 @@
       <ul class="nav-services-menu">
         <li><a href="services.html">Car Detailing</a></li>
         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
-        <li><a href="monthly-membership.html">Monthly Membership</a></li>
+        <li><a href="monthly-membership.html">Membership</a></li>
         <li><a href="paint-correction.html">Paint Enhancement</a></li>
       </ul>
     </li>
@@ -980,56 +980,222 @@
       </div>
     </div>
 
-    <!-- PRICING HEADER -->
-    <div style="text-align:center; padding: 48px 0 28px;">
-      <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin-bottom:14px;">Interior Detailing</p>
-      <h2 style="font-size:clamp(2.8rem,6vw,5rem); font-weight:900; line-height:1.0; letter-spacing:-0.02em; margin:0; color:#ffffff; text-transform:uppercase;">Starting <em style="color:#22c55e; font-style:normal;">Pricing</em></h2>
-    </div>
-
     <!-- PRICING -->
-    <div class="vehicles">
 
-      <div class="vrow">
-        <div><div class="vname">Sedan <span>Standard vehicle</span></div></div>
-        <div class="pricing-cols">
-          <div class="pcol highlight"><div class="best-badge">Best Value</div><div class="pcol-label">Monthly</div><div class="pcol-price">$135</div><div class="pcol-save">Save $55/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Bi-Monthly</div><div class="pcol-price">$155</div><div class="pcol-save">Save $35/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Quarterly</div><div class="pcol-price">$175</div><div class="pcol-save">Save $15/visit</div></div>
-          <div class="pcol"><div class="pcol-label">One Time</div><div class="pcol-price">$190</div><div class="pcol-save dim">No savings</div></div>
+    <style>
+      .ipc-tabs { display:inline-flex; background:#111; border:1px solid #222; border-radius:50px; padding:4px; margin-bottom:36px; gap:4px; }
+      .ipc-tab { background:none; border:none; cursor:pointer; padding:10px 28px; border-radius:50px; font-size:15px; font-weight:600; color:#888; transition:all 0.2s ease; font-family:inherit; letter-spacing:0.01em; }
+      .ipc-tab--active { background:#22c55e; color:#0d0d0d; }
+      .ipc-tab:hover:not(.ipc-tab--active) { color:#fff; }
+      .ipc-vehicles { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0 auto 36px; }
+      .ipc-vehicle { background:#202020; border:1px solid #2c2c2c; border-radius:50px; padding:13px 28px; cursor:pointer; transition:border 0.2s ease,background 0.2s ease,color 0.2s ease; display:inline-flex; align-items:center; justify-content:center; }
+      .ipc-vehicle span { font-size:14px; font-weight:600; color:#aaa; transition:color 0.2s ease; white-space:nowrap; }
+      .ipc-vehicle:hover { border-color:#444; background:#2a2a2a; }
+      .ipc-vehicle--selected { border:1.5px solid #22c55e !important; background:rgba(34,197,94,0.08) !important; }
+      .ipc-vehicle--selected span { color:#22c55e; }
+      .ipc-onetime-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:stretch; }
+      #mm-cards { transition:opacity 0.25s ease,transform 0.25s ease; opacity:1; transform:translateY(0); }
+      #mm-cards.ipc-animating { opacity:0; transform:translateY(8px); }
+      .ipc-detail-card { background:#222; border:1px solid #2c2c2c; border-radius:14px; padding:36px 36px 32px; text-align:left; display:flex; flex-direction:column; }
+      .ipc-detail-card .btn-primary { margin-top:auto; display:block; text-align:center; }
+      .ipc-price-num { font-size:2.5rem; font-weight:700; color:#fff; line-height:1; }
+      .ipc-price-lbl { font-size:13px; color:#6b7280; margin-top:4px; margin-bottom:24px; }
+      .ipc-features-list { list-style:none; padding:0; margin:0 0 28px; }
+      .ipc-features-list li { color:#aaa; font-size:14px; padding:7px 0; border-bottom:1px solid #1c1c1c; display:flex; align-items:center; gap:9px; }
+      .ipc-features-list li::before { content:'\2713'; color:#22c55e; font-weight:700; flex-shrink:0; font-size:13px; }
+      .ipc-mem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+      .ipc-mem-col { display:flex; flex-direction:column; }
+      .ipc-mem-badge-slot { height:32px; display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+      .ipc-best-badge-outer { background:#22c55e; color:#0d0d0d; font-size:10px; font-weight:700; padding:5px 16px; border-radius:20px; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; }
+      .ipc-mem-card { background:#222; border:1px solid #2c2c2c; border-radius:14px; padding:28px 20px 24px; text-align:center; transition:border-color 0.2s ease; display:flex; flex-direction:column; flex:1; }
+      .ipc-plan-name { font-size:17px; font-weight:700; color:#fff; margin-bottom:12px; }
+      .ipc-mem-price-num { font-size:2.5rem; font-weight:700; color:#22c55e; line-height:1; }
+      .ipc-mem-price-unit { font-size:1rem; font-weight:600; color:#888; margin-left:3px; }
+      .ipc-mem-veh-lbl { font-size:12px; color:#6b7280; margin-top:4px; margin-bottom:10px; }
+      .ipc-mem-savings { display:inline-block; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); color:#22c55e; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
+      .ipc-mem-features { list-style:none; padding:0; margin:0 0 20px; text-align:left; }
+      .ipc-mem-features li { font-size:13px; color:#aaa; padding:5px 0; display:flex; align-items:center; gap:7px; }
+      .ipc-mem-features li::before { content:'\2713'; color:#22c55e; font-weight:700; flex-shrink:0; font-size:12px; }
+      .ipc-mem-section-header { font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:12px; }
+      .ipc-mem-plus-divider { text-align:center; font-size:3.5rem; font-weight:700; color:#22c55e; line-height:1; margin:28px 0 24px; }
+      .ipc-footnote { text-align:center; color:#555; font-size:13px; margin-top:20px; }
+      .badge { display:inline-flex; align-items:center; padding:0.4rem 1rem; border-radius:999px; color:#22c55e; background:rgba(34,197,94,0.18); border:1px solid rgba(34,197,94,0.35); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem; }
+      .section-title { font-size:clamp(2.2rem,3vw,3.6rem); font-weight:800; color:#fff; margin:0 auto 18px; max-width:780px; }
+      .section-copy { max-width:780px; color:#9cab8d; margin:0 auto 40px; line-height:1.8; }
+      @media (max-width:640px) {
+        .ipc-mem-grid { grid-template-columns:1fr; }
+        .ipc-onetime-grid { grid-template-columns:1fr; }
+        .ipc-detail-card { padding:24px 20px; }
+      }
+    </style>
+
+    <div style="padding:4rem 1.5rem; text-align:center;">
+      <div style="max-width:960px; margin:0 auto; border:1px solid rgba(34,197,94,0.22); border-radius:32px; padding:52px 40px;">
+        <span class="badge">Pricing</span>
+        <h2 class="section-title">Your Detail, Your Price</h2>
+        <p class="section-copy">Select your service and vehicle type to see pricing.</p>
+
+        <div class="ipc-tabs">
+          <button class="ipc-tab ipc-tab--active" data-tab="membership">Membership</button>
+          <button class="ipc-tab" data-tab="interior">One Time Detail</button>
         </div>
-      </div>
 
-      <div class="vrow">
-        <div><div class="vname">Small SUV <span>&amp; Trucks</span></div></div>
-        <div class="pricing-cols">
-          <div class="pcol highlight"><div class="best-badge">Best Value</div><div class="pcol-label">Monthly</div><div class="pcol-price">$145</div><div class="pcol-save">Save $55/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Bi-Monthly</div><div class="pcol-price">$165</div><div class="pcol-save">Save $35/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Quarterly</div><div class="pcol-price">$185</div><div class="pcol-save">Save $15/visit</div></div>
-          <div class="pcol"><div class="pcol-label">One Time</div><div class="pcol-price">$200</div><div class="pcol-save dim">No savings</div></div>
+        <div class="ipc-vehicles">
+          <div class="ipc-vehicle ipc-vehicle--selected" data-vehicle="sedan"><span>Sedan</span></div>
+          <div class="ipc-vehicle" data-vehicle="truck"><span>Small SUV &amp; Truck</span></div>
+          <div class="ipc-vehicle" data-vehicle="suv"><span>Large Midsize (7 Seats)</span></div>
+          <div class="ipc-vehicle" data-vehicle="van"><span>Large (7+ Seats)</span></div>
         </div>
-      </div>
 
-      <div class="vrow">
-        <div><div class="vname">Large Midsize <span>7 Seats</span></div></div>
-        <div class="pricing-cols">
-          <div class="pcol highlight"><div class="best-badge">Best Value</div><div class="pcol-label">Monthly</div><div class="pcol-price">$155</div><div class="pcol-save">Save $60/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Bi-Monthly</div><div class="pcol-price">$175</div><div class="pcol-save">Save $40/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Quarterly</div><div class="pcol-price">$200</div><div class="pcol-save">Save $15/visit</div></div>
-          <div class="pcol"><div class="pcol-label">One Time</div><div class="pcol-price">$215</div><div class="pcol-save dim">No savings</div></div>
-        </div>
-      </div>
+        <div id="mm-cards"></div>
 
-      <div class="vrow">
-        <div><div class="vname">Large <span>7+ Seats</span></div></div>
-        <div class="pricing-cols">
-          <div class="pcol highlight"><div class="best-badge">Best Value</div><div class="pcol-label">Monthly</div><div class="pcol-price">$170</div><div class="pcol-save">Save $60/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Bi-Monthly</div><div class="pcol-price">$190</div><div class="pcol-save">Save $40/visit</div></div>
-          <div class="pcol"><div class="pcol-label">Quarterly</div><div class="pcol-price">$215</div><div class="pcol-save">Save $15/visit</div></div>
-          <div class="pcol"><div class="pcol-label">One Time</div><div class="pcol-price">$230</div><div class="pcol-save dim">No savings</div></div>
-        </div>
+        <p class="ipc-footnote">* Interior detail and exterior wash are separate membership packages.</p>
       </div>
-
     </div>
+
+    <script>
+    (function () {
+      var INTERIOR_FEATURES = [
+        'Multi-step soil removal &amp; carpet treatment',
+        'Full interior wipe-down and sanitizing',
+        'Fabric &amp; leather care',
+        'Glass &amp; screen cleaning',
+        'Plastic/vinyl UV protection',
+        'Instrument/navigation screen cleaning',
+        'Floor mat rejuvenation',
+        'Interior fragrance options'
+      ];
+      var EXTERIOR_FEATURES = [
+        'Exterior hand wash &amp; rinse',
+        'Bug guts and light tar removal',
+        'Wheels, rims, and wheel wells cleaned',
+        '1 month tire shine applied',
+        'Window exterior cleaning',
+        'Door jamb wipe-down',
+        'Hand dry finish'
+      ];
+      var PRICES = {
+        interior: { sedan: '$190', truck: '$200', suv: '$215', van: '$230' },
+        exterior: { sedan: '$60',  truck: '$60',  suv: '$70',  van: '$70'  },
+        membership: {
+          sedan:  { monthly: ['$135','/mo'], bimonthly: ['$155','/visit'], quarterly: ['$175','/visit'] },
+          truck:  { monthly: ['$145','/mo'], bimonthly: ['$165','/visit'], quarterly: ['$185','/visit'] },
+          suv:    { monthly: ['$155','/mo'], bimonthly: ['$175','/visit'], quarterly: ['$200','/visit'] },
+          van:    { monthly: ['$170','/mo'], bimonthly: ['$190','/visit'], quarterly: ['$215','/visit'] }
+        },
+        membershipExterior: {
+          sedan:  { monthly: ['$45','/mo'], bimonthly: ['$50','/visit'], quarterly: ['$55','/visit'] },
+          truck:  { monthly: ['$45','/mo'], bimonthly: ['$50','/visit'], quarterly: ['$55','/visit'] },
+          suv:    { monthly: ['$50','/mo'], bimonthly: ['$60','/visit'], quarterly: ['$65','/visit'] },
+          van:    { monthly: ['$50','/mo'], bimonthly: ['$60','/visit'], quarterly: ['$65','/visit'] }
+        }
+      };
+      var VEHICLE_LABELS = { sedan: 'Sedan', truck: 'Small SUV &amp; Truck', suv: 'Large Midsize (7 Seats)', van: 'Large (7+ Seats)' };
+      var MEM_NAMES     = { monthly: 'Monthly', bimonthly: 'Bi-Monthly', quarterly: 'Quarterly' };
+      var MEM_INTERVAL  = { monthly: '30', bimonthly: '60', quarterly: '90' };
+      var currentTab = 'membership';
+      var currentVehicle = 'sedan';
+
+      function renderCards() {
+        var wrapper = document.getElementById('mm-cards');
+        var vLabel = VEHICLE_LABELS[currentVehicle];
+        if (currentTab === 'interior') {
+          var intPrice = PRICES.interior[currentVehicle];
+          var extPrice = PRICES.exterior[currentVehicle];
+          var intCard =
+            '<div class="ipc-detail-card">' +
+              '<div style="font-size:12px;font-weight:700;color:#22c55e;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Interior Detail</div>' +
+              '<div class="ipc-price-num">' + intPrice + '</div>' +
+              '<div class="ipc-price-lbl">' + vLabel + ' — Starting price</div>' +
+              '<ul class="ipc-features-list">' +
+                INTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
+              '</ul>' +
+              '<a href="contact.html" class="btn btn-primary">Get a Quote</a>' +
+            '</div>';
+          var extCard =
+            '<div class="ipc-detail-card">' +
+              '<div style="font-size:12px;font-weight:700;color:#22c55e;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Exterior Wash</div>' +
+              '<div class="ipc-price-num">' + extPrice + '</div>' +
+              '<div class="ipc-price-lbl">' + vLabel + ' — Starting price</div>' +
+              '<ul class="ipc-features-list">' +
+                EXTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
+              '</ul>' +
+              '<a href="contact.html" class="btn btn-primary">Get a Quote</a>' +
+            '</div>';
+          wrapper.innerHTML = '<div class="ipc-onetime-grid">' + intCard + extCard + '</div>';
+        } else {
+          var planKeys = ['monthly', 'bimonthly', 'quarterly'];
+          var buildMemCards = function(planData, serviceLabel, oneTimePrice) {
+            return planKeys.map(function(key) {
+              var pu = planData[key];
+              var isBest = key === 'monthly';
+              var savings = oneTimePrice - parseInt(pu[0].replace('$', ''));
+              return (
+                '<div class="ipc-mem-col">' +
+                  '<div class="ipc-mem-badge-slot">' +
+                    (isBest ? '<div class="ipc-best-badge-outer">Best Value</div>' : '') +
+                  '</div>' +
+                  '<div class="ipc-mem-card">' +
+                    '<div class="ipc-plan-name">' + MEM_NAMES[key] + '</div>' +
+                    '<div><span class="ipc-mem-price-num">' + pu[0] + '</span><span class="ipc-mem-price-unit">' + pu[1] + '</span></div>' +
+                    '<div class="ipc-mem-veh-lbl">' + vLabel + ' Starting Price</div>' +
+                    '<div class="ipc-mem-savings">Save $' + savings + ' vs one-time</div>' +
+                    '<ul class="ipc-mem-features">' +
+                      '<li>1 ' + serviceLabel + ' every ' + MEM_INTERVAL[key] + ' days</li>' +
+                      '<li>Priority booking</li>' +
+                      '<li>Exclusive add-on savings</li>' +
+                    '</ul>' +
+                    '<a href="contact.html" class="btn btn-primary" style="display:block;text-align:center;margin-top:auto;">Get a Quote</a>' +
+                  '</div>' +
+                '</div>'
+              );
+            }).join('');
+          };
+          var intOneTime = parseInt(PRICES.interior[currentVehicle].replace('$', ''));
+          var extOneTime = parseInt(PRICES.exterior[currentVehicle].replace('$', ''));
+          var intCards = buildMemCards(PRICES.membership[currentVehicle], 'interior detail', intOneTime);
+          var extCards = buildMemCards(PRICES.membershipExterior[currentVehicle], 'exterior wash', extOneTime);
+          wrapper.innerHTML =
+            '<div class="ipc-mem-section-header">Interior Detail</div>' +
+            '<div class="ipc-mem-grid">' + intCards + '</div>' +
+            '<div class="ipc-mem-plus-divider">+</div>' +
+            '<div class="ipc-mem-section-header">Exterior Wash</div>' +
+            '<div class="ipc-mem-grid">' + extCards + '</div>';
+        }
+      }
+
+      function animateAndRender() {
+        var wrapper = document.getElementById('mm-cards');
+        wrapper.classList.add('ipc-animating');
+        setTimeout(function () {
+          renderCards();
+          requestAnimationFrame(function () { wrapper.classList.remove('ipc-animating'); });
+        }, 250);
+      }
+
+      document.querySelectorAll('.ipc-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (this.dataset.tab === currentTab) return;
+          currentTab = this.dataset.tab;
+          document.querySelectorAll('.ipc-tab').forEach(function (b) { b.classList.remove('ipc-tab--active'); });
+          this.classList.add('ipc-tab--active');
+          animateAndRender();
+        });
+      });
+
+      document.querySelectorAll('.ipc-vehicle').forEach(function (card) {
+        card.addEventListener('click', function () {
+          if (this.dataset.vehicle === currentVehicle) return;
+          currentVehicle = this.dataset.vehicle;
+          document.querySelectorAll('.ipc-vehicle').forEach(function (c) { c.classList.remove('ipc-vehicle--selected'); });
+          this.classList.add('ipc-vehicle--selected');
+          animateAndRender();
+        });
+      });
+
+      renderCards();
+    })();
+    </script>
 
     <!-- FAQ Section -->
     <style>
@@ -1092,6 +1258,16 @@
           </summary>
           <div style="padding:0 24px 20px;color:#9ca3af;font-size:15px;line-height:1.75;">
             Absolutely. Exterior wash, wax, and other add-ons can be added to any membership visit. Just let us know when you book and we'll take care of it at the same visit.
+          </div>
+        </details>
+
+        <details style="background:#222;border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
+          <summary style="padding:20px 24px;font-size:16px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none;gap:16px;">
+            How do I secure an appointment spot?
+            <svg class="faq-chevron" style="flex-shrink:0;transition:transform 0.25s;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div style="padding:0 24px 20px;color:#9ca3af;font-size:15px;line-height:1.75;">
+            Submit a quote request and we'll reach out shortly. Once we connect, a 20% deposit is required to fully secure your appointment spot.
           </div>
         </details>
 

@@ -163,6 +163,55 @@ img, video, iframe {
   }
 }
 
+/* ── Green button hover animation ───────────────────────────
+──────────────────────────────────────────────────────────── */
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+}
+.btn-animated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.28) 50%, transparent 100%);
+  transform: translateX(-100%);
+}
+.btn-animated:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(34,197,94,.45), 0 0 0 4px rgba(34,197,94,.15);
+}
+.btn-animated:hover::after {
+  transform: translateX(100%);
+  transition: transform .5s ease;
+}
+.btn-animated:active {
+  transform: scale(.97);
+  box-shadow: none;
+}
+
+/* ── Best Value badge — bounce in then glow-float ───────────
+──────────────────────────────────────────────────────────── */
+@keyframes bestValueBounce {
+  0%   { transform: translateY(-20px) scale(.75); opacity: 0; }
+  55%  { transform: translateY(4px) scale(1.06); opacity: 1; }
+  75%  { transform: translateY(-3px) scale(.97); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes bestValueGlowFloat {
+  0%   { box-shadow: 0 0 5px 1px rgba(34,197,94,.25); transform: translateY(0); }
+  25%  { box-shadow: 0 0 16px 6px rgba(34,197,94,.65); transform: translateY(-5px); }
+  50%  { box-shadow: 0 0 5px 1px rgba(34,197,94,.25); transform: translateY(0); }
+  75%  { box-shadow: 0 0 16px 6px rgba(34,197,94,.65); transform: translateY(-5px); }
+  100% { box-shadow: 0 0 5px 1px rgba(34,197,94,.25); transform: translateY(0); }
+}
+.best-value-animated {
+  animation: bestValueBounce .55s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+.best-value-animated.settled {
+  animation: bestValueGlowFloat 2.8s ease-in-out infinite;
+}
+
 /* ── Interactive Pricing Component — mobile ──────────────────
    Fixes tab cramping, card centering, and one-time detail
    content alignment on small screens.

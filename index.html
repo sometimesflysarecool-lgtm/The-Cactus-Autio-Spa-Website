@@ -1322,7 +1322,7 @@
     </li>
     <li><a href="about.html" style="color:#aaa; text-decoration:none; font-size:14px;">About</a></li>
     <li><a href="portfolio.html" style="color:#aaa; text-decoration:none; font-size:14px;">Portfolio</a></li>
-    <li><a href="contact.html" style="background:#22c55e; color:#000; font-weight:700; padding:9px 20px; border-radius:50px; text-decoration:none; font-size:14px;">Get a Quote</a></li>
+    <li><a href="contact.html" class="btn-animated" style="background:#22c55e; color:#000; font-weight:700; padding:9px 20px; border-radius:50px; text-decoration:none; font-size:14px;">Get a Quote</a></li>
   </ul>
 </nav>
   <div class="screen">
@@ -1339,7 +1339,7 @@
         </h1>
         <p>Interior detail, ceramic coating, paint enhancement, and membership plans crafted for local drivers who want a cleaner car without leaving home.</p>
         <div class="hero-actions">
-          <a href="contact.html" class="btn btn-primary" style="display:inline-flex; align-items:center; justify-content:center; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">Get a Free Quote</a>
+          <a href="contact.html" class="btn btn-primary btn-animated" style="display:inline-flex; align-items:center; justify-content:center; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">Get a Free Quote</a>
           <div class="hero-dropdown" style="position:relative; display:inline-block; z-index:9999;">
             <button class="btn btn-secondary hero-dropdown-trigger" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">
               View Services
@@ -1407,21 +1407,21 @@
             <span class="badge">Most Popular</span>
             <h3>Ceramic Coating</h3>
             <p>Hydrophobic protection that keeps your paint cleaner, shinier, and safer from UV damage.</p>
-            <a href="ceramic-coating.html" class="btn btn-primary" style="margin-top: auto;">Explore Ceramic Coating</a>
+            <a href="ceramic-coating.html" class="btn btn-primary btn-animated" style="margin-top: auto;">Explore Ceramic Coating</a>
           </article>
           <article class="card card-hero">
             <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <span class="badge">Premium</span>
             <h3>Paint Enhancement</h3>
             <p>Restore gloss and rejuvenate your paint with a professional one-step polish — perfect for dull or faded finishes.</p>
-            <a href="paint-correction.html" class="btn btn-primary" style="margin-top: auto;">Explore Paint Enhancement</a>
+            <a href="paint-correction.html" class="btn btn-primary btn-animated" style="margin-top: auto;">Explore Paint Enhancement</a>
           </article>
           <article class="card card-hero">
             <div class="eyeball"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-            <span class="badge">Best Value</span>
+            <span class="badge best-value-animated">Best Value</span>
             <h3>Membership Plans</h3>
             <p>Save on regular detailing with recurring service, priority scheduling, and exclusive add-on pricing.</p>
-            <a href="monthly-membership.html" class="btn btn-primary" style="margin-top: auto;">View Plans</a>
+            <a href="monthly-membership.html" class="btn btn-primary btn-animated" style="margin-top: auto;">View Plans</a>
           </article>
         </div>
       </section>
@@ -1838,7 +1838,7 @@
                   '<ul class="ipc-features-list">' +
                     INTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
                   '</ul>' +
-                  '<a href="contact.html" class="btn btn-primary">Get a Quote</a>' +
+                  '<a href="contact.html" class="btn btn-primary btn-animated">Get a Quote</a>' +
                 '</div>';
               var extCard =
                 '<div class="ipc-detail-card">' +
@@ -1848,7 +1848,7 @@
                   '<ul class="ipc-features-list">' +
                     EXTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
                   '</ul>' +
-                  '<a href="contact.html" class="btn btn-primary">Get a Quote</a>' +
+                  '<a href="contact.html" class="btn btn-primary btn-animated">Get a Quote</a>' +
                 '</div>';
               wrapper.innerHTML = '<div class="ipc-onetime-grid">' + intCard + extCard + '</div>';
             } else {
@@ -1861,7 +1861,7 @@
                   return (
                     '<div class="ipc-mem-col">' +
                       '<div class="ipc-mem-badge-slot">' +
-                        (isBest ? '<div class="ipc-best-badge-outer">Best Value</div>' : '') +
+                        (isBest ? '<div class="ipc-best-badge-outer best-value-animated">Best Value</div>' : '') +
                       '</div>' +
                       '<div class="ipc-mem-card">' +
                         '<div class="ipc-plan-name">' + MEM_NAMES[key] + '</div>' +
@@ -1873,7 +1873,7 @@
                           '<li>Priority booking</li>' +
                           '<li>Exclusive add-on savings</li>' +
                         '</ul>' +
-                        '<a href="contact.html" class="btn btn-primary" style="display:block;text-align:center;margin-top:auto;">Get a Quote</a>' +
+                        '<a href="contact.html" class="btn btn-primary btn-animated" style="display:block;text-align:center;margin-top:auto;">Get a Quote</a>' +
                       '</div>' +
                     '</div>'
                   );
@@ -1978,7 +1978,7 @@
           <div class="gallery-slot"><img src="Brand Assets/Photo/After-Hatch1.webp" alt="After Hatch detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600"></div>
           <div class="gallery-slot"><img src="Brand Assets/Photo/Frontseat-After1.webp" alt="Front seat after detail" loading="lazy" style="width:100%;height:100%;object-fit:cover;" width="1200" height="1600"></div>
         </div>
-        <a href="portfolio.html" class="btn btn-primary">View Full Portfolio</a>
+        <a href="portfolio.html" class="btn btn-primary btn-animated">View Full Portfolio</a>
       </section>
 
       <section class="section">
@@ -2221,7 +2221,7 @@
             <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" style="width:20px; height:20px;" alt="Google" loading="lazy" width="20" height="20">
             See All Reviews on Google
           </a>
-          <a href="https://g.page/r/CaRwokawJ56bEAI/review" target="_blank" rel="noopener"
+          <a href="https://g.page/r/CaRwokawJ56bEAI/review" target="_blank" rel="noopener" class="btn-animated"
             style="display:inline-flex; align-items:center; gap:10px; background:#22c55e; color:#06120a; font-weight:700; font-size:14px; padding:13px 26px; border-radius:999px; text-decoration:none; transition:transform 0.2s ease;"
             onmouseover="this.style.transform='translateY(-2px)'"
             onmouseout="this.style.transform='translateY(0)'">
@@ -2252,7 +2252,7 @@
             <h2>Book Your Next Detail</h2>
             <p class="section-copy" style="margin-bottom:0;">Mesa &amp; Gilbert, AZ — interior detailing, ceramic coating, paint enhancement, and membership packages available.</p>
           </div>
-          <a href="contact.html" class="btn btn-primary" style="white-space:nowrap; flex-shrink:0; padding:1rem 2.2rem; font-size:1.05rem;">Get a Quote Today</a>
+          <a href="contact.html" class="btn btn-primary btn-animated" style="white-space:nowrap; flex-shrink:0; padding:1rem 2.2rem; font-size:1.05rem;">Get a Quote Today</a>
         </div>
       </section>
     </main>
@@ -2326,7 +2326,7 @@
           </a>
         </li>
         <li style="padding-top:4px;">
-          <a href="contact.html" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>
+          <a href="contact.html" class="btn-animated" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>
         </li>
       </ul>
     </div>
@@ -2404,7 +2404,7 @@
         <span style="width:8px; height:8px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
         <span style="font-size:13px; color:#86efac; font-weight:500;">Only <span id="nc-spots-count">10</span> spots left this month</span>
       </div>
-      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#000; font-size:15px; font-weight:800; padding:18px 24px; border-radius:12px; text-decoration:none;">Claim My 20% Off &rarr;</a>
+      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" class="btn-animated" style="display:block; width:100%; background:#22c55e; color:#000; font-size:15px; font-weight:800; padding:18px 24px; border-radius:12px; text-decoration:none;">Claim My 20% Off &rarr;</a>
       <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;">
         <span style="font-size:13px; color:#6b7280;">Use code</span>
         <span style="background:#0d1f14; border:1px solid #22c55e; border-radius:999px; padding:4px 14px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.1em; font-family:monospace;">NEWCAR20</span>
@@ -2430,6 +2430,20 @@
   }
   window.closePopup=function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';setDismissed();};
 })();
+</script>
+<script>
+document.querySelectorAll('.best-value-animated').forEach(el => {
+  el.addEventListener('animationend', function handler() {
+    el.classList.add('settled');
+    el.removeEventListener('animationend', handler);
+  });
+});
+// Delegation for dynamically rendered badges
+document.addEventListener('animationend', function(e) {
+  if (e.target.classList.contains('best-value-animated') && !e.target.classList.contains('settled')) {
+    e.target.classList.add('settled');
+  }
+});
 </script>
 </body>
 </html>

@@ -913,7 +913,7 @@
     </li>
     <li><a href="about.html" style="color:#aaa; text-decoration:none; font-size:14px;">About</a></li>
     <li><a href="portfolio.html" style="color:#aaa; text-decoration:none; font-size:14px;">Portfolio</a></li>
-    <li><a href="contact.html" style="background:#22c55e; color:#000; font-weight:700; padding:9px 20px; border-radius:50px; text-decoration:none; font-size:14px;">Get a Quote</a></li>
+    <li><a href="contact.html" class="btn-animated" style="background:#22c55e; color:#000; font-weight:700; padding:9px 20px; border-radius:50px; text-decoration:none; font-size:14px;">Get a Quote</a></li>
   </ul>
 </nav>
 
@@ -1133,7 +1133,7 @@
               '<ul class="ipc-features-list">' +
                 INTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
               '</ul>' +
-              '<a href="contact.html" class="btn btn-primary">Get a Quote</a>' +
+              '<a href="contact.html" class="btn btn-primary btn-animated">Get a Quote</a>' +
             '</div>';
           var extCard =
             '<div class="ipc-detail-card">' +
@@ -1143,7 +1143,7 @@
               '<ul class="ipc-features-list">' +
                 EXTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
               '</ul>' +
-              '<a href="contact.html" class="btn btn-primary">Get a Quote</a>' +
+              '<a href="contact.html" class="btn btn-primary btn-animated">Get a Quote</a>' +
             '</div>';
           wrapper.innerHTML = '<div class="ipc-onetime-grid">' + intCard + extCard + '</div>';
         } else {
@@ -1156,7 +1156,7 @@
               return (
                 '<div class="ipc-mem-col">' +
                   '<div class="ipc-mem-badge-slot">' +
-                    (isBest ? '<div class="ipc-best-badge-outer">Best Value</div>' : '') +
+                    (isBest ? '<div class="ipc-best-badge-outer best-value-animated">Best Value</div>' : '') +
                   '</div>' +
                   '<div class="ipc-mem-card">' +
                     '<div class="ipc-plan-name">' + MEM_NAMES[key] + '</div>' +
@@ -1168,7 +1168,7 @@
                       '<li>Priority booking</li>' +
                       '<li>Exclusive add-on savings</li>' +
                     '</ul>' +
-                    '<a href="contact.html" class="btn btn-primary" style="display:block;text-align:center;margin-top:auto;">Get a Quote</a>' +
+                    '<a href="contact.html" class="btn btn-primary btn-animated" style="display:block;text-align:center;margin-top:auto;">Get a Quote</a>' +
                   '</div>' +
                 '</div>'
               );
@@ -1315,7 +1315,7 @@
       <h2 class="cta-title">Start Your Membership Today</h2>
       <p class="cta-sub">Join hundreds of happy members who keep their vehicles spotless and their wallets happy. No contracts, cancel anytime.</p>
       <div class="cta-buttons">
-        <a href="contact.html" class="btn-primary">Get a Quote</a>
+        <a href="contact.html" class="btn-primary btn-animated">Get a Quote</a>
         <a href="services.html" class="btn-ghost">View Interior Packages</a>
       </div>
     </div>
@@ -1392,7 +1392,7 @@
           </a>
         </li>
         <li style="padding-top:4px;">
-          <a href="contact.html" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>
+          <a href="contact.html" class="btn-animated" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>
         </li>
       </ul>
     </div>
@@ -1433,7 +1433,7 @@
         <span style="width:8px; height:8px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:nc-pulse 1.8s ease-in-out infinite; display:block;"></span>
         <span style="font-size:13px; color:#86efac; font-weight:500;">Only <span id="nc-spots-count">10</span> spots left this month</span>
       </div>
-      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#000; font-size:15px; font-weight:800; padding:18px 24px; border-radius:12px; text-decoration:none;">Claim My 20% Off &rarr;</a>
+      <a href="contact.html?promo=NEWCAR20" onclick="localStorage.setItem('savedPromo','NEWCAR20'); closePopup();" class="btn-animated" style="display:block; width:100%; background:#22c55e; color:#000; font-size:15px; font-weight:800; padding:18px 24px; border-radius:12px; text-decoration:none;">Claim My 20% Off &rarr;</a>
       <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;">
         <span style="font-size:13px; color:#6b7280;">Use code</span>
         <span style="background:#0d1f14; border:1px solid #22c55e; border-radius:999px; padding:4px 14px; font-size:12px; font-weight:700; color:#22c55e; letter-spacing:0.1em; font-family:monospace;">NEWCAR20</span>
@@ -1459,6 +1459,20 @@
   }
   window.closePopup=function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';setDismissed();};
 })();
+</script>
+<script>
+document.querySelectorAll('.best-value-animated').forEach(el => {
+  el.addEventListener('animationend', function handler() {
+    el.classList.add('settled');
+    el.removeEventListener('animationend', handler);
+  });
+});
+// Delegation for dynamically rendered badges
+document.addEventListener('animationend', function(e) {
+  if (e.target.classList.contains('best-value-animated') && !e.target.classList.contains('settled')) {
+    e.target.classList.add('settled');
+  }
+});
 </script>
 </body>
 </html>

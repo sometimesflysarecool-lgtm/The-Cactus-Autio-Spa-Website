@@ -210,4 +210,24 @@ img, video, iframe {
     text-align: center !important;
     font-size: 13px !important;
   }
+
+  /* Section headers (Interior Detail / Exterior Wash) — bigger and centered */
+  .ipc-mem-section-header {
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    letter-spacing: 0.12em !important;
+    margin-top: 8px !important;
+  }
+
+  /* Ensure membership cards and their content are centered */
+  .ipc-mem-card {
+    text-align: center !important;
+  }
+  .ipc-mem-badge-slot {
+    justify-content: center !important;
+  }
+  .ipc-mem-plus-divider {
+    text-align: center !important;
+  }
 }

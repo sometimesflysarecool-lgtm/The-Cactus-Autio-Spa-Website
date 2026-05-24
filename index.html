@@ -1436,6 +1436,8 @@
           padding: 4px;
           margin-bottom: 36px;
           gap: 4px;
+          position: relative;
+          overflow: hidden;
         }
         .ipc-tab {
           background: none;
@@ -1446,13 +1448,15 @@
           font-size: 15px;
           font-weight: 600;
           color: #888;
-          transition: all 0.2s ease;
+          transition: color .05s;
           font-family: inherit;
           letter-spacing: 0.01em;
+          position: relative;
+          z-index: 1;
         }
         .ipc-tab--active {
-          background: #22c55e;
-          color: #0d0d0d;
+          background: transparent;
+          color: #000;
         }
         .ipc-tab:hover:not(.ipc-tab--active) {
           color: #fff;
@@ -1470,7 +1474,7 @@
           border-radius: 50px;
           padding: 13px 28px;
           cursor: pointer;
-          transition: border 0.2s ease, background 0.2s ease, color 0.2s ease;
+          transition: border .22s cubic-bezier(.34,1.56,.64,1), background .22s ease, color .22s ease, box-shadow .22s cubic-bezier(.34,1.56,.64,1), transform .22s cubic-bezier(.34,1.56,.64,1);
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -1495,6 +1499,8 @@
         .ipc-vehicle--selected {
           border: 1.5px solid #22c55e !important;
           background: rgba(34,197,94,0.08) !important;
+          transform: scale(1.08);
+          box-shadow: 0 0 0 3px rgba(34,197,94,.15);
         }
         .ipc-vehicle--selected span {
           color: #22c55e;
@@ -1699,6 +1705,19 @@
             grid-template-columns: 1fr;
           }
         }
+
+        /* ── Animations ──────────────────────────────────────── */
+        #tabBg { position:absolute; top:4px; left:4px; height:calc(100% - 8px); border-radius:999px; background:#22c55e; transition:transform .28s cubic-bezier(.34,1.56,.64,1),width .28s ease; pointer-events:none; z-index:0; }
+        @keyframes cardIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes priceTick { 0%{opacity:1;transform:translateY(0) scale(1)} 40%{opacity:0;transform:translateY(-10px) scale(.85)} 41%{opacity:0;transform:translateY(10px) scale(.85)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+        .tick { animation:priceTick .4s cubic-bezier(.34,1.56,.64,1) both; }
+        @keyframes badgePop { 0%{transform:scale(0);opacity:0} 70%{transform:scale(1.12);opacity:1} 100%{transform:scale(1);opacity:1} }
+        .ipc-mem-savings { animation:badgePop .35s cubic-bezier(.34,1.56,.64,1) both; }
+        #ipc-cards .btn-primary { position:relative; overflow:hidden; transition:transform .2s ease,box-shadow .2s ease; }
+        #ipc-cards .btn-primary::after { content:''; position:absolute; inset:0; background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.25) 50%,transparent 60%); transform:translateX(-100%); transition:transform .55s ease; pointer-events:none; }
+        #ipc-cards .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(34,197,94,.35); }
+        #ipc-cards .btn-primary:hover::after { transform:translateX(100%); }
+        #ipc-cards .btn-primary:active { transform:scale(.97); }
       </style>
 
       <section id="interactive-pricing" style="padding:6rem 1.5rem; text-align:center; background:#1a1a1a;">
@@ -1709,6 +1728,7 @@
 
           <!-- Service type tabs -->
           <div class="ipc-tabs">
+            <div id="tabBg"></div>
             <button class="ipc-tab ipc-tab--active" data-tab="interior">One Time Detail</button>
             <button class="ipc-tab" data-tab="membership">Membership</button>
           </div>
@@ -1778,6 +1798,32 @@
           var currentTab = 'interior';
           var currentVehicle = 'sedan';
 
+          function moveTabBg(btn) {
+            var bg = document.getElementById('tabBg');
+            if (!bg) return;
+            bg.style.width = btn.offsetWidth + 'px';
+            bg.style.transform = 'translateX(' + (btn.offsetLeft - 4) + 'px)';
+          }
+
+          function staggerCards() {
+            var cards = document.querySelectorAll('#ipc-cards .ipc-detail-card, #ipc-cards .ipc-mem-card');
+            cards.forEach(function(card, i) {
+              card.style.animation = 'none';
+              void card.offsetWidth;
+              card.style.animation = 'cardIn .38s cubic-bezier(.34,1.56,.64,1) ' + (i * 130) + 'ms both';
+            });
+          }
+
+          function tickPrices() {
+            var prices = document.querySelectorAll('#ipc-cards .ipc-price-num, #ipc-cards .ipc-mem-price-num');
+            prices.forEach(function(el) {
+              el.classList.remove('tick');
+              void el.offsetWidth;
+              el.classList.add('tick');
+              el.addEventListener('animationend', function() { el.classList.remove('tick'); }, { once: true });
+            });
+          }
+
           function renderCards() {
             var wrapper = document.getElementById('ipc-cards');
             var vLabel = VEHICLE_LABELS[currentVehicle];
@@ -1844,6 +1890,8 @@
                 '<div class="ipc-mem-section-header">Exterior Wash</div>' +
                 '<div class="ipc-mem-grid">' + extCards + '</div>';
             }
+            staggerCards();
+            tickPrices();
           }
 
           function animateAndRender() {
@@ -1863,6 +1911,7 @@
               currentTab = this.dataset.tab;
               document.querySelectorAll('.ipc-tab').forEach(function (b) { b.classList.remove('ipc-tab--active'); });
               this.classList.add('ipc-tab--active');
+              moveTabBg(this);
               animateAndRender();
             });
           });
@@ -1878,6 +1927,15 @@
           });
 
           renderCards();
+          requestAnimationFrame(function() {
+            var bg = document.getElementById('tabBg');
+            var activeBtn = document.querySelector('.ipc-tab--active');
+            if (bg && activeBtn) {
+              bg.style.transition = 'none';
+              moveTabBg(activeBtn);
+              requestAnimationFrame(function() { bg.style.transition = ''; });
+            }
+          });
         })();
         </script>
       </section>

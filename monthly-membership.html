@@ -1019,9 +1019,7 @@
       @keyframes badgePop { 0%{transform:scale(0);opacity:0} 70%{transform:scale(1.12);opacity:1} 100%{transform:scale(1);opacity:1} }
       .ipc-mem-savings { animation:badgePop .35s cubic-bezier(.34,1.56,.64,1) both; }
       #mm-cards .btn-primary { position:relative; overflow:hidden; transition:transform .2s ease,box-shadow .2s ease; }
-      #mm-cards .btn-primary::after { content:''; position:absolute; inset:0; background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.25) 50%,transparent 60%); transform:translateX(-100%); transition:transform .55s ease; pointer-events:none; }
       #mm-cards .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(34,197,94,.35); }
-      #mm-cards .btn-primary:hover::after { transform:translateX(100%); }
       #mm-cards .btn-primary:active { transform:scale(.97); }
     </style>
 

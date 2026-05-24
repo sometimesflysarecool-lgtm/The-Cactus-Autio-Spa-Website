@@ -162,3 +162,52 @@ img, video, iframe {
     padding: 2rem 1rem 4rem !important;
   }
 }
+
+/* ── Interactive Pricing Component — mobile ──────────────────
+   Fixes tab cramping, card centering, and one-time detail
+   content alignment on small screens.
+──────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Reduce inner pricing box padding so content has room */
+  .ipc-pricing-box {
+    padding: 32px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  /* Tabs: stretch full width so both buttons share space equally */
+  .ipc-tabs {
+    display: flex !important;
+    width: 100% !important;
+  }
+  .ipc-tab {
+    flex: 1 !important;
+    padding: 10px 8px !important;
+    font-size: 13px !important;
+    text-align: center !important;
+  }
+
+  /* One-time detail cards: single column, centered content */
+  .ipc-onetime-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ipc-detail-card {
+    padding: 24px 16px !important;
+    text-align: center !important;
+  }
+  /* Keep feature list text left-aligned inside the centered card */
+  .ipc-features-list {
+    text-align: left !important;
+  }
+
+  /* Membership cards: single column */
+  .ipc-mem-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Vehicle pills: allow text to wrap on very small screens */
+  .ipc-vehicle span {
+    white-space: normal !important;
+    text-align: center !important;
+    font-size: 13px !important;
+  }
+}

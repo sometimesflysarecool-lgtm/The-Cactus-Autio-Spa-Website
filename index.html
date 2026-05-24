@@ -1964,13 +1964,22 @@
       var current = 0;
       var total = cards.length;
 
+      function visibleCount() {
+        var w = window.innerWidth;
+        if (w > 900) return 3;
+        if (w > 560) return 2;
+        return 1;
+      }
+
       function goTo(index) {
-        if (index < 0) index = total - 1;
-        if (index >= total) index = 0;
+        var maxIndex = Math.max(0, total - visibleCount());
+        if (index < 0) index = maxIndex;
+        if (index > maxIndex) index = 0;
         current = index;
-        var cardWidth = cards[0].offsetWidth;
+        var gap = parseFloat(window.getComputedStyle(track).gap) || 20;
+        var step = cards[0].offsetWidth + gap;
         track.style.transition = 'transform 0.4s ease';
-        track.style.transform = 'translateX(-' + (current * cardWidth) + 'px)';
+        track.style.transform = 'translateX(-' + (current * step) + 'px)';
       }
 
       nextBtn.addEventListener('click', function () { goTo(current + 1); });

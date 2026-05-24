@@ -171,6 +171,7 @@
     input[type="text"],
     input[type="tel"],
     input[type="email"],
+    input[type="number"],
     select,
     textarea {
       width: 100%;
@@ -654,6 +655,29 @@
   ]
 }
   </script>
+  <style>
+    /* ── FIELD LABELS & VALIDATION ── */
+    .field-label { display: block; font-size: 12px; font-weight: 500; color: #ccc; margin-bottom: 5px; }
+    .field-wrap { display: flex; flex-direction: column; }
+    .field-msg { font-size: 11px; margin-top: 4px; min-height: 16px; display: flex; align-items: center; gap: 4px; }
+
+    /* ── CUSTOM RADIO DOT ── */
+    .custom-radio-input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+    .custom-radio-dot { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #555; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.15s; }
+    .custom-radio-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; opacity: 0; transition: opacity 0.15s; }
+    .custom-radio-input:checked + .custom-radio-dot { border-color: #22c55e; }
+    .custom-radio-input:checked + .custom-radio-dot::after { opacity: 1; }
+
+    /* ── ADD-ON ITEM OVERRIDES ── */
+    .addon-item { border: 0.5px solid #3a3a3a; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+    .addon-item:hover { border-color: #22c55e; }
+    .addon-cb { width: 20px; height: 20px; }
+    .addon-hidden-cb { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+
+    /* ── 3-COLUMN ROW ── */
+    .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 768px) { .row-3 { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <div class="screen">
@@ -686,19 +710,40 @@
     <form action="https://formspree.io/f/xkoyrdwj" method="POST" id="quote-form">
     <input type="hidden" name="_next" value="index.html">
     <input type="hidden" name="add_ons" id="addons-field">
+    <p style="font-size:11px; color:#888; margin-bottom:16px;">* Fields marked with an asterisk are required</p>
 
     <!-- SECTION 1: Your Info -->
     <div class="form-section">
       <p class="section-label">Your Info</p>
       <div class="fields-stack">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <div class="row-2">
-          <input type="tel" name="phone" placeholder="Phone Number" />
-          <input type="email" name="email" placeholder="Email" required />
+        <div class="field-wrap">
+          <label for="name" class="field-label">Full Name <span style="color:#22c55e">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Full Name" required aria-required="true" autocomplete="name" />
+          <div class="field-msg" id="name-msg"></div>
         </div>
         <div class="row-2">
-          <input type="text" name="city" placeholder="City" />
-          <input type="text" name="zip" placeholder="Zip Code" />
+          <div class="field-wrap">
+            <label for="phone" class="field-label">Phone Number <span style="color:#22c55e">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required aria-required="true" autocomplete="tel" />
+            <div class="field-msg" id="phone-msg"></div>
+          </div>
+          <div class="field-wrap">
+            <label for="email" class="field-label">Email <span style="color:#22c55e">*</span></label>
+            <input type="email" id="email" name="email" placeholder="Email" required aria-required="true" autocomplete="email" />
+            <div class="field-msg" id="email-msg"></div>
+          </div>
+        </div>
+        <div class="row-2">
+          <div class="field-wrap">
+            <label for="city" class="field-label">City <span style="color:#22c55e">*</span></label>
+            <input type="text" id="city" name="city" placeholder="City" required aria-required="true" />
+            <div class="field-msg" id="city-msg"></div>
+          </div>
+          <div class="field-wrap">
+            <label for="zip" class="field-label">Zip Code <span style="color:#22c55e">*</span></label>
+            <input type="text" id="zip" name="zip" placeholder="Zip Code" required aria-required="true" autocomplete="postal-code" />
+            <div class="field-msg" id="zip-msg"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -709,27 +754,36 @@
     <div class="form-section">
       <p class="section-label">Your Vehicle</p>
       <div class="fields-stack">
-        <div class="select-wrap">
-          <select id="vehicle-type" name="vehicle_type" onchange="this.classList.add('has-value')">
-            <option value="" disabled selected>Select Vehicle Type</option>
-            <option value="sedan">Sedan</option>
-            <option value="small-suv">Small SUV &amp; Truck</option>
-            <option value="large-midsize">Large Midsize (7 Seats)</option>
-            <option value="large">Large (7+ Seats)</option>
-          </select>
-          <svg class="select-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="row-3">
+          <div class="field-wrap">
+            <label for="vehicle-make" class="field-label">Make <span style="color:#22c55e">*</span></label>
+            <input type="text" id="vehicle-make" name="vehicle_make" placeholder="e.g. Toyota" required aria-required="true" autocomplete="off" />
+            <div class="field-msg" id="vehicle-make-msg"></div>
+          </div>
+          <div class="field-wrap">
+            <label for="vehicle-model" class="field-label">Model <span style="color:#22c55e">*</span></label>
+            <input type="text" id="vehicle-model" name="vehicle_model" placeholder="e.g. Camry" required aria-required="true" autocomplete="off" />
+            <div class="field-msg" id="vehicle-model-msg"></div>
+          </div>
+          <div class="field-wrap">
+            <label for="vehicle-year" class="field-label">Year <span style="color:#22c55e">*</span></label>
+            <input type="text" id="vehicle-year" name="vehicle_year" placeholder="e.g. 2019" required aria-required="true" autocomplete="off" />
+            <div class="field-msg" id="vehicle-year-msg"></div>
+          </div>
         </div>
-        <div class="select-wrap">
-          <select id="service-interest" name="service_interest" onchange="this.classList.add('has-value')">
-            <option value="" disabled selected>Service Interest</option>
-            <option value="interior">Interior Detail</option>
-            <option value="full">Full Detail</option>
-          </select>
-          <svg class="select-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="field-wrap">
+          <label for="service-interest" class="field-label">Service Interest <span style="color:#22c55e">*</span></label>
+          <div class="select-wrap">
+            <select id="service-interest" name="service_interest" required aria-required="true" onchange="this.classList.add('has-value')">
+              <option value="" disabled selected>Service Interest</option>
+              <option value="interior">Interior Detail</option>
+              <option value="exterior">Exterior Wash</option>
+              <option value="full">Full Detail</option>
+            </select>
+            <svg class="select-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -741,50 +795,55 @@
       <p class="section-label">Add-On Services</p>
       <div class="addon-grid">
 
-        <div class="addon-item" onclick="this.classList.toggle('checked')">
+        <label class="addon-item">
+          <input type="checkbox" class="addon-hidden-cb" name="addon_shampoo">
           <div class="addon-cb">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0a1a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <span class="addon-text">Shampoo</span>
-        </div>
+        </label>
 
-        <div class="addon-item" onclick="this.classList.toggle('checked')">
+        <label class="addon-item">
+          <input type="checkbox" class="addon-hidden-cb" name="addon_pet_hair">
           <div class="addon-cb">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0a1a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <span class="addon-text">Pet Hair Removal</span>
-        </div>
+        </label>
 
-        <div class="addon-item" onclick="this.classList.toggle('checked')">
+        <label class="addon-item">
+          <input type="checkbox" class="addon-hidden-cb" name="addon_headlights">
           <div class="addon-cb">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0a1a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <span class="addon-text">Headlight Restoration</span>
-        </div>
+        </label>
 
-        <div class="addon-item" onclick="this.classList.toggle('checked')">
+        <label class="addon-item">
+          <input type="checkbox" class="addon-hidden-cb" name="addon_wax">
           <div class="addon-cb">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0a1a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <span class="addon-text">Wax</span>
-        </div>
+        </label>
 
-        <div class="addon-item" onclick="this.classList.toggle('checked')">
+        <label class="addon-item">
+          <input type="checkbox" class="addon-hidden-cb" name="addon_paint_enhancement">
           <div class="addon-cb">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0a1a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <span class="addon-text">Paint Enhancement</span>
-        </div>
+        </label>
 
       </div>
     </div>
@@ -794,76 +853,63 @@
     <!-- SECTION 4: Notes -->
     <div class="form-section">
       <p class="section-label">Additional Notes</p>
-      <textarea name="notes" placeholder="Anything else we should know? (vehicle condition, special requests, etc.)"></textarea>
+      <label for="notes" class="field-label">Additional Notes</label>
+      <textarea id="notes" name="notes" placeholder="Anything else we should know? (vehicle condition, special requests, etc.)"></textarea>
     </div>
 
     <!-- Membership Interest Section -->
     <div style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 32px; padding-top: 32px;">
 
-      <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 16px;">MEMBERSHIP INTEREST</p>
+      <p class="section-label">Membership Interest</p>
 
-      <div style="background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2); border-radius:14px; padding:24px; margin-bottom:24px;">
+      <!-- Info card -->
+      <div style="background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2); border-radius:14px; padding:24px; margin-bottom:20px;">
         <div style="display:flex; align-items:flex-start; gap:14px;">
           <div style="width:40px; height:40px; border-radius:10px; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
           </div>
           <div>
             <p style="font-weight:700; font-size:15px; color:#fff; margin:0 0 6px;">Join Our Maintenance Club</p>
-            <p style="font-size:13px; color:#9ca3af; line-height:1.6; margin:0;">After your initial full detail, unlock exclusive monthly pricing to keep your vehicle pristine year-round. Members get priority scheduling, discounted add-ons, and consistent results every visit.</p>
+            <p style="font-size:13px; color:#9ca3af; line-height:1.6; margin:0 0 8px;">After your initial first detail, unlock exclusive monthly pricing to keep your vehicle pristine year-round. Members get priority scheduling, discounted add-ons, and consistent results every visit.</p>
+            <p style="font-size:12px; color:#888; margin:0;">Membership requirements vary by service. We'll go over the details when we follow up.</p>
           </div>
-        </div>
-
-        <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:10px; padding:12px 16px; margin-top:16px; display:flex; align-items:center; gap:10px;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <p style="font-size:12px; color:#f59e0b; margin:0; font-weight:500;">A one-time full detail is required before enrolling in a membership plan.</p>
         </div>
       </div>
 
-      <p style="font-size:13px; color:#9ca3af; margin:0 0 14px;">Are you interested in a recurring membership after your first detail?</p>
+      <!-- Question line -->
+      <p style="font-size:13px; color:#ccc; margin:0 0 12px;">Interested in a recurring membership after your first detail?</p>
 
-      <div style="display:flex; flex-direction:column; gap:10px;">
-
-        <label style="display:flex; align-items:center; gap:14px; background:#222; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; cursor:pointer; transition:border-color 0.2s ease;"
-          onmouseover="this.style.borderColor='rgba(34,197,94,0.3)'"
-          onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='rgba(255,255,255,0.08)'">
-          <input type="radio" name="membership_interest" value="yes_monthly" style="accent-color:#22c55e; width:16px; height:16px;">
-          <div>
-            <p style="font-weight:600; font-size:14px; color:#fff; margin:0 0 2px;">Yes — Monthly</p>
-            <p style="font-size:12px; color:#6b7280; margin:0;">Detail every 30 days, priority booking</p>
-          </div>
-        </label>
-
-        <label style="display:flex; align-items:center; gap:14px; background:#222; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; cursor:pointer; transition:border-color 0.2s ease;"
-          onmouseover="this.style.borderColor='rgba(34,197,94,0.3)'"
-          onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='rgba(255,255,255,0.08)'">
-          <input type="radio" name="membership_interest" value="yes_bimonthly" style="accent-color:#22c55e; width:16px; height:16px;">
-          <div>
-            <p style="font-weight:600; font-size:14px; color:#fff; margin:0 0 2px;">Yes — Bi-Monthly</p>
-            <p style="font-size:12px; color:#6b7280; margin:0;">Detail every 60 days, priority booking</p>
-          </div>
-        </label>
-
-        <label style="display:flex; align-items:center; gap:14px; background:#222; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; cursor:pointer; transition:border-color 0.2s ease;"
-          onmouseover="this.style.borderColor='rgba(34,197,94,0.3)'"
-          onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='rgba(255,255,255,0.08)'">
-          <input type="radio" name="membership_interest" value="yes_quarterly" style="accent-color:#22c55e; width:16px; height:16px;">
-          <div>
-            <p style="font-weight:600; font-size:14px; color:#fff; margin:0 0 2px;">Yes — Quarterly</p>
-            <p style="font-size:12px; color:#6b7280; margin:0;">Detail every 90 days, priority booking</p>
-          </div>
-        </label>
-
-        <label style="display:flex; align-items:center; gap:14px; background:#222; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; cursor:pointer; transition:border-color 0.2s ease;"
-          onmouseover="this.style.borderColor='rgba(255,255,255,0.15)'"
-          onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='rgba(255,255,255,0.08)'">
-          <input type="radio" name="membership_interest" value="no" style="accent-color:#22c55e; width:16px; height:16px;">
-          <div>
-            <p style="font-weight:600; font-size:14px; color:#fff; margin:0 0 2px;">No — Just a one-time detail for now</p>
-            <p style="font-size:12px; color:#6b7280; margin:0;">No commitment required</p>
-          </div>
-        </label>
-
+      <!-- Segmented bar -->
+      <div id="membership-bar" style="display:flex; border:0.5px solid #3a3a3a; border-radius:10px; overflow:hidden; width:100%;">
+        <button type="button" class="mem-seg" data-val="monthly" style="flex:1; padding:12px 6px; text-align:center; cursor:pointer; background:transparent; outline:none; border:none; border-right:0.5px solid #3a3a3a;">
+          <span class="mem-seg-main" style="display:block; font-size:12px; font-weight:500; color:#888;">Monthly</span>
+          <span class="mem-seg-sub" style="display:block; font-size:11px; color:#555;">30 days</span>
+        </button>
+        <button type="button" class="mem-seg" data-val="bi-monthly" style="flex:1; padding:12px 6px; text-align:center; cursor:pointer; background:transparent; outline:none; border:none; border-right:0.5px solid #3a3a3a;">
+          <span class="mem-seg-main" style="display:block; font-size:12px; font-weight:500; color:#888;">Bi-monthly</span>
+          <span class="mem-seg-sub" style="display:block; font-size:11px; color:#555;">60 days</span>
+        </button>
+        <button type="button" class="mem-seg" data-val="quarterly" style="flex:1; padding:12px 6px; text-align:center; cursor:pointer; background:transparent; outline:none; border:none; border-right:0.5px solid #3a3a3a;">
+          <span class="mem-seg-main" style="display:block; font-size:12px; font-weight:500; color:#888;">Quarterly</span>
+          <span class="mem-seg-sub" style="display:block; font-size:11px; color:#555;">90 days</span>
+        </button>
+        <button type="button" class="mem-seg mem-seg-default" data-val="none" style="flex:1; padding:12px 6px; text-align:center; cursor:pointer; background:rgba(34,197,94,0.1); outline:none; border:none;">
+          <span class="mem-seg-main" style="display:block; font-size:12px; font-weight:500; color:#22c55e;">No thanks</span>
+          <span class="mem-seg-sub" style="display:block; font-size:11px; color:#4ade80;">One-time</span>
+        </button>
       </div>
+
+      <!-- Detail card (slide-down) -->
+      <div id="membership-detail" style="max-height:0; opacity:0; overflow:hidden; transition:max-height 0.35s ease, opacity 0.35s ease;">
+        <div style="margin-top:12px; padding:12px 14px; border:0.5px solid #22c55e; border-radius:8px; background:rgba(34,197,94,0.05);">
+          <p id="membership-detail-title" style="font-size:13px; color:#22c55e; font-weight:500; margin:0;"></p>
+          <p id="membership-detail-body" style="font-size:12px; color:#888; line-height:1.5; margin:4px 0 0;"></p>
+        </div>
+      </div>
+
+      <!-- Hidden input captured on submit -->
+      <input type="hidden" id="membership-value" name="membership_interest" value="none">
+
     </div>
 
     <div class="divider" style="margin-top:28px;"></div>
@@ -875,13 +921,14 @@
     </div>
     <div class="form-section" style="margin-bottom:24px;">
       <p class="section-label">Promo Code</p>
+      <label for="promo-input" class="field-label">Promo Code</label>
       <input type="text" id="promo-input" name="promo_code" placeholder="Have a promo code? Enter it here" />
     </div>
 
     <!-- SMS CONSENT -->
     <div style="text-align:center; margin:20px 0 16px; padding:16px 20px; background:rgba(34,197,94,0.05); border:1px solid rgba(34,197,94,0.15); border-radius:10px;">
       <label style="display:flex; align-items:flex-start; gap:12px; cursor:pointer; text-align:left; max-width:500px; margin:0 auto;">
-        <input type="checkbox" id="sms-consent" name="sms_consent" required style="width:18px; height:18px; accent-color:#22c55e; margin-top:3px; flex-shrink:0; cursor:pointer;">
+        <input type="checkbox" id="sms-consent" name="sms_consent" required aria-required="true" style="width:18px; height:18px; accent-color:#22c55e; margin-top:3px; flex-shrink:0; cursor:pointer;">
         <span style="color:#b0b8b0; font-size:13px; line-height:1.65;">By submitting this form, I consent to The Cactus Auto Spa contacting me at the phone number provided, including by SMS text message, to follow up on my quote request. Message &amp; data rates may apply. Reply STOP to opt out at any time.</span>
       </label>
     </div>
@@ -1022,18 +1069,136 @@
       document.getElementById('addons-field').value = checked.length ? checked.join(', ') : 'None';
     });
 
-    document.querySelectorAll('input[name="membership_interest"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        document.querySelectorAll('input[name="membership_interest"]').forEach(r => {
-          r.closest('label').style.borderColor = 'rgba(255,255,255,0.08)';
-          r.closest('label').style.background = '#222';
+    // Membership segmented bar
+    (function() {
+      var details = {
+        'monthly':    { title: 'Monthly membership',    body: 'Detail every 30 days with priority booking and discounted add-ons. Cancel anytime.' },
+        'bi-monthly': { title: 'Bi-monthly membership', body: 'Detail every 60 days — a great balance of maintenance and value.' },
+        'quarterly':  { title: 'Quarterly membership',  body: 'Detail every 90 days, ideal for lower-mileage vehicles that stay clean.' }
+      };
+
+      var hiddenInput  = document.getElementById('membership-value');
+      var detailPanel  = document.getElementById('membership-detail');
+      var detailTitle  = document.getElementById('membership-detail-title');
+      var detailBody   = document.getElementById('membership-detail-body');
+      var segments     = document.querySelectorAll('.mem-seg');
+
+      function activate(seg) {
+        segments.forEach(function(s) {
+          s.style.background = 'transparent';
+          s.querySelector('.mem-seg-main').style.color = '#888';
+          s.querySelector('.mem-seg-sub').style.color = '#555';
         });
-        if (this.checked) {
-          this.closest('label').style.borderColor = 'rgba(34,197,94,0.4)';
-          this.closest('label').style.background = 'rgba(34,197,94,0.06)';
+        seg.style.background = 'rgba(34,197,94,0.1)';
+        seg.querySelector('.mem-seg-main').style.color = '#22c55e';
+        seg.querySelector('.mem-seg-sub').style.color = '#4ade80';
+
+        var val = seg.getAttribute('data-val');
+        hiddenInput.value = val;
+
+        if (details[val]) {
+          detailTitle.textContent = details[val].title;
+          detailBody.textContent  = details[val].body;
+          detailPanel.style.maxHeight = '120px';
+          detailPanel.style.opacity   = '1';
+        } else {
+          detailPanel.style.maxHeight = '0';
+          detailPanel.style.opacity   = '0';
         }
+      }
+
+      segments.forEach(function(seg) {
+        seg.addEventListener('click', function() { activate(this); });
+      });
+
+      // Activate default (No thanks)
+      var defaultSeg = document.querySelector('.mem-seg-default');
+      if (defaultSeg) activate(defaultSeg);
+    })();
+
+    // Addon checkboxes: toggle .checked class on parent label
+    document.querySelectorAll('.addon-hidden-cb').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        this.closest('.addon-item').classList.toggle('checked', this.checked);
       });
     });
+
+    // Inline validation
+    (function() {
+      function showMsg(id, text, ok) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = text;
+        el.style.color = ok ? '#22c55e' : '#e74c3c';
+      }
+      function clearMsg(id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = '';
+      }
+      function setInputState(input, ok) {
+        input.style.borderColor = ok ? '#22c55e' : '#e74c3c';
+      }
+      function clearInputState(input) {
+        input.style.borderColor = '';
+      }
+
+      var rules = [
+        {
+          id: 'name', msgId: 'name-msg',
+          validate: function(v) { return v.trim().length > 0; },
+          errMsg: '⚠ Full name is required', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'phone', msgId: 'phone-msg',
+          validate: function(v) { return v.replace(/\D/g, '').length === 10; },
+          errMsg: '⚠ Enter a valid 10-digit US phone number', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'email', msgId: 'email-msg',
+          validate: function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); },
+          errMsg: '⚠ Enter a valid email address', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'city', msgId: 'city-msg',
+          validate: function(v) { return v.trim().length > 0; },
+          errMsg: '⚠ City is required', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'zip', msgId: 'zip-msg',
+          validate: function(v) { return /^\d{5}$/.test(v.trim()); },
+          errMsg: '⚠ Enter a valid 5-digit zip code', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'vehicle-make', msgId: 'vehicle-make-msg',
+          validate: function(v) { return v.trim().length > 0; },
+          errMsg: '⚠ Make is required', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'vehicle-model', msgId: 'vehicle-model-msg',
+          validate: function(v) { return v.trim().length > 0; },
+          errMsg: '⚠ Model is required', okMsg: '✓ Looks good'
+        },
+        {
+          id: 'vehicle-year', msgId: 'vehicle-year-msg',
+          validate: function(v) { return v.trim().length > 0; },
+          errMsg: '⚠ Year is required', okMsg: '✓ Looks good'
+        }
+      ];
+
+      rules.forEach(function(rule) {
+        var input = document.getElementById(rule.id);
+        if (!input) return;
+        input.addEventListener('blur', function() {
+          var valid = rule.validate(this.value);
+          setInputState(this, valid);
+          showMsg(rule.msgId, valid ? rule.okMsg : rule.errMsg, valid);
+        });
+        input.addEventListener('focus', function() {
+          clearInputState(this);
+          clearMsg(rule.msgId);
+        });
+      });
+    })();
   </script>
 <!-- ── NEW CUSTOMER POPUP ── -->
 <div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center; padding:20px;">

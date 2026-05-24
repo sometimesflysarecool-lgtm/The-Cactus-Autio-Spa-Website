@@ -870,6 +870,9 @@
     .rev-arrow svg { width: 20px; height: 20px; stroke: #22c55e; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
     .rev-arrow:disabled { opacity: 0.3; cursor: default; }
     .rev-arrow:disabled:hover { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.25); }
+    .rev-dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .rev-dot { height: 6px; width: 6px; border-radius: 999px; background: #3a3a3a; border: none; cursor: pointer; padding: 0; transition: width 0.2s ease, background 0.2s ease; }
+    .rev-dot.active { width: 20px; background: #22c55e; }
     .review-stars { color: #f59e0b; font-size: 17px; letter-spacing: 2px; }
     .review-text { color: #d1d5db; font-size: 14px; line-height: 1.75; flex: 1; }
     .review-footer {
@@ -2210,6 +2213,8 @@
           </button>
         </div><!-- /reviews-slider-wrap -->
 
+        <div id="rev-dots" class="rev-dots"></div>
+
         <!-- Google buttons -->
         <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
           <a href="https://share.google/4QMGpvLXbGtX10AFv" target="_blank" rel="noopener"
@@ -2348,15 +2353,17 @@
   <script src="script.js"></script>
   <script>
     (function () {
-      var track = document.getElementById('reviewsTrack');
-      var cards = track.querySelectorAll('.review-card');
-      var nextBtn = document.getElementById('revNext');
-      var prevBtn = document.getElementById('revPrev');
+      var track       = document.getElementById('reviewsTrack');
+      var cards       = track.querySelectorAll('.review-card');
+      var nextBtn     = document.getElementById('revNext');
+      var prevBtn     = document.getElementById('revPrev');
+      var dotsWrap    = document.getElementById('rev-dots');
 
       if (!track || !cards.length || !nextBtn || !prevBtn) return;
 
-      var current = 0;
-      var total = cards.length;
+      var current    = 0;
+      var total      = cards.length;
+      var touchStartX = 0;
 
       function visibleCount() {
         var w = window.innerWidth;
@@ -2365,21 +2372,67 @@
         return 1;
       }
 
+      function maxIndex() {
+        return Math.max(0, total - visibleCount());
+      }
+
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        var count = maxIndex() + 1;
+        for (var i = 0; i < count; i++) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'rev-dot' + (i === current ? ' active' : '');
+          dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          (function (idx) {
+            dot.addEventListener('click', function () { goTo(idx); });
+          })(i);
+          dotsWrap.appendChild(dot);
+        }
+      }
+
+      function updateDots() {
+        dotsWrap.querySelectorAll('.rev-dot').forEach(function (d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      function updateArrows() {
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === maxIndex();
+      }
+
       function goTo(index) {
-        var maxIndex = Math.max(0, total - visibleCount());
-        if (index < 0) index = maxIndex;
-        if (index > maxIndex) index = 0;
+        var max = maxIndex();
+        if (index < 0) index = 0;
+        if (index > max) index = max;
         current = index;
-        var gap = parseFloat(window.getComputedStyle(track).gap) || 20;
+        var gap  = parseFloat(window.getComputedStyle(track).gap) || 20;
         var step = cards[0].offsetWidth + gap;
-        track.style.transition = 'transform 0.4s ease';
-        track.style.transform = 'translateX(-' + (current * step) + 'px)';
+        track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform  = 'translateX(-' + (current * step) + 'px)';
+        updateDots();
+        updateArrows();
       }
 
       nextBtn.addEventListener('click', function () { goTo(current + 1); });
       prevBtn.addEventListener('click', function () { goTo(current - 1); });
-      window.addEventListener('resize', function () { goTo(0); });
 
+      track.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) >= 50) goTo(dx < 0 ? current + 1 : current - 1);
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        buildDots();
+        goTo(Math.min(current, maxIndex()));
+      });
+
+      buildDots();
       goTo(0);
     })();
   </script>

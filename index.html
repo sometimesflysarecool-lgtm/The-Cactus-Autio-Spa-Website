@@ -893,7 +893,7 @@
     .review-location { font-size: 12px; color: #6b7280; }
     .review-google-logo { width: 18px; height: 18px; margin-left: auto; opacity: 0.6; }
 
-    .hero-dropdown-menu {
+    .hero-svc-panel {
       position: absolute;
       top: calc(100% + 18px);
       left: 50%;
@@ -908,19 +908,19 @@
       z-index: 9999;
       box-shadow: 0 16px 40px rgba(0,0,0,0.4);
     }
-    .hero-dropdown .hero-dropdown-menu {
+    .hero-svc .hero-svc-panel {
       transition: opacity 0.2s ease, transform 0.2s ease;
       transition-delay: 0s;
     }
-    .hero-dropdown:not(:hover) .hero-dropdown-menu {
+    .hero-svc:not(:hover) .hero-svc-panel {
       transition-delay: 0.3s;
     }
-    .hero-dropdown:hover .hero-dropdown-menu {
+    .hero-svc:hover .hero-svc-panel {
       opacity: 1;
       pointer-events: auto;
       transform: translateX(-50%) translateY(0);
     }
-    .hero-dropdown-menu a {
+    .hero-svc-panel a {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -932,7 +932,7 @@
       text-decoration: none;
       transition: background 0.15s ease, color 0.15s ease;
     }
-    .hero-dropdown-menu a:hover {
+    .hero-svc-panel a:hover {
       background: rgba(34,197,94,0.12);
       color: #22c55e;
       border-radius: 10px;
@@ -1193,6 +1193,7 @@
         display: flex;
         flex-direction: column;
         pointer-events: auto;
+        transform: translateX(-50%);
       }
     }
 
@@ -1382,12 +1383,12 @@
         <p>Interior detail, ceramic coating, paint enhancement, and membership plans crafted for local drivers who want a cleaner car without leaving home.</p>
         <div class="hero-actions">
           <a href="contact.html" class="btn btn-primary btn-animated" style="display:inline-flex; align-items:center; justify-content:center; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">Get a Free Quote</a>
-          <div id="hero-vsd" class="hero-dropdown" style="position:relative; display:inline-block; z-index:9999;">
-            <button class="btn btn-secondary hero-dropdown-trigger" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">
+          <div id="hero-vsd" class="hero-svc" style="position:relative; display:inline-block; z-index:9999;">
+            <button class="btn btn-secondary hero-svc-trigger" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:1rem 2.3rem; font-size:1.1rem; height:58px; min-width:220px;">
               View Services
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div id="hero-vsd-menu" class="hero-dropdown-menu">
+            <div id="hero-vsd-menu" class="hero-svc-panel">
               <a href="services.html">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/><path d="M6 12h12"/></svg>
                 Auto Detailing
@@ -2537,7 +2538,7 @@
 <script>
 // Hero "View Services" dropdown — tap to open on mobile
 (function () {
-  var trigger = document.querySelector('.hero-dropdown-trigger');
+  var trigger = document.querySelector('.hero-svc-trigger');
   var dropdown = document.getElementById('hero-vsd');
   var menu = document.getElementById('hero-vsd-menu');
   if (!trigger || !dropdown || !menu) return;

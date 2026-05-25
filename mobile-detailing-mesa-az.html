@@ -250,6 +250,7 @@
         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
         <li><a href="monthly-membership.html">Membership</a></li>
         <li><a href="paint-correction.html">Paint Enhancement</a></li>
+        <li><a href="corporate.html">Corporate/Business</a></li>
       </ul>
     </li>
     <li><a href="about.html" style="color:#aaa; text-decoration:none; font-size:14px;">About</a></li>
@@ -442,7 +443,9 @@
 </div>
 
 <!-- FOOTER -->
-<footer style="background:#0d0d0d; border-top:1px solid rgba(255,255,255,0.07); font-family:'Inter',system-ui,-apple-system,sans-serif; width:100%;">
+<footer itemscope itemtype="https://schema.org/LocalBusiness" style="background:#0d0d0d; border-top:1px solid rgba(255,255,255,0.07); font-family:'Inter',system-ui,-apple-system,sans-serif; width:100%;">
+  <meta itemprop="name" content="The Cactus Auto Spa">
+  <meta itemprop="url" content="https://cactusautospa.com">
   <div style="max-width:1200px; margin:0 auto; padding:64px 40px 40px; display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:48px;">
     <div>
       <a href="index.html" style="display:inline-block; margin-bottom:16px;">
@@ -485,16 +488,20 @@
       <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Get In Touch</p>
       <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
         <li>
-          <a href="tel:6027803365" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;">
+          <a href="tel:6027803365" itemprop="telephone" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.46 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.38 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             (602) 780-3365
           </a>
         </li>
         <li>
-          <a href="mailto:contact@cactusautospa.com" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;">
+          <a href="mailto:contact@cactusautospa.com" itemprop="email" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             contact@cactusautospa.com
           </a>
+        </li>
+        <li itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" style="display:flex; align-items:center; gap:10px; color:#9ca3af; font-size:14px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><span itemprop="addressLocality">Mesa</span> &amp; Gilbert, <span itemprop="addressRegion">AZ</span></span>
         </li>
         <li style="padding-top:4px;">
           <a href="contact.html" class="btn-animated" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>

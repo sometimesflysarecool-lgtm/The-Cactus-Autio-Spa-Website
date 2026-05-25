@@ -895,14 +895,13 @@
 
     .hero-dropdown-menu {
       position: absolute;
-      top: calc(100% + 10px);
+      top: calc(100% + 18px);
       left: 50%;
       transform: translateX(-50%) translateY(8px);
       background: #1e1e1e;
       border: 1px solid rgba(34,197,94,0.2);
       border-radius: 14px;
       padding: 10px 8px 8px;
-      margin-top: -10px;
       min-width: 210px;
       opacity: 0;
       pointer-events: none;
@@ -1321,6 +1320,7 @@
         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
         <li><a href="monthly-membership.html">Membership</a></li>
         <li><a href="paint-correction.html">Paint Enhancement</a></li>
+        <li><a href="corporate.html">Corporate/Business</a></li>
       </ul>
     </li>
     <li><a href="about.html" style="color:#aaa; text-decoration:none; font-size:14px;">About</a></li>
@@ -1364,6 +1364,10 @@
               <a href="monthly-membership.html">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
                 Membership Plans
+              </a>
+              <a href="corporate.html">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                Corporate/Business
               </a>
             </div>
           </div>
@@ -1835,6 +1839,7 @@
                 '<div class="ipc-detail-card">' +
                   '<div style="font-size:12px;font-weight:700;color:#22c55e;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Interior Detail</div>' +
                   '<div class="ipc-price-num">' + intPrice + '</div>' +
+                  '<div style="color:#22c55e;font-weight:700;font-size:11px;letter-spacing:0.05em;margin-top:3px;">Before sales tax</div>' +
                   '<div class="ipc-price-lbl">' + vLabel + ' — Starting price</div>' +
                   '<ul class="ipc-features-list">' +
                     INTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
@@ -1845,6 +1850,7 @@
                 '<div class="ipc-detail-card">' +
                   '<div style="font-size:12px;font-weight:700;color:#22c55e;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Exterior Wash</div>' +
                   '<div class="ipc-price-num">' + extPrice + '</div>' +
+                  '<div style="color:#22c55e;font-weight:700;font-size:11px;letter-spacing:0.05em;margin-top:3px;">Before sales tax</div>' +
                   '<div class="ipc-price-lbl">' + vLabel + ' — Starting price</div>' +
                   '<ul class="ipc-features-list">' +
                     EXTERIOR_FEATURES.map(function(f){ return '<li>' + f + '</li>'; }).join('') +
@@ -1867,6 +1873,7 @@
                       '<div class="ipc-mem-card">' +
                         '<div class="ipc-plan-name">' + MEM_NAMES[key] + '</div>' +
                         '<div><span class="ipc-mem-price-num">' + pu[0] + '</span><span class="ipc-mem-price-unit">' + pu[1] + '</span></div>' +
+                        '<div style="color:#22c55e;font-weight:700;font-size:11px;letter-spacing:0.05em;margin-top:3px;">Before sales tax</div>' +
                         '<div class="ipc-mem-veh-lbl">' + vLabel + ' Starting Price</div>' +
                         '<div class="ipc-mem-savings">Save $' + savings + ' vs one-time</div>' +
                         '<ul class="ipc-mem-features">' +
@@ -2261,7 +2268,9 @@
     </main>
   </div><!-- /.screen -->
 
-<footer style="background:#0d0d0d; border-top:1px solid rgba(255,255,255,0.07); font-family:'Inter',system-ui,-apple-system,sans-serif; width:100%;">
+<footer itemscope itemtype="https://schema.org/LocalBusiness" style="background:#0d0d0d; border-top:1px solid rgba(255,255,255,0.07); font-family:'Inter',system-ui,-apple-system,sans-serif; width:100%;">
+  <meta itemprop="name" content="The Cactus Auto Spa">
+  <meta itemprop="url" content="https://cactusautospa.com">
 
   <!-- Main footer grid -->
   <div style="max-width:1200px; margin:0 auto; padding:64px 40px 40px; display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:48px;">
@@ -2317,16 +2326,20 @@
       <p style="font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e; margin:0 0 20px;">Get In Touch</p>
       <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
         <li>
-          <a href="tel:6027803365" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">
+          <a href="tel:6027803365" itemprop="telephone" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.46 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.38 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             (602) 780-3365
           </a>
         </li>
         <li>
-          <a href="mailto:contact@cactusautospa.com" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">
+          <a href="mailto:contact@cactusautospa.com" itemprop="email" style="color:#9ca3af; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:10px;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='#9ca3af'">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             contact@cactusautospa.com
           </a>
+        </li>
+        <li itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" style="display:flex; align-items:center; gap:10px; color:#9ca3af; font-size:14px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><span itemprop="addressLocality">Mesa</span> &amp; Gilbert, <span itemprop="addressRegion">AZ</span></span>
         </li>
         <li style="padding-top:4px;">
           <a href="contact.html" class="btn-animated" style="display:inline-flex; align-items:center; background:#22c55e; color:#06120a; font-weight:700; font-size:13px; padding:11px 24px; border-radius:999px; text-decoration:none;">Get a Free Quote</a>

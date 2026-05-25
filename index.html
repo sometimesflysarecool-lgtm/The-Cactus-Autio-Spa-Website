@@ -1157,6 +1157,33 @@
       }
     }
 
+    /* ── Hero dropdown — mobile fix ────────────────────────────────────────
+       The [class*="dropdown"] rule above sets display:none on .hero-dropdown.
+       These rules restore it and switch from hover to tap-to-open.
+    ─────────────────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-dropdown {
+        display: inline-block !important;
+        position: relative !important;
+      }
+      .hero-dropdown-menu {
+        position: absolute !important;
+        top: calc(100% + 14px) !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        display: none !important;
+        opacity: 1 !important;
+        pointer-events: none !important;
+        z-index: 99999 !important;
+        min-width: 230px !important;
+      }
+      .hero-dropdown.open .hero-dropdown-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        pointer-events: auto !important;
+      }
+    }
+
     @media (max-width: 768px) {
       .review-name {
         display: block !important;
@@ -2496,6 +2523,23 @@
 })();
 </script>
 <script>
+// Hero "View Services" dropdown — tap to open on mobile
+(function () {
+  var trigger = document.querySelector('.hero-dropdown-trigger');
+  var dropdown = document.querySelector('.hero-dropdown');
+  if (!trigger || !dropdown) return;
+  trigger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', function () {
+    dropdown.classList.remove('open');
+  });
+  dropdown.querySelector('.hero-dropdown-menu').addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
+})();
+
 document.querySelectorAll('.best-value-animated').forEach(el => {
   el.addEventListener('animationend', function handler() {
     el.classList.add('settled');

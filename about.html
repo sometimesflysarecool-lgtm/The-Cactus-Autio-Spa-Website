@@ -822,6 +822,35 @@
   </script>
 </head>
 <body>
+<!-- ── FATHER'S DAY PROMO BAR ── -->
+<div id="cas-promo-bar" role="region" aria-label="Father's Day promotion">
+  <div class="cas-promo-inner">
+    <span class="cas-promo-text">
+      FATHER'S DAY <span class="cas-em">&mdash; 20% OFF EXTERIOR SERVICES</span>
+      <span class="cas-end" id="cas-countdown">ENDS 6/21</span>
+    </span>
+    <a href="contact.html?promo=LoveDad20" class="cas-promo-cta" id="cas-claim">CLAIM NOW</a>
+  </div>
+</div>
+<style>
+  #cas-promo-bar{width:100%;background:#1A1A1A;border-bottom:2px solid #52b954;font-family:"Helvetica Neue",Arial,sans-serif;z-index:10000;position:relative;}
+  .cas-promo-inner{max-width:1200px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center;}
+  .cas-promo-text{color:#ef321a;font-weight:800;font-size:15px;letter-spacing:0.10em;text-transform:uppercase;}
+  .cas-em{color:#ef321a;}
+  .cas-end{color:#52b954;margin-left:8px;font-weight:800;}
+  .cas-promo-cta{color:#52b954;font-weight:800;font-size:14px;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;padding:6px 16px;border:1.5px solid #52b954;border-radius:4px;white-space:nowrap;transition:background 0.15s ease,color 0.15s ease;cursor:pointer;}
+  .cas-promo-cta:hover{background:#52b954;color:#1A1A1A;}
+  @media(max-width:640px){.cas-promo-inner{gap:9px;padding:9px 14px;}.cas-promo-text{font-size:12px;}.cas-promo-cta{font-size:11.5px;padding:5px 13px;}}
+</style>
+<script>
+(function(){
+  var deadline=new Date('2026-06-21T23:59:59');
+  var el=document.getElementById('cas-countdown');
+  if(el){var days=Math.ceil((deadline-new Date())/86400000);if(days>1)el.textContent='ENDS 6/21 · '+days+' DAYS LEFT';else if(days===1)el.textContent='ENDS 6/21 · 1 DAY LEFT';else if(days===0)el.textContent='ENDS TODAY';}
+})();
+</script>
+<!-- ── END PROMO BAR ── -->
+
 
   <!-- NAV -->
   <nav style="background:#1a1a1a; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:999;">

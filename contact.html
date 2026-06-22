@@ -683,34 +683,6 @@
   </style>
 </head>
 <body>
-<!-- ── FATHER'S DAY PROMO BAR ── -->
-<div id="cas-promo-bar" role="region" aria-label="Father's Day promotion">
-  <div class="cas-promo-inner">
-    <span class="cas-promo-text">
-      FATHER'S DAY <span class="cas-em">&mdash; 20% OFF EXTERIOR SERVICES</span>
-      <span class="cas-end" id="cas-countdown">ENDS 6/21</span>
-    </span>
-    <a href="contact.html?promo=LoveDad20" class="cas-promo-cta" id="cas-claim">CLAIM NOW</a>
-  </div>
-</div>
-<style>
-  #cas-promo-bar{width:100%;background:#1A1A1A;border-bottom:2px solid #52b954;font-family:"Helvetica Neue",Arial,sans-serif;z-index:10000;position:relative;}
-  .cas-promo-inner{max-width:1200px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center;}
-  .cas-promo-text{color:#ef321a;font-weight:800;font-size:15px;letter-spacing:0.10em;text-transform:uppercase;}
-  .cas-em{color:#ef321a;}
-  .cas-end{color:#52b954;margin-left:8px;font-weight:800;}
-  .cas-promo-cta{color:#52b954;font-weight:800;font-size:14px;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;padding:6px 16px;border:1.5px solid #52b954;border-radius:4px;white-space:nowrap;transition:background 0.15s ease,color 0.15s ease;cursor:pointer;}
-  .cas-promo-cta:hover{background:#52b954;color:#1A1A1A;}
-  @media(max-width:640px){.cas-promo-inner{gap:9px;padding:9px 14px;}.cas-promo-text{font-size:12px;}.cas-promo-cta{font-size:11.5px;padding:5px 13px;}}
-</style>
-<script>
-(function(){
-  var deadline=new Date('2026-06-21T23:59:59');
-  var el=document.getElementById('cas-countdown');
-  if(el){var days=Math.ceil((deadline-new Date())/86400000);if(days>1)el.textContent='ENDS 6/21 · '+days+' DAYS LEFT';else if(days===1)el.textContent='ENDS 6/21 · 1 DAY LEFT';else if(days===0)el.textContent='ENDS TODAY';}
-})();
-</script>
-<!-- ── END PROMO BAR ── -->
 
   <div class="screen">
     <nav style="background:#1a1a1a; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
@@ -1120,9 +1092,7 @@
         var bannerText = document.getElementById('promo-banner-text');
         if (bannerText) {
           var code = promo.toUpperCase();
-          if (code === 'LOVEDAD20') {
-            bannerText.textContent = "Father’s Day Special: 20% off exterior services applied!";
-          } else if (code === 'NEWCAR20') {
+          if (code === ‘NEWCAR20’) {
             bannerText.textContent = "20% new customer discount applied!";
           }
         }
@@ -1279,49 +1249,6 @@
       });
     })();
   </script>
-<!-- ── NEW CUSTOMER POPUP ── -->
-<div id="nc-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center; padding:20px;">
-  <div id="nc-card" style="background:#0d0d0d; border-radius:20px; max-width:420px; width:100%; border:1px solid rgba(34,197,94,0.2); box-shadow:0 24px 64px rgba(0,0,0,0.8); overflow:hidden; position:relative;">
-    <div style="position:absolute; top:14px; right:16px; text-align:right; line-height:1.6; z-index:2;">
-      <div style="font-size:10px; font-weight:700; color:#22c55e; letter-spacing:0.12em; text-transform:uppercase;">Fathers Day Special</div>
-      <div style="font-size:10px; font-weight:600; color:#22c55e; letter-spacing:0.06em;">Ends 06 &bull; 21 &bull; 2026</div>
-    </div>
-    <div style="padding:28px 28px 8px; text-align:left;">
-      <div style="font-size:72px; font-weight:900; color:#fff; line-height:0.9; text-transform:uppercase; letter-spacing:-3px; padding-top:20px;">DAD</div>
-      <div style="font-size:28px; font-weight:900; color:#fff; line-height:1.1; text-transform:uppercase; letter-spacing:-0.5px;">DESERVES A</div>
-      <div style="font-size:28px; font-weight:900; line-height:1.2; text-transform:uppercase; letter-spacing:-0.5px;"><span style="color:#22c55e;">CLEAN</span><span style="color:#fff;"> RIDE.</span></div>
-    </div>
-    <div style="background:#c0392b; padding:14px 48px; margin:14px -24px 0; transform:rotate(-3deg); box-shadow:0 4px 20px rgba(192,57,43,0.5);">
-      <div style="font-size:52px; font-weight:900; color:#fff; letter-spacing:-1px; line-height:1; text-align:center;">20% OFF</div>
-    </div>
-    <div style="text-align:center; padding:16px 28px 8px;">
-      <div style="display:inline-block; border:2px solid #22c55e; border-radius:6px; padding:8px 20px; background:rgba(34,197,94,0.05);">
-        <span style="font-size:12px; font-weight:800; color:#22c55e; letter-spacing:0.2em; text-transform:uppercase;">Exterior Services Only</span>
-      </div>
-    </div>
-    <div style="padding:12px 28px 28px; display:flex; flex-direction:column; align-items:center; gap:12px;">
-      <a href="contact.html?promo=LoveDad20" onclick="localStorage.setItem('savedPromo','LoveDad20'); closePopup();" style="display:block; width:100%; background:#22c55e; color:#000; font-size:17px; font-weight:900; padding:16px 24px; border-radius:999px; text-decoration:none; text-align:center; letter-spacing:0.05em; text-transform:uppercase;">CLAIM NOW!</a>
-      <a href="#" onclick="closePopup(); return false;" style="font-size:13px; color:#9ca3af; text-decoration:none;">No thanks, I&apos;ll pass on the savings</a>
-      <div style="font-size:13px; font-weight:700; color:#22c55e;">Mesa &amp; Gilbert AZ</div>
-    </div>
-  </div>
-</div>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="firebase-spots.js"></script>
-<style>@keyframes nc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}</style>
-<script>
-(function(){
-  function isDismissed(){var v=localStorage.getItem('nc_dismissed_fd26c');return v?Date.now()<parseInt(v,10):false;}
-  function setDismissed(){localStorage.setItem('nc_dismissed_fd26c',Date.now()+7*24*60*60*1000);}
-  if(window.CactusSpots){CactusSpots.get(function(s){var el=document.getElementById('nc-spots-count');if(el)el.textContent=s;});}
-  function showPopup(){if(isDismissed())return;var o=document.getElementById('nc-overlay');if(o)o.style.display='flex';}
-  if(!isDismissed()){
-    setTimeout(showPopup,0);
-    document.addEventListener('mouseleave',function(e){if(e.clientY<=0)showPopup();});
-  }
-  window.closePopup=function(){var o=document.getElementById('nc-overlay');if(o)o.style.display='none';setDismissed();};
-})();
-</script>
+
 </body>
 </html>

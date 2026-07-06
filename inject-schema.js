@@ -80,7 +80,7 @@ const SERVICES = {
   },
   'ceramic-coating.html': {
     '@type':   'Service',
-    name:      'Mobile Ceramic Coating',
+    name:      'Ceramic Coating',
     provider:  { '@id': 'https://cactusautospa.com/#business' },
     description: 'Professional-grade hydrophobic ceramic coating applied at your home or office in Mesa & Gilbert, AZ. Protects against UV rays, Arizona heat, dirt, and everyday wear for 1–5 years.',
     areaServed: [
